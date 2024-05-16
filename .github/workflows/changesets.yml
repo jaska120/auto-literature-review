@@ -44,4 +44,4 @@ jobs:
           title: Release
           commit: 'update version and changelog'
         env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
