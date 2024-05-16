@@ -1,0 +1,9 @@
+{
+  "extends": ["config:base"],
+  "rangeStrategy": "bump",
+  "enabledManagers": ["github-actions", "npm", "nvm"],
+  "prConcurrentLimit": 4,
+  "dependencyDashboardApproval": true,
+  "labels": ["dependencies"],
+  "timezone": "Europe/Helsinki"
+}
