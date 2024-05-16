@@ -1,0 +1,26 @@
+{
+  "name": "auto-literature-review",
+  "version": "0.0.0",
+  "description": "A novel, academically researched approach to automatically generate literature reviews. For any field of study.",
+  "author": "Jaakko Mustalahti",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaska120/auto-literature-review.git"
+  },
+  "keywords": [
+    "automatic",
+    "literature",
+    "review",
+    "ailr"
+  ],
+  "bugs": {
+    "url": "https://github.com/jaska120/auto-literature-review/issues"
+  },
+  "homepage": "https://github.com/jaska120/auto-literature-review#readme",
+  "main": "README.md",
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
