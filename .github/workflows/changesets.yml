@@ -11,6 +11,15 @@ jobs:
   version:
     runs-on: ubuntu-latest
     steps:
+      - name: Get auto-lr-bot token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ secrets.GH_APP_AUTO_LR_BOT_ID }}
+          private-key: ${{ secrets.GH_APP_AUTO_LR_BOT_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: "auto-literature-review"
+
       - uses: actions/checkout@v4
         with:
           # Include whole Git history so that Changesets can find all tags and commits.
@@ -44,4 +53,4 @@ jobs:
           title: Release
           commit: 'update version and changelog'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
