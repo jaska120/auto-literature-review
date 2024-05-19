@@ -24,7 +24,7 @@ jobs:
         uses: mscharley/dependency-changesets-action@v1.0.5
         with:
           token: ${{ steps.app-token.outputs.token }}
-          use-conventional-commits: true
+          use-semantic-commits: true
           commit-message: 'changeset for dependency update'
           author-name: auto-lr-bot
           author-email: github+renovate@users.noreply.github.com
