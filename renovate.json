@@ -3,9 +3,16 @@
   "rangeStrategy": "bump",
   "enabledManagers": ["github-actions", "npm", "nvm"],
   "prConcurrentLimit": 4,
-  "dependencyDashboardApproval": true,
   "labels": ["dependencies"],
   "timezone": "Europe/Helsinki",
   "minimumReleaseAge": "7 days",
-  "gitIgnoredAuthors": ["auto-lr-bot+renovate@users.noreply.github.com"]
+  "gitIgnoredAuthors": ["auto-lr-bot+renovate@users.noreply.github.com"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true,
+      "automergeType": "pr"
+    }
+  ]
 }
