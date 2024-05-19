@@ -7,5 +7,5 @@
   "labels": ["dependencies"],
   "timezone": "Europe/Helsinki",
   "minimumReleaseAge": "7 days",
-  "gitIgnoredAuthors": ["github+renovate@users.noreply.github.com"]
+  "gitIgnoredAuthors": ["auto-lr-bot+renovate@users.noreply.github.com"]
 }

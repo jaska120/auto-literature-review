@@ -27,4 +27,4 @@ jobs:
           use-semantic-commits: false
           commit-message: 'changeset for dependency update'
           author-name: auto-lr-bot
-          author-email: github+renovate@users.noreply.github.com
+          author-email: auto-lr-bot+renovate@users.noreply.github.com
