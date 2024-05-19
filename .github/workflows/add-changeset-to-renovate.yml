@@ -1,0 +1,30 @@
+name: Add changeset to Renovate updates
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, labeled]
+
+jobs:
+  add-changeset:
+    name: Update Renovate PR
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'dependencies')
+
+    steps:
+      - name: Get auto-lr-bot token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ secrets.GH_APP_AUTO_LR_BOT_ID }}
+          private-key: ${{ secrets.GH_APP_AUTO_LR_BOT_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: "auto-literature-review"
+
+      - name: Update PR
+        uses: mscharley/dependency-changesets-action@v1.0.5
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          use-conventional-commits: true
+          commit-message: 'changeset for dependency update'
+          author-name: auto-lr-bot
+          author-email: github+renovate@users.noreply.github.com
