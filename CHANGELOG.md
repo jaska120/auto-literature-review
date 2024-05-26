@@ -1,5 +1,15 @@
 # auto-literature-review
 
+## 0.0.4
+
+### Patch Changes
+
+- [#14](https://github.com/jaska120/auto-literature-review/pull/14) [`edadd07`](https://github.com/jaska120/auto-literature-review/commit/edadd07d64da3185aeb1c2b29850d73722790e40) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency @types/node to ^20.12.12
+
+- [#16](https://github.com/jaska120/auto-literature-review/pull/16) [`3c725e6`](https://github.com/jaska120/auto-literature-review/commit/3c725e6a815388c03b608280ef77b94202f762d4) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency @changesets/cli to ^2.27.2
+
+- [#17](https://github.com/jaska120/auto-literature-review/pull/17) [`15d6a16`](https://github.com/jaska120/auto-literature-review/commit/15d6a1624c681c6e48cbe43e6f140845e98123d0) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency @changesets/cli to ^2.27.3
+
 ## 0.0.3
 
 ### Patch Changes
