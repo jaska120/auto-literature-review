@@ -1,5 +1,27 @@
 # auto-literature-review
 
+## 0.0.5
+
+### Patch Changes
+
+- [#18](https://github.com/jaska120/auto-literature-review/pull/18) [`5498333`](https://github.com/jaska120/auto-literature-review/commit/5498333cdc0d81148e98bd01d2b33b24a8f52d4c) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency @types/react to ^18.3.3
+
+- [#21](https://github.com/jaska120/auto-literature-review/pull/21) [`16b5905`](https://github.com/jaska120/auto-literature-review/commit/16b5905ab16a1e858faccdf7b90f49f1dfbf7861) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency @changesets/cli to ^2.27.5
+
+- [#22](https://github.com/jaska120/auto-literature-review/pull/22) [`04d57ba`](https://github.com/jaska120/auto-literature-review/commit/04d57ba05e3ff39e9d0b1507091e106f25d88247) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency @types/node to ^20.12.13
+
+- [#23](https://github.com/jaska120/auto-literature-review/pull/23) [`fb19dcf`](https://github.com/jaska120/auto-literature-review/commit/fb19dcf88e8526b6f4a3262b8447cdf96be9ae2b) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency @types/node to ^20.12.14
+
+- [#24](https://github.com/jaska120/auto-literature-review/pull/24) [`683942f`](https://github.com/jaska120/auto-literature-review/commit/683942f235c1909500527eebb52c340ac909a36e) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency @types/node to ^20.14.2
+
+- [#25](https://github.com/jaska120/auto-literature-review/pull/25) [`eea54fe`](https://github.com/jaska120/auto-literature-review/commit/eea54fe20637b90ef5bd2f03eeef8a12108be619) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency tailwindcss to ^3.4.4
+
+- [#26](https://github.com/jaska120/auto-literature-review/pull/26) [`849e613`](https://github.com/jaska120/auto-literature-review/commit/849e6139fdb79efc60e0dd9f66d8c2365315900f) Thanks [@jaska120](https://github.com/jaska120)! - Add boilerplate structure to help future development:
+
+  - ESLint rules now enforce consistent coding style
+  - The home page now renderes boilerplate steps
+  - Header allows navigation
+
 ## 0.0.4
 
 ### Patch Changes
