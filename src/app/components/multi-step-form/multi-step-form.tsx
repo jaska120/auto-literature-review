@@ -15,21 +15,22 @@ export function MultiStepForm() {
   ];
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-4 border rounded shadow">
-      <h1 className="text-2xl font-bold text-center mb-6">Steps</h1>
-      <div className="flex flex-col">
-        <div className="flex justify-between mb-8">
+    <div className="grow max-w-3xl p-4">
+      <div className="flex grow flex-col">
+        <div className="flex justify-between border rounded shadow p-8 mb-8">
           {Steps.map(({ component: Component, button }, index) => (
             <button key={`${Component.name}-button`} onClick={() => setStep(index)} type="button">
               {button}
             </button>
           ))}
         </div>
-        {Steps.map(({ component: Component }, index) => (
-          <div key={`${Component.name}-step`} className={step === index ? "block" : "hidden"}>
-            <Component />
-          </div>
-        ))}
+        <div className="p-8">
+          {Steps.map(({ component: Component }, index) => (
+            <div key={`${Component.name}-step`} className={step === index ? "block" : "hidden"}>
+              <Component />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
