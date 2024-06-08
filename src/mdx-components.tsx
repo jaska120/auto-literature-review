@@ -7,8 +7,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h1: ({ children }) => <h1 className="text-4xl font-bold mb-6">{children}</h1>,
     h2: ({ children }) => <h2 className="text-2xl font-semibold mb-4">{children}</h2>,
     h3: ({ children }) => <h3 className="text-xl font-semibold mb-2">{children}</h3>,
-    p: ({ children }) => <p className="text-base text-gray-700 dark:text-gray-300 mb-4">{children}</p>,
-    code: ({ children }) => <code className="font-mono font-bold bg-gray-100 dark:bg-gray-800 p-1 rounded">{children}</code>,
+    p: ({ children }) => (
+      <p className="text-base text-gray-700 dark:text-gray-300 mb-4">{children}</p>
+    ),
+    code: ({ children }) => (
+      <code className="font-mono font-bold bg-gray-100 dark:bg-gray-800 p-1 rounded">
+        {children}
+      </code>
+    ),
     a: ({ href, children }) => (
       <a
         href={href}
