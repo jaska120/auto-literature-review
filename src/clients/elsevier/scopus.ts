@@ -12,6 +12,13 @@ export class Scopus {
     this.apiKey = props.apiKey;
   }
 
+  /**
+   * Make a request to the Scopus API.
+   * @param path The path to request.
+   * @param params The query parameters.
+   * @param parse The parser for the response.
+   * @returns The parsed response.
+   */
   private async request<T>(
     path: string,
     params: Record<string, string>,
@@ -28,11 +35,29 @@ export class Scopus {
     return parse(data);
   }
 
+  /**
+   * Search the Scopus database.
+   * @param query The search query.
+   * @returns The search results.
+   */
   async search(query: string): Promise<z.infer<typeof ScopusSearchResponse>> {
     return this.request(
       "/content/search/scopus",
       ScopusSearchParams.parse({ query }),
       ScopusSearchResponse.parse
     );
+  }
+
+  /**
+   * Test the Scopus API key validity by making a test request.
+   * @returns Boolean indicating whether the API key is valid.
+   */
+  async test(): Promise<boolean> {
+    try {
+      await this.search("test-api-key");
+      return true;
+    } catch {
+      return false;
+    }
   }
 }
