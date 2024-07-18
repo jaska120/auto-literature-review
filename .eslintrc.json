@@ -6,6 +6,7 @@
   "reportUnusedDisableDirectives": true,
   "rules": {
     "prettier/prettier": "error",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "react/jsx-props-no-spreading": "off"
   }
 }

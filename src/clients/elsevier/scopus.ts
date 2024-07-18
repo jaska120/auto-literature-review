@@ -50,13 +50,17 @@ export class Scopus {
 
   /**
    * Test the Scopus API key validity by making a test request.
+   * Valid API key is stored in the instance and used for future requests.
    * @returns Boolean indicating whether the API key is valid.
    */
-  async test(): Promise<boolean> {
+  async testAndSetApiKey(apiKey: string): Promise<boolean> {
+    const previousApiKey = this.apiKey;
+    this.apiKey = apiKey;
     try {
       await this.search("test-api-key");
       return true;
     } catch {
+      this.apiKey = previousApiKey;
       return false;
     }
   }
