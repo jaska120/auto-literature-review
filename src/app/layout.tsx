@@ -25,6 +25,9 @@ export default function RootLayout({
               Auto Literature Review
             </Link>
             <nav className="space-x-4">
+              <Link href="/configuration" className="hover:text-gray-900">
+                Configuration
+              </Link>
               <Link href="/changelog" className="hover:text-gray-900">
                 Changelog
               </Link>
