@@ -1,26 +1,36 @@
+import { Operation } from "@/utils/operation";
+
 /**
  * External services that require an API key.
  */
 export type ExternalService = "scopus" | "openAI";
 
-export type ApiKey = {
-  /** The API key to related service. */
+type ApiKey = {
+  /**
+   * The API key to related service.
+   */
   apiKey: string | undefined;
-  /**  Whether the API key is valid. */
-  valid: boolean;
+  /**
+   * The result of testing the API key.
+   */
+  test: Operation;
 };
 
 export interface ConfigurationState {
-  /** The API keys for external services. */
-  connections: Record<ExternalService, ApiKey>;
+  /**
+   * The API keys for external services.
+   */
+  connections: {
+    [service in ExternalService]: ApiKey;
+  };
 }
 
 export interface ConfigurationActions {
   /**
    * Save an API key for a service and test the connection.
+   * You can observe the connection status by checking the `test` field of the related {@link ConfigurationState.connections} service.
    * @param service The service to save the API key for.
    * @param apiKey The API key to save.
-   * @returns Whether the connection was successful, and the API key was saved.
    */
-  saveApiKey: (service: ExternalService, apiKey: string | undefined) => Promise<boolean>;
+  saveApiKey: (service: ExternalService, apiKey: string | undefined) => Promise<void>;
 }

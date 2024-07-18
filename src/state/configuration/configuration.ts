@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
-import type {} from "@redux-devtools/extension";
+import { persist } from "zustand/middleware";
 import { testScopusApiKey } from "@/effects/scopus/scopus";
+import * as Op from "@/utils/operation";
 import { ConfigurationState, ConfigurationActions, ExternalService } from "./types";
 
 const TEST_API_KEY_MAP: Record<ExternalService, (apiKey: string) => Promise<boolean>> = {
@@ -10,40 +10,52 @@ const TEST_API_KEY_MAP: Record<ExternalService, (apiKey: string) => Promise<bool
 };
 
 export const useConfigurationStore = create<ConfigurationState & ConfigurationActions>()(
-  devtools(
-    persist(
-      (set) => ({
-        connections: {
-          scopus: {
-            apiKey: undefined,
-            valid: false,
-          },
-          openAI: {
-            apiKey: undefined,
-            valid: false,
-          },
+  persist(
+    (set) => ({
+      connections: {
+        scopus: {
+          apiKey: undefined,
+          test: Op.idle,
         },
-        saveApiKey: async (service, apiKey) => {
-          const testFn = TEST_API_KEY_MAP[service];
-          const valid = apiKey ? await testFn(apiKey) : false;
-          if (!apiKey || valid) {
-            set((state) => ({
-              connections: {
-                ...state.connections,
-                [service]: {
-                  apiKey,
-                  valid,
-                },
-              },
-            }));
-          }
-          return valid;
+        openAI: {
+          apiKey: undefined,
+          test: Op.idle,
         },
-      }),
-      {
-        name: "configuration-store",
-        version: 1,
-      }
-    )
+      },
+      saveApiKey: async (service, apiKey) => {
+        if (!apiKey) {
+          set((state) => ({
+            connections: {
+              ...state.connections,
+              [service]: { ...state.connections[service], apiKey, test: Op.idle },
+            },
+          }));
+          return;
+        }
+
+        set((state) => ({
+          connections: {
+            ...state.connections,
+            [service]: { ...state.connections[service], test: Op.running },
+          },
+        }));
+
+        const testFn = TEST_API_KEY_MAP[service];
+        const valid = await testFn(apiKey);
+
+        set((state) => ({
+          connections: {
+            ...state.connections,
+            [service]: {
+              apiKey: valid ? apiKey : undefined,
+              test: valid ? Op.success(undefined) : Op.error(new Error("Invalid API key")),
+            },
+          },
+        }));
+      },
+    }),
+    {
+      name: "configuration-store",
+    }
   )
 );
