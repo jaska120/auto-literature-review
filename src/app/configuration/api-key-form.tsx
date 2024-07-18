@@ -4,8 +4,8 @@ import { useShallow } from "zustand/react/shallow";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useEffect } from "react";
-import { useConfigurationStore } from "../../state/configuration/configuration";
+import { useConfigurationStore } from "@/state/configuration/configuration";
+import { ExternalService } from "@/state/configuration/types";
 
 const schema = z.object({
   apiKey: z.string(),
@@ -13,27 +13,27 @@ const schema = z.object({
 
 type Schema = z.infer<typeof schema>;
 
-export function ScopusApiKeyForm() {
+interface ApiKeyFormProps {
+  service: ExternalService;
+}
+
+export function ApiKeyForm({ service }: ApiKeyFormProps) {
   const config = useConfigurationStore(
     useShallow((state) => ({
-      apiKey: state.scopusApiKey,
-      saveApiKey: state.saveScopusApiKey,
+      connection: state.connections[service],
+      saveApiKey: state.saveApiKey,
     }))
   );
-  const { register, handleSubmit, setValue } = useForm<Schema>({
+  const { register, handleSubmit } = useForm<Schema>({
     resolver: zodResolver(schema),
   });
 
-  useEffect(() => {
-    setValue("apiKey", config.apiKey || "");
-  }, [setValue, config.apiKey]);
-
   const onSave = (s: Schema) => {
-    config.saveApiKey(s.apiKey);
+    config.saveApiKey(service, s.apiKey);
   };
 
   const onRemove = () => {
-    config.saveApiKey(undefined);
+    config.saveApiKey(service, undefined);
   };
 
   return (

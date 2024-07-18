@@ -1,4 +1,4 @@
-import { ScopusApiKeyForm } from "./scopus-api-key-form";
+import { ApiKeyForm } from "./api-key-form";
 
 export default function ConfigurationPage() {
   return (
@@ -7,7 +7,9 @@ export default function ConfigurationPage() {
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm">
           <h2 className="text-2xl font-bold mb-4">Scopus API Key</h2>
-          <ScopusApiKeyForm />
+          <ApiKeyForm service="scopus" />
+          <h2 className="text-2xl font-bold mb-4">Open AI API Key</h2>
+          <ApiKeyForm service="openAI" />
         </div>
       </div>
     </main>
