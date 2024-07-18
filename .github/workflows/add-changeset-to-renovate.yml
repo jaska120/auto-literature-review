@@ -25,6 +25,6 @@ jobs:
         with:
           token: ${{ steps.app-token.outputs.token }}
           use-semantic-commits: false
-          commit-message: 'changeset for dependency update'
+          commit-message: "changeset for dependency update"
           author-name: auto-lr-bot
           author-email: auto-lr-bot+renovate@users.noreply.github.com
