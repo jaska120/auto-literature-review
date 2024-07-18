@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import type {} from "@redux-devtools/extension";
-import { ConfigurationState, ConfigurationActions } from "./types";
 import { testScopusApiKey } from "@/effects/scopus/scopus";
+import { ConfigurationState, ConfigurationActions } from "./types";
 
 export const useConfigurationStore = create<ConfigurationState & ConfigurationActions>()(
   devtools(

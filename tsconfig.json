@@ -20,7 +20,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/state/*": ["./src/state/*"],
-      "@/effects/*": ["./src/state/effects/*"],
+      "@/effects/*": ["./src/effects/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
