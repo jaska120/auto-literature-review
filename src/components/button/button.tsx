@@ -2,26 +2,56 @@ type ButtonVariant = "primary" | "destructive";
 
 interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "className"> {
   variant: ButtonVariant;
+  fullWidth?: boolean;
   loading?: boolean;
 }
 
-function getClassName(variant: ButtonVariant) {
-  switch (variant) {
-    case "primary":
-      return "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline";
-    case "destructive":
-      return "w-full mt-4 bg-red-500 text-white py-2 rounded-md hover:bg-red-600";
-    default:
-      return variant satisfies never;
+function getClassName(variant: ButtonVariant, disabled: boolean, fullWidth: boolean) {
+  let className =
+    "inline-flex items-center justify-center rounded border px-12 py-3 text-sm font-medium text-white focus:outline-none focus:ring";
+
+  if (fullWidth) {
+    className += " w-full";
   }
+
+  if (disabled) {
+    switch (variant) {
+      case "primary":
+        className += " border-indigo-300 bg-indigo-300 cursor-not-allowed opacity-70";
+        break;
+      case "destructive":
+        className += " border-red-300 bg-red-300 cursor-not-allowed opacity-70";
+        break;
+      default:
+        className += variant satisfies never;
+    }
+  } else {
+    switch (variant) {
+      case "primary":
+        className += " border-indigo-600 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-700";
+        break;
+      case "destructive":
+        className += " border-red-600 bg-red-600 hover:bg-red-700 active:bg-red-700";
+        break;
+      default:
+        className += variant satisfies never;
+    }
+  }
+
+  return className;
 }
 
-export function Button({ variant, loading, children, ...props }: ButtonProps) {
+export function Button({ variant, fullWidth, loading, disabled, children, ...props }: ButtonProps) {
   return (
-    <button className={getClassName(variant)} type="button" {...props}>
+    <button
+      className={getClassName(variant, disabled || false, fullWidth || false)}
+      type="button"
+      disabled={loading || disabled}
+      {...props}
+    >
       {loading && (
         <svg
-          className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+          className="animate-spin h-5 w-5 mr-3"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
