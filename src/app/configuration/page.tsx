@@ -1,4 +1,4 @@
-import { ApiKeyForm } from "./api-key-form";
+import { ApiKeyForm } from "@/components/api-key-form/api-key-form";
 
 export default function ConfigurationPage() {
   return (
