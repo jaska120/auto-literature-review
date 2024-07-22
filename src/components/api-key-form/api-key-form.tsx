@@ -7,6 +7,7 @@ import { z } from "zod";
 import { useConfigurationStore } from "@/state/configuration/configuration";
 import { ExternalService } from "@/state/configuration/types";
 import { isRunning } from "@/utils/operation";
+import { Button } from "@/components/button/button";
 
 const schema = z.object({
   apiKey: z.string(),
@@ -38,50 +39,25 @@ export function ApiKeyForm({ service }: ApiKeyFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSave)}>
+    <form name={`${service}-api-key`} onSubmit={handleSubmit(onSave)}>
       <input
         {...register("apiKey")}
         className="w-full p-2 mb-4 border border-gray-300 rounded-md"
         placeholder="Enter Scopus API Key"
       />
-      <button
+      <Button
+        variant="primary"
         type="submit"
-        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center"
-        // disabled={!!config.apiKey}
+        loading={isRunning(config.connection.test)}
+        disabled={!!config.connection.apiKey}
       >
-        {isRunning(config.connection.test) && (
-          <svg
-            className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            />
-            <path
-              className="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            />
-          </svg>
-        )}
         Save API Key
-      </button>
+      </Button>
       {/* {status === "success" && <div className="mt-4 text-green-600">Connection successful!</div>}
       {status === "failure" && <div className="mt-4 text-red-600">Connection failed!</div>} */}
-      <button
-        type="submit"
-        className="w-full mt-4 bg-red-500 text-white py-2 rounded-md hover:bg-red-600"
-        onClick={handleSubmit(onRemove)}
-      >
+      <Button variant="destructive" type="submit" onClick={handleSubmit(onRemove)}>
         Remove API Key
-      </button>
+      </Button>
     </form>
   );
 }
