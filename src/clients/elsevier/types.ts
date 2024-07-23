@@ -4,23 +4,27 @@ import { z } from "zod";
  * Config for the Scopus client.
  * @note Request API key from {@link https://dev.elsevier.com/}.
  */
-export const ScopusConfig = z.object({
+export const ZodScopusConfig = z.object({
   apiKey: z.string().optional(),
 });
+
+export type ScopusConfig = z.infer<typeof ZodScopusConfig>;
 
 /**
  * Query parameters for the Scopus Search API.
  * @see {@link https://dev.elsevier.com/documentation/ScopusSearchAPI.wadl}
  */
-export const ScopusSearchParams = z.object({
+export const ZodScopusSearchParams = z.object({
   query: z.string().optional(),
 });
+
+export type ScopusSearchParams = z.infer<typeof ZodScopusSearchParams>;
 
 /**
  * Response from the Scopus Search API.
  * @see {@link https://dev.elsevier.com/documentation/ScopusSearchAPI.wadl}
  */
-export const ScopusSearchResponse = z.object({
+export const ZodScopusSearchResponse = z.object({
   "search-results": z.object({
     "opensearch:totalResults": z.string().transform((x) => Number(x)),
     "opensearch:startIndex": z.string().transform((x) => Number(x)),
@@ -121,3 +125,5 @@ export const ScopusSearchResponse = z.object({
     ),
   }),
 });
+
+export type ScopusSearchResponse = z.infer<typeof ZodScopusSearchResponse>;
