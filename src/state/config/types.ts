@@ -16,7 +16,7 @@ type ApiKey = {
   test: Operation;
 };
 
-export interface ConfigurationState {
+export interface ConfigState {
   /**
    * The API keys for external services.
    */
@@ -25,12 +25,14 @@ export interface ConfigurationState {
   };
 }
 
-export interface ConfigurationActions {
+export interface ConfigActions {
   /**
    * Save an API key for a service and test the connection.
-   * You can observe the connection status by checking the `test` field of the related {@link ConfigurationState.connections} service.
+   * You can observe the connection status by checking the `test` field of the related {@link ConfigState.connections} service.
    * @param service The service to save the API key for.
    * @param apiKey The API key to save.
    */
   saveApiKey: (service: ExternalService, apiKey: string | undefined) => Promise<void>;
 }
+
+export type ConfigSlice = ConfigState & ConfigActions;
