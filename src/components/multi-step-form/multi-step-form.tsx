@@ -8,10 +8,10 @@ import { Step3 } from "./step3";
 export function MultiStepForm() {
   const [step, setStep] = useState(0);
 
-  const Steps: { component: () => JSX.Element; button: string }[] = [
-    { component: Search, button: "Search" },
-    { component: Step2, button: "Step 2" },
-    { component: Step3, button: "Step 3" },
+  const Steps: { component: () => JSX.Element; title: string }[] = [
+    { component: Search, title: "Search" },
+    { component: Step2, title: "Step 2" },
+    { component: Step3, title: "Step 3" },
   ];
 
   return (
@@ -19,7 +19,7 @@ export function MultiStepForm() {
       <h2 className="sr-only">Steps</h2>
       <div className="relative after:absolute after:inset-x-0 after:top-1/2 after:block after:h-0.5 after:-translate-y-1/2 after:rounded-lg">
         <ol className="relative z-10 flex justify-between text-sm font-medium text-gray-500">
-          {Steps.map(({ component: Component, button }, index) => {
+          {Steps.map(({ component: Component, title }, index) => {
             const active = step === index;
 
             return (
@@ -35,7 +35,7 @@ export function MultiStepForm() {
                   >
                     {index + 1}
                   </span>
-                  <span className="hidden sm:block"> {button} </span>
+                  <span className="hidden sm:block"> {title} </span>
                 </button>
               </li>
             );
@@ -43,8 +43,9 @@ export function MultiStepForm() {
         </ol>
       </div>
       <div className="py-8">
-        {Steps.map(({ component: Component }, index) => (
+        {Steps.map(({ component: Component, title }, index) => (
           <div key={`${Component.name}-step`} className={step === index ? "block" : "hidden"}>
+            <h2 className="text-lg font-semibold mb-4">{title}</h2>
             <Component />
           </div>
         ))}
