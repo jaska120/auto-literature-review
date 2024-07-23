@@ -16,7 +16,7 @@ type ApiKey = {
   test: Operation;
 };
 
-export interface ConfigState {
+interface ConfigState {
   /**
    * The API keys for external services.
    */
@@ -25,7 +25,7 @@ export interface ConfigState {
   };
 }
 
-export interface ConfigActions {
+interface ConfigActions {
   /**
    * Save an API key for a service and test the connection.
    * You can observe the connection status by checking the `test` field of the related {@link ConfigState.connections} service.

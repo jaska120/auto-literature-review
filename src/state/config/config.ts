@@ -1,6 +1,6 @@
 import { StateCreator } from "zustand";
-import { testScopusApiKey } from "@/effects/scopus/scopus";
 import * as Op from "@/utils/operation";
+import { testScopusApiKey } from "../effects/scopus/scopus";
 import { ExternalService, ConfigSlice } from "./types";
 
 const TEST_API_KEY_MAP: Record<ExternalService, (apiKey: string) => Promise<boolean>> = {
@@ -8,11 +8,7 @@ const TEST_API_KEY_MAP: Record<ExternalService, (apiKey: string) => Promise<bool
   openAI: async () => true,
 };
 
-export const createConfigSlice: StateCreator<
-  ConfigSlice,
-  [],
-  [["zustand/persist", ConfigSlice]]
-> = (set) => ({
+export const createConfigSlice: StateCreator<ConfigSlice> = (set) => ({
   connections: {
     scopus: {
       apiKey: undefined,

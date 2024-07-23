@@ -23,6 +23,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "typecheck": "npx tsc",
     "test": "npx jest",
     "changeset": "npx changeset"
   },

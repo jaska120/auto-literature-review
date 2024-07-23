@@ -9,7 +9,7 @@ export class Scopus {
   constructor(props: z.infer<typeof ScopusConfig>) {
     ScopusConfig.parse(props);
     this.host = "https://api.elsevier.com";
-    this.apiKey = props.apiKey;
+    this.apiKey = props.apiKey || "";
   }
 
   /**
@@ -49,18 +49,26 @@ export class Scopus {
   }
 
   /**
+   * Set the Scopus API key to use for requests.
+   * @param apiKey The API key to set.
+   */
+  setApiKey(apiKey: string) {
+    this.apiKey = apiKey;
+  }
+
+  /**
    * Test the Scopus API key validity by making a test request.
    * Valid API key is stored in the instance and used for future requests.
    * @returns Boolean indicating whether the API key is valid.
    */
   async testAndSetApiKey(apiKey: string): Promise<boolean> {
     const previousApiKey = this.apiKey;
-    this.apiKey = apiKey;
+    this.setApiKey(apiKey);
     try {
       await this.search("test-api-key");
       return true;
     } catch {
-      this.apiKey = previousApiKey;
+      this.setApiKey(previousApiKey);
       return false;
     }
   }

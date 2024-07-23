@@ -5,7 +5,7 @@ import { z } from "zod";
  * @note Request API key from {@link https://dev.elsevier.com/}.
  */
 export const ScopusConfig = z.object({
-  apiKey: z.string(),
+  apiKey: z.string().optional(),
 });
 
 /**
