@@ -19,10 +19,11 @@
     ],
     "paths": {
       "@/clients/*": ["./src/clients/*"],
+      "@/components/*": ["./src/components/*"],
       "@/effects/*": ["./src/effects/*"],
+      "@/hooks/*": ["./src/hooks/*"],
       "@/state/*": ["./src/state/*"],
       "@/utils/*": ["./src/utils/*"],
-      "@/components/*": ["./src/components/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

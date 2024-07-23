@@ -6,8 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useConfigurationStore } from "@/state/configuration/configuration";
 import { ExternalService } from "@/state/configuration/types";
-import { isRunning } from "@/utils/operation";
+import { isRunning, isSuccess } from "@/utils/operation";
 import { Button } from "@/components/button/button";
+import { Input } from "@/components/input/input";
+import { useHasHydrated } from "@/hooks/use-has-hydrated";
+import { useEffect } from "react";
 
 const schema = z.object({
   apiKey: z.string(),
@@ -20,15 +23,20 @@ interface ApiKeyFormProps {
 }
 
 export function ApiKeyForm({ service }: ApiKeyFormProps) {
+  const hydrated = useHasHydrated(useConfigurationStore);
   const config = useConfigurationStore(
     useShallow((state) => ({
       connection: state.connections[service],
       saveApiKey: state.saveApiKey,
     }))
   );
-  const { register, handleSubmit } = useForm<Schema>({
+  const { register, handleSubmit, setValue } = useForm<Schema>({
     resolver: zodResolver(schema),
   });
+
+  useEffect(() => {
+    setValue("apiKey", config.connection.apiKey || "");
+  }, [setValue, config.connection.apiKey]);
 
   const onSave = (s: Schema) => {
     config.saveApiKey(service, s.apiKey);
@@ -36,28 +44,41 @@ export function ApiKeyForm({ service }: ApiKeyFormProps) {
 
   const onRemove = () => {
     config.saveApiKey(service, undefined);
+    setValue("apiKey", "");
   };
 
+  if (!hydrated) {
+    return <p>Loading...</p>;
+  }
+
   return (
-    <form name={`${service}-api-key`} onSubmit={handleSubmit(onSave)}>
-      <input
+    <form
+      className="flex flex-col gap-4"
+      name={`${service}-api-key-form`}
+      onSubmit={handleSubmit(config.connection.apiKey ? onRemove : onSave)}
+    >
+      <Input
         {...register("apiKey")}
-        className="w-full p-2 mb-4 border border-gray-300 rounded-md"
-        placeholder="Enter Scopus API Key"
-      />
-      <Button
-        variant="primary"
-        type="submit"
-        loading={isRunning(config.connection.test)}
         disabled={!!config.connection.apiKey}
-      >
-        Save API Key
-      </Button>
-      {/* {status === "success" && <div className="mt-4 text-green-600">Connection successful!</div>}
-      {status === "failure" && <div className="mt-4 text-red-600">Connection failed!</div>} */}
-      <Button variant="destructive" type="submit" onClick={handleSubmit(onRemove)}>
-        Remove API Key
-      </Button>
+        id={`${service}-api-key-input`}
+        label={service}
+        placeholder="Enter Scopus API Key"
+        icon={isSuccess(config.connection.test) ? "check" : undefined}
+      />
+      {config.connection.apiKey ? (
+        <Button fullWidth variant="destructive" type="submit">
+          Remove API Key
+        </Button>
+      ) : (
+        <Button
+          fullWidth
+          variant="primary"
+          type="submit"
+          loading={isRunning(config.connection.test)}
+        >
+          Save API Key
+        </Button>
+      )}
     </form>
   );
 }

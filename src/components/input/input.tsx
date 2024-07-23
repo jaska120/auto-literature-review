@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { SetRequired } from "type-fest";
 import { CircleCheckIcon } from "./circle-check-icon";
@@ -19,7 +20,10 @@ interface InputProps
 /**
  * @requires `@tailwindcss/forms` plugin
  */
-export function Input({ id, label, icon, ...props }: InputProps) {
+export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { id, label, icon, ...props },
+  ref
+) {
   const Icon = icon ? ICON_MAP[icon] : null;
 
   return (
@@ -29,6 +33,7 @@ export function Input({ id, label, icon, ...props }: InputProps) {
       </label>
 
       <input
+        ref={ref}
         id={id}
         className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
         {...props}
@@ -41,4 +46,4 @@ export function Input({ id, label, icon, ...props }: InputProps) {
       )}
     </div>
   );
-}
+});
