@@ -4,8 +4,8 @@ import { useShallow } from "zustand/react/shallow";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useConfigurationStore } from "@/state/configuration/configuration";
-import { ExternalService } from "@/state/configuration/types";
+import { useBoundStore } from "@/state/bound";
+import { ExternalService } from "@/state/config/types";
 import { isError, isRunning, isSuccess } from "@/utils/operation";
 import { Button } from "@/components/button/button";
 import { Input } from "@/components/input/input";
@@ -26,8 +26,8 @@ interface ApiKeyFormProps {
 }
 
 export function ApiKeyForm({ service, label, placeholder, helperText }: ApiKeyFormProps) {
-  const hydrated = useHasHydrated(useConfigurationStore);
-  const config = useConfigurationStore(
+  const hydrated = useHasHydrated(useBoundStore);
+  const config = useBoundStore(
     useShallow((state) => ({
       connection: state.connections[service],
       saveApiKey: state.saveApiKey,

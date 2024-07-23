@@ -1,15 +1,20 @@
-import { z } from "zod";
-import { ScopusSearchResponse, ScopusSearchParams, ScopusConfig } from "./types";
+import {
+  ZodScopusSearchResponse,
+  ZodScopusSearchParams,
+  ZodScopusConfig,
+  ScopusSearchResponse,
+  ScopusConfig,
+} from "./types";
 
 export class Scopus {
   private host: string;
 
   private apiKey: string;
 
-  constructor(props: z.infer<typeof ScopusConfig>) {
-    ScopusConfig.parse(props);
+  constructor(props: ScopusConfig) {
+    ZodScopusConfig.parse(props);
     this.host = "https://api.elsevier.com";
-    this.apiKey = props.apiKey;
+    this.apiKey = props.apiKey || "";
   }
 
   /**
@@ -40,12 +45,20 @@ export class Scopus {
    * @param query The search query.
    * @returns The search results.
    */
-  async search(query: string): Promise<z.infer<typeof ScopusSearchResponse>> {
+  async search(query: string): Promise<ScopusSearchResponse> {
     return this.request(
       "/content/search/scopus",
-      ScopusSearchParams.parse({ query }),
-      ScopusSearchResponse.parse
+      ZodScopusSearchParams.parse({ query }),
+      ZodScopusSearchResponse.parse
     );
+  }
+
+  /**
+   * Set the Scopus API key to use for requests.
+   * @param apiKey The API key to set.
+   */
+  setApiKey(apiKey: string) {
+    this.apiKey = apiKey;
   }
 
   /**
@@ -55,12 +68,12 @@ export class Scopus {
    */
   async testAndSetApiKey(apiKey: string): Promise<boolean> {
     const previousApiKey = this.apiKey;
-    this.apiKey = apiKey;
+    this.setApiKey(apiKey);
     try {
       await this.search("test-api-key");
       return true;
     } catch {
-      this.apiKey = previousApiKey;
+      this.setApiKey(previousApiKey);
       return false;
     }
   }
