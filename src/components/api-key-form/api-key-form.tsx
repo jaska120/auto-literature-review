@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useConfigurationStore } from "@/state/configuration/configuration";
 import { ExternalService } from "@/state/configuration/types";
-import { isRunning, isSuccess } from "@/utils/operation";
+import { isError, isRunning, isSuccess } from "@/utils/operation";
 import { Button } from "@/components/button/button";
 import { Input } from "@/components/input/input";
 import { useHasHydrated } from "@/hooks/use-has-hydrated";
@@ -20,9 +20,12 @@ type Schema = z.infer<typeof schema>;
 
 interface ApiKeyFormProps {
   service: ExternalService;
+  label: string;
+  placeholder: string;
+  helperText: string;
 }
 
-export function ApiKeyForm({ service }: ApiKeyFormProps) {
+export function ApiKeyForm({ service, label, placeholder, helperText }: ApiKeyFormProps) {
   const hydrated = useHasHydrated(useConfigurationStore);
   const config = useConfigurationStore(
     useShallow((state) => ({
@@ -30,7 +33,7 @@ export function ApiKeyForm({ service }: ApiKeyFormProps) {
       saveApiKey: state.saveApiKey,
     }))
   );
-  const { register, handleSubmit, setValue } = useForm<Schema>({
+  const { register, handleSubmit, setValue, getValues } = useForm<Schema>({
     resolver: zodResolver(schema),
   });
 
@@ -51,6 +54,8 @@ export function ApiKeyForm({ service }: ApiKeyFormProps) {
     return <p>Loading...</p>;
   }
 
+  const error = !!(getValues("apiKey") && isError(config.connection.test));
+
   return (
     <form
       className="flex flex-col gap-4"
@@ -61,13 +66,15 @@ export function ApiKeyForm({ service }: ApiKeyFormProps) {
         {...register("apiKey")}
         disabled={!!config.connection.apiKey}
         id={`${service}-api-key-input`}
-        label={service}
-        placeholder="Enter Scopus API Key"
+        label={label}
+        placeholder={placeholder}
+        helperText={error ? "The API key is invalid" : helperText}
+        error={error}
         icon={isSuccess(config.connection.test) ? "check" : undefined}
       />
       {config.connection.apiKey ? (
         <Button fullWidth variant="destructive" type="submit">
-          Remove API Key
+          Remove
         </Button>
       ) : (
         <Button
@@ -76,7 +83,7 @@ export function ApiKeyForm({ service }: ApiKeyFormProps) {
           type="submit"
           loading={isRunning(config.connection.test)}
         >
-          Save API Key
+          Save
         </Button>
       )}
     </form>
