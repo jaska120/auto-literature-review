@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/button/button";
-import { useBoundStore } from "@/state/bound";
+import { useBoundStore } from "@/state/bound-store";
 import { useShallow } from "zustand/react/shallow";
 import { isRunning, isSuccess } from "@/utils/operation";
 

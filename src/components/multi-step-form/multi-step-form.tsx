@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Search } from "./search";
 import { Step2 } from "./step2";
 import { Step3 } from "./step3";
+import { StoreLoading } from "../loading/store-loading";
 
 export function MultiStepForm() {
   const [step, setStep] = useState(0);
@@ -46,7 +47,9 @@ export function MultiStepForm() {
         {Steps.map(({ component: Component, title }, index) => (
           <div key={`${Component.name}-step`} className={step === index ? "block" : "hidden"}>
             <h2 className="text-lg font-semibold mb-4">{title}</h2>
-            <Component />
+            <StoreLoading>
+              <Component />
+            </StoreLoading>
           </div>
         ))}
       </div>

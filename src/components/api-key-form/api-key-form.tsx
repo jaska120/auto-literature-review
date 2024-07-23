@@ -4,12 +4,11 @@ import { useShallow } from "zustand/react/shallow";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useBoundStore } from "@/state/bound";
+import { useBoundStore } from "@/state/bound-store";
 import { ExternalService } from "@/state/config/types";
 import { isError, isRunning, isSuccess } from "@/utils/operation";
 import { Button } from "@/components/button/button";
 import { Input } from "@/components/input/input";
-import { useHasHydrated } from "@/hooks/use-has-hydrated";
 import { useEffect } from "react";
 
 const schema = z.object({
@@ -26,7 +25,6 @@ interface ApiKeyFormProps {
 }
 
 export function ApiKeyForm({ service, label, placeholder, helperText }: ApiKeyFormProps) {
-  const hydrated = useHasHydrated(useBoundStore);
   const config = useBoundStore(
     useShallow((state) => ({
       connection: state.connections[service],
@@ -49,10 +47,6 @@ export function ApiKeyForm({ service, label, placeholder, helperText }: ApiKeyFo
     config.saveApiKey(service, undefined);
     setValue("apiKey", "");
   };
-
-  if (!hydrated) {
-    return <p>Loading...</p>;
-  }
 
   const error = !!(getValues("apiKey") && isError(config.connection.test));
 
