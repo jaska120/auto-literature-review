@@ -5,9 +5,10 @@ import { SearchSlice } from "./types";
 import { searchScopus } from "../effects/scopus/scopus";
 
 export const createSearchSlice: StateCreator<SearchSlice> = (set) => ({
+  literatureQuery: undefined,
   literatureSearch: Op.idle,
   loadLiteratureSearch: async (query) => {
-    set({ literatureSearch: Op.running });
+    set({ literatureQuery: query, literatureSearch: Op.running });
     try {
       const response = await searchScopus(query);
       set({ literatureSearch: Op.success(response) });

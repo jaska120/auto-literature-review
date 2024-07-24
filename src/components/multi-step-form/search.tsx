@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Input } from "@/components/input/input";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -18,14 +19,19 @@ type Schema = z.infer<typeof schema>;
 export function Search() {
   const search = useBoundStore(
     useShallow((s) => ({
+      query: s.literatureQuery,
       result: s.literatureSearch,
       run: s.loadLiteratureSearch,
       connection: s.connections.scopus.test,
     }))
   );
-  const { register, handleSubmit, formState } = useForm<Schema>({
+  const { register, handleSubmit, formState, setValue } = useForm<Schema>({
     resolver: zodResolver(schema),
   });
+
+  useEffect(() => {
+    setValue("query", search.query || "");
+  }, [setValue, search.query]);
 
   const onQuery = async (s: Schema) => {
     await search.run(s.query);
