@@ -1,8 +1,8 @@
 import { Operation } from "@/utils/operation";
-import { ScopusSearchResponse } from "@/clients/elsevier/types";
+import { LiteratureMetadata } from "../types";
 
 interface SearchState {
-  literatureSearch: Operation<ScopusSearchResponse>;
+  literatureSearch: Operation<LiteratureMetadata[]>;
 }
 
 interface SearchActions {

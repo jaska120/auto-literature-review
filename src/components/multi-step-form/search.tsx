@@ -5,7 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/button/button";
 import { useBoundStore } from "@/state/bound-store";
 import { useShallow } from "zustand/react/shallow";
-import { isRunning, isSuccess } from "@/utils/operation";
+import { isRunning, isSuccess, getValue } from "@/utils/operation";
+import { Table } from "@/components/table/table";
 
 const schema = z.object({
   query: z.string(),
@@ -26,7 +27,7 @@ export function Search() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-8">
       <form className="flex flex-col gap-4" name="search-form" onSubmit={handleSubmit(onQuery)}>
         <Input
           {...register("query")}
@@ -38,7 +39,18 @@ export function Search() {
           Search
         </Button>
       </form>
-      {isSuccess(search.result) && <div>{JSON.stringify(search.result)}</div>}
+      {isSuccess(search.result) && (
+        <Table
+          columns={["Title", "Publication", "Citation count"]}
+          rows={
+            getValue(search.result)?.map((r) => [
+              r.title,
+              r.publication,
+              r.citedByCount?.toString() ?? "",
+            ]) || []
+          }
+        />
+      )}
     </div>
   );
 }
