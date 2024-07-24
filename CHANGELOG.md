@@ -1,5 +1,19 @@
 # auto-literature-review
 
+## 0.1.0
+
+### Minor Changes
+
+- [#59](https://github.com/jaska120/auto-literature-review/pull/59) [`9e96c7f`](https://github.com/jaska120/auto-literature-review/commit/9e96c7f48d3b91bf3d8cf638f49971ffedf6904a) Thanks [@jaska120](https://github.com/jaska120)! - You can now query Scopus with boilerplate search form
+
+### Patch Changes
+
+- [#61](https://github.com/jaska120/auto-literature-review/pull/61) [`9fc776e`](https://github.com/jaska120/auto-literature-review/commit/9fc776e873db553ca0077fce4264a8de4697da2c) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency tailwindcss to ^3.4.6
+
+- [#62](https://github.com/jaska120/auto-literature-review/pull/62) [`e75f1c0`](https://github.com/jaska120/auto-literature-review/commit/e75f1c0678ef8fd7eefab1956ca452d0cf4a93be) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.14.11
+
+- [`ad2265d`](https://github.com/jaska120/auto-literature-review/commit/ad2265dd630df85497b66e63f6d6110b8c57e68f) Thanks [@jaska120](https://github.com/jaska120)! - Add loading indicator brior store hydration
+
 ## 0.0.6
 
 ### Patch Changes
