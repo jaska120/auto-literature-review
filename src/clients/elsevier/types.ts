@@ -15,7 +15,42 @@ export type ScopusConfig = z.infer<typeof ZodScopusConfig>;
  * @see {@link https://dev.elsevier.com/documentation/ScopusSearchAPI.wadl}
  */
 export const ZodScopusSearchParams = z.object({
+  /**
+   * The search query, e.g. "TITLE-ABS-KEY ( "artificial intelligence" )".
+   */
   query: z.string().optional(),
+  /**
+   * The search view to use.
+   * See {@link https://dev.elsevier.com/sc_search_views.html} for more details.
+   * @default "STANDARD"
+   */
+  view: z.union([z.literal("STANDARD"), z.literal("COMPLETE")]).optional(),
+  /**
+   * Numeric value representing the maximum number of results to be returned for the search.
+   * If not provided this will be set to a system default based on service level.
+   * In addition the number cannot exceed the maximum system default - if it does an error will be returned.
+   */
+  count: z.string().optional(),
+  /**
+   * Represents the sort field name in descending (DESC) order.
+   * @default "citedby-count"
+   */
+  sort: z
+    .union([
+      z.literal("artnum"),
+      z.literal("citedby-count"),
+      z.literal("coverDate"),
+      z.literal("creator"),
+      z.literal("orig-load-date"),
+      z.literal("pagecount"),
+      z.literal("pagefirst"),
+      z.literal("pageRange"),
+      z.literal("publicationName"),
+      z.literal("pubyear"),
+      z.literal("relevancy"),
+      z.literal("volume"),
+    ])
+    .optional(),
 });
 
 export type ScopusSearchParams = z.infer<typeof ZodScopusSearchParams>;
@@ -127,3 +162,14 @@ export const ZodScopusSearchResponse = z.object({
 });
 
 export type ScopusSearchResponse = z.infer<typeof ZodScopusSearchResponse>;
+
+export const ZodScopusErrorResponse = z.object({
+  "service-error": z.object({
+    status: z.object({
+      statusCode: z.string(),
+      statusText: z.string(),
+    }),
+  }),
+});
+
+export type ScopusErrorResponse = z.infer<typeof ZodScopusErrorResponse>;

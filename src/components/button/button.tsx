@@ -6,7 +6,12 @@ interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>
   loading?: boolean;
 }
 
-function getClassName(variant: ButtonVariant, disabled: boolean, fullWidth: boolean) {
+function getClassName(
+  variant: ButtonVariant,
+  disabled: boolean,
+  loading: boolean,
+  fullWidth: boolean
+) {
   let className =
     "inline-flex items-center justify-center rounded border px-12 py-3 text-sm font-medium text-white focus:outline-none focus:ring";
 
@@ -14,13 +19,17 @@ function getClassName(variant: ButtonVariant, disabled: boolean, fullWidth: bool
     className += " w-full";
   }
 
+  if (loading || disabled) {
+    className += " cursor-not-allowed";
+  }
+
   if (disabled) {
     switch (variant) {
       case "primary":
-        className += " border-indigo-300 bg-indigo-300 cursor-not-allowed opacity-70";
+        className += " border-indigo-300 bg-indigo-300 opacity-70";
         break;
       case "destructive":
-        className += " border-red-300 bg-red-300 cursor-not-allowed opacity-70";
+        className += " border-red-300 bg-red-300 opacity-70";
         break;
       default:
         className += variant satisfies never;
@@ -44,7 +53,7 @@ function getClassName(variant: ButtonVariant, disabled: boolean, fullWidth: bool
 export function Button({ variant, fullWidth, loading, disabled, children, ...props }: ButtonProps) {
   return (
     <button
-      className={getClassName(variant, disabled || false, fullWidth || false)}
+      className={getClassName(variant, disabled || false, loading || false, fullWidth || false)}
       type="button"
       disabled={loading || disabled}
       {...props}

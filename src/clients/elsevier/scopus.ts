@@ -4,6 +4,8 @@ import {
   ZodScopusConfig,
   ScopusSearchResponse,
   ScopusConfig,
+  ScopusSearchParams,
+  ZodScopusErrorResponse,
 } from "./types";
 
 export class Scopus {
@@ -31,24 +33,29 @@ export class Scopus {
   ) {
     const url = `${this.host}${path}?${new URLSearchParams(params)}`;
     const response = await fetch(url, {
-      headers: { "X-ELS-APIKey": this.apiKey },
+      headers: { Accept: "application/json", "X-ELS-APIKey": this.apiKey },
     });
-    if (response.status !== 200) {
-      throw new Error(`Failed to fetch: ${response.statusText}`);
-    }
     const data = await response.json();
+    if (response.status !== 200) {
+      const errorResponse = ZodScopusErrorResponse.parse(data);
+      throw new Error(errorResponse["service-error"].status.statusText);
+    }
     return parse(data);
   }
 
   /**
    * Search the Scopus database.
-   * @param query The search query.
+   * @param query The search query parameters.
    * @returns The search results.
    */
-  async search(query: string): Promise<ScopusSearchResponse> {
+  async search(params: ScopusSearchParams): Promise<ScopusSearchResponse> {
     return this.request(
       "/content/search/scopus",
-      ZodScopusSearchParams.parse({ query }),
+      ZodScopusSearchParams.parse({
+        count: "25",
+        sort: "citedby-count",
+        ...params,
+      } satisfies ScopusSearchParams),
       ZodScopusSearchResponse.parse
     );
   }
@@ -70,7 +77,7 @@ export class Scopus {
     const previousApiKey = this.apiKey;
     this.setApiKey(apiKey);
     try {
-      await this.search("test-api-key");
+      await this.search({ query: "test-api-key", count: "1" });
       return true;
     } catch {
       this.setApiKey(previousApiKey);

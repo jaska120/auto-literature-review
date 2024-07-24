@@ -1,10 +1,15 @@
 import { StateCreator } from "zustand";
 import * as Op from "@/utils/operation";
-import { testScopusApiKey } from "../effects/scopus/scopus";
+import { testAndSetScopusApiKey, removeScopusApiKey } from "../effects/scopus/scopus";
 import { ExternalService, ConfigSlice } from "./types";
 
+const REMOVE_API_KEY_MAP: Record<ExternalService, () => void> = {
+  scopus: removeScopusApiKey,
+  openAI: () => {},
+};
+
 const TEST_API_KEY_MAP: Record<ExternalService, (apiKey: string) => Promise<boolean>> = {
-  scopus: testScopusApiKey,
+  scopus: testAndSetScopusApiKey,
   openAI: async () => true,
 };
 
@@ -21,6 +26,7 @@ export const createConfigSlice: StateCreator<ConfigSlice> = (set) => ({
   },
   saveApiKey: async (service, apiKey) => {
     if (!apiKey) {
+      REMOVE_API_KEY_MAP[service]();
       set((state) => ({
         connections: {
           ...state.connections,
@@ -37,8 +43,7 @@ export const createConfigSlice: StateCreator<ConfigSlice> = (set) => ({
       },
     }));
 
-    const testFn = TEST_API_KEY_MAP[service];
-    const valid = await testFn(apiKey);
+    const valid = await TEST_API_KEY_MAP[service](apiKey);
 
     set((state) => ({
       connections: {
