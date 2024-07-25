@@ -1,5 +1,19 @@
 # auto-literature-review
 
+## 0.1.1
+
+### Patch Changes
+
+- [#64](https://github.com/jaska120/auto-literature-review/pull/64) [`2cbc5e6`](https://github.com/jaska120/auto-literature-review/commit/2cbc5e63e36593e71ab5dbc06803ffc44454f02f) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-plugin-prettier to ^5.2.1
+
+- [#65](https://github.com/jaska120/auto-literature-review/pull/65) [`48a6702`](https://github.com/jaska120/auto-literature-review/commit/48a6702cd45afa3f1b73be669efff910731c454f) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency ts-jest to ^29.2.3
+
+- [`616dff8`](https://github.com/jaska120/auto-literature-review/commit/616dff84de772debd0704f1129baba007ceae704) Thanks [@jaska120](https://github.com/jaska120)! - Persist literature query in store
+
+- [`eac5d09`](https://github.com/jaska120/auto-literature-review/commit/eac5d096b32a9d8f4640a7d4f8b076524644f16f) Thanks [@jaska120](https://github.com/jaska120)! - Output literature search as table
+
+- [`64da62c`](https://github.com/jaska120/auto-literature-review/commit/64da62c3a3db37686194338514d24bef9fdce97f) Thanks [@jaska120](https://github.com/jaska120)! - Make the literature search form aware of missing api key
+
 ## 0.1.0
 
 ### Minor Changes
