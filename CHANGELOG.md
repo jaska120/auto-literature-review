@@ -1,5 +1,29 @@
 # auto-literature-review
 
+## 0.1.2
+
+### Patch Changes
+
+- [#66](https://github.com/jaska120/auto-literature-review/pull/66) [`9c34781`](https://github.com/jaska120/auto-literature-review/commit/9c34781212bd2744f76512c628126a796d6d87d7) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency type-fest to ^4.23.0
+
+- [#67](https://github.com/jaska120/auto-literature-review/pull/67) [`61e6acf`](https://github.com/jaska120/auto-literature-review/commit/61e6acf0991c993947b12dfe656299f4b338ef60) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update typescript-eslint monorepo to ^7.17.0
+
+- [#69](https://github.com/jaska120/auto-literature-review/pull/69) [`ef7ce31`](https://github.com/jaska120/auto-literature-review/commit/ef7ce31b86909258c9fb98510644827bfd704e36) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typescript to ^5.5.4
+
+- [#70](https://github.com/jaska120/auto-literature-review/pull/70) [`56d9294`](https://github.com/jaska120/auto-literature-review/commit/56d9294b070a29c8897b7539957961c0eed610cc) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.14.12
+
+- [#72](https://github.com/jaska120/auto-literature-review/pull/72) [`28fc511`](https://github.com/jaska120/auto-literature-review/commit/28fc51170d527a5b817fc29c255cd6682186ff71) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency postcss to ^8.4.40
+
+- [#73](https://github.com/jaska120/auto-literature-review/pull/73) [`64b04fd`](https://github.com/jaska120/auto-literature-review/commit/64b04fd4ff162069fbf367a8a34c2f38b6cf7e65) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency tailwindcss to ^3.4.7
+
+- [#74](https://github.com/jaska120/auto-literature-review/pull/74) [`f89fa4b`](https://github.com/jaska120/auto-literature-review/commit/f89fa4bfe767bf9c96cb30aa9f7a3c55b622dec5) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.14.13
+
+- [#75](https://github.com/jaska120/auto-literature-review/pull/75) [`a2bd88e`](https://github.com/jaska120/auto-literature-review/commit/a2bd88eeddb8cbca5b1dd87c9d699316f607c511) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update typescript-eslint monorepo to ^7.18.0
+
+- [#77](https://github.com/jaska120/auto-literature-review/pull/77) [`688a28c`](https://github.com/jaska120/auto-literature-review/commit/688a28cf3473f2d6e210c1bfef705ebeafe72a54) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency ts-jest to ^29.2.4
+
+- [#78](https://github.com/jaska120/auto-literature-review/pull/78) [`07f8beb`](https://github.com/jaska120/auto-literature-review/commit/07f8bebfb84b2ad82af05ef9ff66a612703e7fff) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.14.14
+
 ## 0.1.1
 
 ### Patch Changes
