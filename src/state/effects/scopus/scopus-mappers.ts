@@ -1,4 +1,4 @@
-import { ScopusSearchResponse } from "@/clients/elsevier/types";
+import { ScopusSearchResponse } from "@/clients/scopus/types";
 import { LiteratureMetadata } from "../../types";
 
 export function mapLiteratureResult(result: ScopusSearchResponse): LiteratureMetadata[] {

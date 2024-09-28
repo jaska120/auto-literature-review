@@ -5,7 +5,7 @@ import { createConfigSlice } from "./config/config";
 import { createSearchSlice } from "./search/search";
 import { ConfigSlice } from "./config/types";
 import { SearchSlice } from "./search/types";
-import { scopus } from "./effects/scopus/scopus";
+import { storeScopusApiKey } from "./effects/scopus/scopus";
 
 export const useBoundStore = create<ConfigSlice & SearchSlice>()(
   persist(
@@ -18,7 +18,7 @@ export const useBoundStore = create<ConfigSlice & SearchSlice>()(
       onRehydrateStorage: () => {
         return (state) => {
           if (state) {
-            scopus.setApiKey(state.connections.scopus.apiKey || "");
+            storeScopusApiKey(state.connections.scopus.apiKey);
           }
         };
       },
