@@ -1,0 +1,15 @@
+//devcontainer.json
+{
+  "name": "Development",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "postCreateCommand": "npm install",  
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": ["streetsidesoftware.code-spell-checker"]
+    }
+  }
+}
