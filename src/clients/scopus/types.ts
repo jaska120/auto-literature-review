@@ -1,28 +1,28 @@
 import { z } from "zod";
 
 /**
- * Config for the Scopus client.
- * @note Request API key from {@link https://dev.elsevier.com/}.
+ * headers for Scopus Search API.
+ * @see {@link https://dev.elsevier.com/documentation/ScopusSearchAPI.wadl}
  */
-export const ZodScopusConfig = z.object({
-  apiKey: z.string().optional(),
+export const ZodScopusHeaders = z.object({
+  Accept: z.literal("application/json").optional().default("application/json"),
+  "X-ELS-APIKey": z.string(),
 });
 
-export type ScopusConfig = z.infer<typeof ZodScopusConfig>;
+export type ScopusHeaders = z.infer<typeof ZodScopusHeaders>;
 
 /**
- * Query parameters for the Scopus Search API.
+ * Query parameters for Scopus Search API.
  * @see {@link https://dev.elsevier.com/documentation/ScopusSearchAPI.wadl}
  */
 export const ZodScopusSearchParams = z.object({
   /**
    * The search query, e.g. "TITLE-ABS-KEY ( "artificial intelligence" )".
    */
-  query: z.string().optional(),
+  query: z.string(),
   /**
    * The search view to use.
    * See {@link https://dev.elsevier.com/sc_search_views.html} for more details.
-   * @default "STANDARD"
    */
   view: z.union([z.literal("STANDARD"), z.literal("COMPLETE")]).optional(),
   /**
@@ -30,10 +30,16 @@ export const ZodScopusSearchParams = z.object({
    * If not provided this will be set to a system default based on service level.
    * In addition the number cannot exceed the maximum system default - if it does an error will be returned.
    */
-  count: z.string().optional(),
+  count: z
+    .number()
+    .int()
+    .min(1)
+    .max(25)
+    .transform((v) => v.toString())
+    .optional()
+    .default(25),
   /**
    * Represents the sort field name in descending (DESC) order.
-   * @default "citedby-count"
    */
   sort: z
     .union([
@@ -56,7 +62,7 @@ export const ZodScopusSearchParams = z.object({
 export type ScopusSearchParams = z.infer<typeof ZodScopusSearchParams>;
 
 /**
- * Response from the Scopus Search API.
+ * Response from Scopus Search API.
  * @see {@link https://dev.elsevier.com/documentation/ScopusSearchAPI.wadl}
  */
 export const ZodScopusSearchResponse = z.object({
@@ -163,6 +169,9 @@ export const ZodScopusSearchResponse = z.object({
 
 export type ScopusSearchResponse = z.infer<typeof ZodScopusSearchResponse>;
 
+/**
+ * Error response from Scopus Search API.
+ */
 export const ZodScopusErrorResponse = z.object({
   "service-error": z.object({
     status: z.object({
