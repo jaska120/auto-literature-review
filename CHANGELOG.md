@@ -1,5 +1,121 @@
 # auto-literature-review
 
+## 0.1.2
+
+### Patch Changes
+
+- [#100](https://github.com/jaska120/auto-literature-review/pull/100) [`53dec18`](https://github.com/jaska120/auto-literature-review/commit/53dec1825290c468905d56a2de1ad03179814519) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/react to ^18.3.5
+
+- [#101](https://github.com/jaska120/auto-literature-review/pull/101) [`89bc68c`](https://github.com/jaska120/auto-literature-review/commit/89bc68cc43c24bb8aa5f6d2940664b623a808e1e) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency postcss to ^8.4.42
+
+- [#102](https://github.com/jaska120/auto-literature-review/pull/102) [`c7bba17`](https://github.com/jaska120/auto-literature-review/commit/c7bba17ed3605bd60422fdcf71958caa36c67b40) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.16.3
+
+- [#103](https://github.com/jaska120/auto-literature-review/pull/103) [`8af68e6`](https://github.com/jaska120/auto-literature-review/commit/8af68e6ef99968d74bc1159a60c06713d5781e51) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency postcss to ^8.4.43
+
+- [#104](https://github.com/jaska120/auto-literature-review/pull/104) [`3ac497a`](https://github.com/jaska120/auto-literature-review/commit/3ac497a60d61417052a7182755014fc477cf3c4a) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency postcss to ^8.4.44
+
+- [#105](https://github.com/jaska120/auto-literature-review/pull/105) [`ba01e5a`](https://github.com/jaska120/auto-literature-review/commit/ba01e5aa0eba48b1bf1fca2470466e247ac9e503) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.16.4
+
+- [#106](https://github.com/jaska120/auto-literature-review/pull/106) [`0c91230`](https://github.com/jaska120/auto-literature-review/commit/0c912309399f23af17e5a14289b5e1ccd6259c76) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency postcss to ^8.4.45
+
+- [#107](https://github.com/jaska120/auto-literature-review/pull/107) [`1bd0ffe`](https://github.com/jaska120/auto-literature-review/commit/1bd0ffe75336f445fd87eea3e74ec53afe896b8e) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @changesets/cli to ^2.27.8
+
+- [#108](https://github.com/jaska120/auto-literature-review/pull/108) [`ed9cf2f`](https://github.com/jaska120/auto-literature-review/commit/ed9cf2f49f4cc5aced68940d43b6e83a2aa23556) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.16.5
+
+- [#109](https://github.com/jaska120/auto-literature-review/pull/109) [`f216a03`](https://github.com/jaska120/auto-literature-review/commit/f216a03e9552dab0dcb7272a346adaa2b8150018) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update nextjs monorepo to ^14.2.8
+
+- [#110](https://github.com/jaska120/auto-literature-review/pull/110) [`4c1da54`](https://github.com/jaska120/auto-literature-review/commit/4c1da54c47f3134b108e808b9485d22dce1482aa) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency type-fest to ^4.26.1
+
+- [#111](https://github.com/jaska120/auto-literature-review/pull/111) [`231641e`](https://github.com/jaska120/auto-literature-review/commit/231641e72697d8464c25bae43db88e5042fd40d6) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typescript to ^5.6.2
+
+- [#112](https://github.com/jaska120/auto-literature-review/pull/112) [`cfb8695`](https://github.com/jaska120/auto-literature-review/commit/cfb8695b0def68e80ff90a2830bb361bc41e94a8) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update nextjs monorepo to ^14.2.9
+
+- [#113](https://github.com/jaska120/auto-literature-review/pull/113) [`a213378`](https://github.com/jaska120/auto-literature-review/commit/a21337886a11e7bdceefb281569cf466900cb5d9) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency tailwindcss to ^3.4.11
+
+- [#114](https://github.com/jaska120/auto-literature-review/pull/114) [`ddc44fd`](https://github.com/jaska120/auto-literature-review/commit/ddc44fda120b22186ad80815a845fba3e9c05b58) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update nextjs monorepo to ^14.2.10
+
+- [#115](https://github.com/jaska120/auto-literature-review/pull/115) [`eb959bf`](https://github.com/jaska120/auto-literature-review/commit/eb959bf64de33fd5ce6f3934ef54f6f9da7b1571) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/jest to ^29.5.13
+
+- [#116](https://github.com/jaska120/auto-literature-review/pull/116) [`4861c51`](https://github.com/jaska120/auto-literature-review/commit/4861c51425d3cf62336bc6ebaf011f6f1ab10b56) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update nextjs monorepo to ^14.2.11
+
+- [#117](https://github.com/jaska120/auto-literature-review/pull/117) [`d96780d`](https://github.com/jaska120/auto-literature-review/commit/d96780d8ed702027480f5abd9b070608a4fd329e) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency postcss to ^8.4.47
+
+- [#118](https://github.com/jaska120/auto-literature-review/pull/118) [`eceedb4`](https://github.com/jaska120/auto-literature-review/commit/eceedb495c5340da9e7b8d4eaa1406f8f5174a52) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/react to ^18.3.6
+
+- [#119](https://github.com/jaska120/auto-literature-review/pull/119) [`4dd0630`](https://github.com/jaska120/auto-literature-review/commit/4dd0630f74875b20d455216b321320336477e67c) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint to ^8.57.1
+
+- [#120](https://github.com/jaska120/auto-literature-review/pull/120) [`c162eaf`](https://github.com/jaska120/auto-literature-review/commit/c162eaf6e96c70c407a308d1fcbace1a91f827f8) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/react to ^18.3.7
+
+- [#121](https://github.com/jaska120/auto-literature-review/pull/121) [`efb677c`](https://github.com/jaska120/auto-literature-review/commit/efb677caa815a7e695328e24a208e64148028dce) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency tailwindcss to ^3.4.12
+
+- [#122](https://github.com/jaska120/auto-literature-review/pull/122) [`e7aead8`](https://github.com/jaska120/auto-literature-review/commit/e7aead8cbb5454d4764b0129673d8abed2f033ce) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update nextjs monorepo to ^14.2.12
+
+- [#123](https://github.com/jaska120/auto-literature-review/pull/123) [`717352a`](https://github.com/jaska120/auto-literature-review/commit/717352ab2050e1b4a01fadabd7a54c23a4518271) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/react to ^18.3.8
+
+- [#124](https://github.com/jaska120/auto-literature-review/pull/124) [`c22103a`](https://github.com/jaska120/auto-literature-review/commit/c22103a513c6ddd1147cfffeebbd57977a9a43d2) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update nextjs monorepo to ^14.2.13
+
+- [#66](https://github.com/jaska120/auto-literature-review/pull/66) [`9c34781`](https://github.com/jaska120/auto-literature-review/commit/9c34781212bd2744f76512c628126a796d6d87d7) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency type-fest to ^4.23.0
+
+- [#67](https://github.com/jaska120/auto-literature-review/pull/67) [`61e6acf`](https://github.com/jaska120/auto-literature-review/commit/61e6acf0991c993947b12dfe656299f4b338ef60) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update typescript-eslint monorepo to ^7.17.0
+
+- [#69](https://github.com/jaska120/auto-literature-review/pull/69) [`ef7ce31`](https://github.com/jaska120/auto-literature-review/commit/ef7ce31b86909258c9fb98510644827bfd704e36) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typescript to ^5.5.4
+
+- [#70](https://github.com/jaska120/auto-literature-review/pull/70) [`56d9294`](https://github.com/jaska120/auto-literature-review/commit/56d9294b070a29c8897b7539957961c0eed610cc) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.14.12
+
+- [#72](https://github.com/jaska120/auto-literature-review/pull/72) [`28fc511`](https://github.com/jaska120/auto-literature-review/commit/28fc51170d527a5b817fc29c255cd6682186ff71) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency postcss to ^8.4.40
+
+- [#73](https://github.com/jaska120/auto-literature-review/pull/73) [`64b04fd`](https://github.com/jaska120/auto-literature-review/commit/64b04fd4ff162069fbf367a8a34c2f38b6cf7e65) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency tailwindcss to ^3.4.7
+
+- [#74](https://github.com/jaska120/auto-literature-review/pull/74) [`f89fa4b`](https://github.com/jaska120/auto-literature-review/commit/f89fa4bfe767bf9c96cb30aa9f7a3c55b622dec5) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.14.13
+
+- [#75](https://github.com/jaska120/auto-literature-review/pull/75) [`a2bd88e`](https://github.com/jaska120/auto-literature-review/commit/a2bd88eeddb8cbca5b1dd87c9d699316f607c511) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update typescript-eslint monorepo to ^7.18.0
+
+- [#77](https://github.com/jaska120/auto-literature-review/pull/77) [`688a28c`](https://github.com/jaska120/auto-literature-review/commit/688a28cf3473f2d6e210c1bfef705ebeafe72a54) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency ts-jest to ^29.2.4
+
+- [#78](https://github.com/jaska120/auto-literature-review/pull/78) [`07f8beb`](https://github.com/jaska120/auto-literature-review/commit/07f8bebfb84b2ad82af05ef9ff66a612703e7fff) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.14.14
+
+- [#79](https://github.com/jaska120/auto-literature-review/pull/79) [`f3d0021`](https://github.com/jaska120/auto-literature-review/commit/f3d0021e982ef58fef50e2143fd159165ed2e2df) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency react-hook-form to ^7.52.2
+
+- [#80](https://github.com/jaska120/auto-literature-review/pull/80) [`6a6a827`](https://github.com/jaska120/auto-literature-review/commit/6a6a827a6550de475ce56ae369ba6bb46b679332) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency postcss to ^8.4.41
+
+- [#81](https://github.com/jaska120/auto-literature-review/pull/81) [`d8aacb6`](https://github.com/jaska120/auto-literature-review/commit/d8aacb697ee4dfae12bbdcc11a84fff621a52e9b) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency tailwindcss to ^3.4.8
+
+- [#82](https://github.com/jaska120/auto-literature-review/pull/82) [`856e436`](https://github.com/jaska120/auto-literature-review/commit/856e436f2ab46edad4c90ffb0eb8172b3e46add1) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency tailwindcss to ^3.4.9
+
+- [#83](https://github.com/jaska120/auto-literature-review/pull/83) [`487df16`](https://github.com/jaska120/auto-literature-review/commit/487df162c488f142f35ef3f2893df1e891d898d2) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency type-fest to ^4.24.0
+
+- [#84](https://github.com/jaska120/auto-literature-review/pull/84) [`9d3df8b`](https://github.com/jaska120/auto-literature-review/commit/9d3df8bdf8fba482185df985618ce771339f5d91) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.14.15
+
+- [#85](https://github.com/jaska120/auto-literature-review/pull/85) [`2a75204`](https://github.com/jaska120/auto-literature-review/commit/2a7520483a9ae7a5ac3be8cd9ba30855ef98eeb3) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency tailwindcss to ^3.4.10
+
+- [#86](https://github.com/jaska120/auto-literature-review/pull/86) [`67f287d`](https://github.com/jaska120/auto-literature-review/commit/67f287de6139bb06acc0e24304bba0bd8ed6154b) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency zustand to ^4.5.5
+
+- [#87](https://github.com/jaska120/auto-literature-review/pull/87) [`914363e`](https://github.com/jaska120/auto-literature-review/commit/914363e5cd20a8db944a9704114c904675dffa4a) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.15.0
+
+- [#88](https://github.com/jaska120/auto-literature-review/pull/88) [`238d7ee`](https://github.com/jaska120/auto-literature-review/commit/238d7eef2b21ec7fabfd05cfc3c8841c355cbe3e) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency type-fest to ^4.25.0
+
+- [#89](https://github.com/jaska120/auto-literature-review/pull/89) [`d4bc720`](https://github.com/jaska120/auto-literature-review/commit/d4bc720535c283b5bd26ba373dd75eb8f4c7ba11) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.16.0
+
+- [#90](https://github.com/jaska120/auto-literature-review/pull/90) [`e698389`](https://github.com/jaska120/auto-literature-review/commit/e698389954494e0a5b4ac7e2249c1da5bd8c87b2) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.16.1
+
+- [#91](https://github.com/jaska120/auto-literature-review/pull/91) [`91cc50f`](https://github.com/jaska120/auto-literature-review/commit/91cc50fba68f0f15a1c5c6b329eff00d4929cd1b) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/react to ^18.3.4
+
+- [#93](https://github.com/jaska120/auto-literature-review/pull/93) [`f27c0f5`](https://github.com/jaska120/auto-literature-review/commit/f27c0f5478dcdb36dc3a641bc9738fafe676da84) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update nextjs monorepo to ^14.2.6
+
+- [#94](https://github.com/jaska120/auto-literature-review/pull/94) [`3519af9`](https://github.com/jaska120/auto-literature-review/commit/3519af9786b7590a83eb47fdcc055cb269f9198e) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency ts-jest to ^29.2.5
+
+- [#95](https://github.com/jaska120/auto-literature-review/pull/95) [`cf0a57a`](https://github.com/jaska120/auto-literature-review/commit/cf0a57a33471bd98adfaa21dd0ac19540479edf5) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency react-hook-form to ^7.53.0
+
+- [#96](https://github.com/jaska120/auto-literature-review/pull/96) [`6915d3d`](https://github.com/jaska120/auto-literature-review/commit/6915d3dc42e9795e5bc016209f4de2fa0ab9c1b5) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update nextjs monorepo to ^14.2.7
+
+- [#97](https://github.com/jaska120/auto-literature-review/pull/97) [`11b9e46`](https://github.com/jaska120/auto-literature-review/commit/11b9e46951f9524ed48030373c97b74b9b85ece6) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.16.2
+
+- [#98](https://github.com/jaska120/auto-literature-review/pull/98) [`ff54691`](https://github.com/jaska120/auto-literature-review/commit/ff546917e69cee3f54b1a42d56c362ecec6dfbb6) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @tailwindcss/forms to ^0.5.9
+
+- [#99](https://github.com/jaska120/auto-literature-review/pull/99) [`5069462`](https://github.com/jaska120/auto-literature-review/commit/5069462582867cc219e92c91c46028b6eaacf222) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency type-fest to ^4.26.0
+
+- [`c7f6100`](https://github.com/jaska120/auto-literature-review/commit/c7f61001682e4d62465100f323fe661ad2e90fa4) Thanks [@jaska120](https://github.com/jaska120)! - Validate Open AI API key in configuration
+
 ## 0.1.1
 
 ### Patch Changes
