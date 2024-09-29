@@ -1,16 +1,17 @@
 import { StateCreator } from "zustand";
 import * as Op from "@/utils/operation";
 import { testAndSetScopusApiKey, removeScopusApiKey } from "../effects/scopus/scopus";
+import { testAndSetOpenAIApiKey, removeOpenAIApiKey } from "../effects/openai/openai";
 import { ExternalService, ConfigSlice } from "./types";
 
 const REMOVE_API_KEY_MAP: Record<ExternalService, () => void> = {
   scopus: removeScopusApiKey,
-  openAI: () => {},
+  openAI: removeOpenAIApiKey,
 };
 
 const TEST_API_KEY_MAP: Record<ExternalService, (apiKey: string) => Promise<boolean>> = {
   scopus: testAndSetScopusApiKey,
-  openAI: async () => true,
+  openAI: testAndSetOpenAIApiKey,
 };
 
 export const createConfigSlice: StateCreator<ConfigSlice> = (set) => ({
