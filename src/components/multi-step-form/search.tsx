@@ -20,8 +20,8 @@ export function Search() {
   const search = useBoundStore(
     useShallow((s) => ({
       query: s.literatureQuery,
-      result: s.literatureSearch,
-      run: s.loadLiteratureSearch,
+      result: s.literatureSearchResult.currentResult,
+      run: s.searchLiterature,
       connection: s.connections.scopus.test,
     }))
   );
@@ -34,8 +34,20 @@ export function Search() {
   }, [setValue, search.query]);
 
   const onQuery = async (s: Schema) => {
-    await search.run(s.query);
+    await search.run(s.query, false);
   };
+
+  const onPaginate = async (link: string) => {
+    await search.run(link, true);
+  };
+
+  const {
+    result,
+    page: currentPage,
+    links,
+    totalPages,
+    totalResults,
+  } = getValue(search.result) || {};
 
   return (
     <div className="flex flex-col gap-8">
@@ -68,16 +80,28 @@ export function Search() {
         </Button>
       </form>
       {isSuccess(search.result) && (
-        <Table
-          columns={["Title", "Publication", "Citation count"]}
-          rows={
-            getValue(search.result)?.map((r) => [
-              r.title,
-              r.publication,
-              r.citedByCount?.toString() ?? "",
-            ]) || []
-          }
-        />
+        <div>
+          <p className="block mb-1 text-xs font-medium text-gray-700">
+            Total number of results: {totalResults}
+          </p>
+          <Table
+            columns={["Title", "Publication", "Citation count"]}
+            rows={
+              result?.map((r) => [r.title, r.publication, r.citedByCount?.toString() ?? ""]) || []
+            }
+            pagination={{
+              currentPage: currentPage || -1,
+              totalPages: totalPages || -1,
+              hasNextPage: !!links?.next,
+              onPaginate: (page) => {
+                if (page === currentPage || !currentPage) return;
+                const link = page > currentPage ? links?.next : links?.prev;
+                if (!link) return;
+                handleSubmit(async () => onPaginate(link))();
+              },
+            }}
+          />
+        </div>
       )}
     </div>
   );

@@ -1,3 +1,5 @@
+import { toError } from "./error";
+
 type IdleValue = {
   type: "Idle";
 };
@@ -21,9 +23,9 @@ export type Operation<T = void> = IdleValue | RunningValue | SuccessValue<T> | E
 export const idle: IdleValue = { type: "Idle" };
 export const running: RunningValue = { type: "Running" };
 export const success = <T>(value: T): SuccessValue<T> => ({ type: "Success", value });
-export const error = (e: Error): ErrorValue => ({
+export const error = (e: unknown): ErrorValue => ({
   type: "Error",
-  error: e,
+  error: toError(e),
 });
 
 export const isIdle = <T>(op: Operation<T>): op is IdleValue => op.type === "Idle";
