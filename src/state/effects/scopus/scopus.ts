@@ -1,4 +1,3 @@
-import { LiteratureMetadata } from "@/state/types";
 import { scopus } from "@/clients/scopus/scopus-client";
 import { mapLiteratureResult } from "./scopus-mappers";
 
@@ -25,13 +24,22 @@ export async function testAndSetScopusApiKey(apiKey: string): Promise<boolean> {
   }
 }
 
-export async function searchScopus(query: string): Promise<LiteratureMetadata[]> {
+export async function searchScopus(
+  queryOrLink: string,
+  isPaginationLink: boolean
+): Promise<ReturnType<typeof mapLiteratureResult>> {
   if (!SCOPUS_API_KEY) {
     throw new Error("Scopus API key is not set");
   }
+  if (isPaginationLink) {
+    const response = await scopus.axios.get(queryOrLink, {
+      headers: { "X-ELS-APIKey": SCOPUS_API_KEY },
+    });
+    return mapLiteratureResult(response.data);
+  }
   const response = await scopus.search({
     headers: { "X-ELS-APIKey": SCOPUS_API_KEY },
-    queries: { query, sort: "citedby-count" },
+    queries: { query: queryOrLink, sort: "citedby-count" },
   });
   return mapLiteratureResult(response);
 }

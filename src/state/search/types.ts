@@ -1,13 +1,12 @@
-import { Operation } from "@/utils/operation";
-import { LiteratureMetadata } from "../types";
+import { LiteratureMetadata, PaginatedResult } from "../types";
 
-interface SearchState {
+export interface SearchState {
   literatureQuery: string | undefined;
-  literatureSearch: Operation<LiteratureMetadata[]>;
+  literatureSearchResult: PaginatedResult<LiteratureMetadata[]>;
 }
 
-interface SearchActions {
-  loadLiteratureSearch: (query: string) => Promise<void>;
+export interface SearchActions {
+  searchLiterature: (queryOrLink: string, isPaginationLink: boolean) => Promise<void>;
 }
 
 export type SearchSlice = SearchState & SearchActions;
