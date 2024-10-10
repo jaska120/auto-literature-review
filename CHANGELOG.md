@@ -1,5 +1,37 @@
 # auto-literature-review
 
+## 0.1.3
+
+### Patch Changes
+
+- [#128](https://github.com/jaska120/auto-literature-review/pull/128) [`8c88309`](https://github.com/jaska120/auto-literature-review/commit/8c883097fd3844f16bcf7f08e9e273ac15c270e0) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency tailwindcss to ^3.4.13
+
+- [#130](https://github.com/jaska120/auto-literature-review/pull/130) [`342b328`](https://github.com/jaska120/auto-literature-review/commit/342b328fa2cbfc884f035f4471a96e094bddcc36) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.16.6
+
+- [#131](https://github.com/jaska120/auto-literature-review/pull/131) [`0e4a5ff`](https://github.com/jaska120/auto-literature-review/commit/0e4a5ff149078b827644cf1c966589ecff35dfea) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/react to ^18.3.9
+
+- [#132](https://github.com/jaska120/auto-literature-review/pull/132) [`da6afea`](https://github.com/jaska120/auto-literature-review/commit/da6afea77a244bd8aff7a577daa61ec5cfdabbcf) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.16.7
+
+- [#133](https://github.com/jaska120/auto-literature-review/pull/133) [`f2e25f2`](https://github.com/jaska120/auto-literature-review/commit/f2e25f2b3d69ee853da5854dabbe1f2116bd1941) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.16.8
+
+- [#134](https://github.com/jaska120/auto-literature-review/pull/134) [`b627530`](https://github.com/jaska120/auto-literature-review/commit/b62753043767975c42df17cd8aec5d73b24d4f50) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.16.9
+
+- [#135](https://github.com/jaska120/auto-literature-review/pull/135) [`92f0af6`](https://github.com/jaska120/auto-literature-review/commit/92f0af67f46a813e8c64d41249bc7e27b7ca1bb1) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.16.10
+
+- [#136](https://github.com/jaska120/auto-literature-review/pull/136) [`39279bd`](https://github.com/jaska120/auto-literature-review/commit/39279bd8efddcebc01ec6689a9351a2974f069f3) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/react to ^18.3.10
+
+- [#137](https://github.com/jaska120/auto-literature-review/pull/137) [`a19f454`](https://github.com/jaska120/auto-literature-review/commit/a19f45491e37f8b132ac6478dd6dac81fec9f0a7) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency openai to ^4.66.1
+
+- [#138](https://github.com/jaska120/auto-literature-review/pull/138) [`d93c1d7`](https://github.com/jaska120/auto-literature-review/commit/d93c1d78a00250079dd43cb53ec3261387338ee8) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency openai to ^4.67.0
+
+- [#139](https://github.com/jaska120/auto-literature-review/pull/139) [`9e33fc6`](https://github.com/jaska120/auto-literature-review/commit/9e33fc6966dc9cd4855a4411b1cd8926ee22392d) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update nextjs monorepo to ^14.2.14
+
+- [#140](https://github.com/jaska120/auto-literature-review/pull/140) [`e4a305b`](https://github.com/jaska120/auto-literature-review/commit/e4a305bbb0f48c2418a380d02eca6a9cfea352e5) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/react to ^18.3.11
+
+- [#141](https://github.com/jaska120/auto-literature-review/pull/141) [`ea528bf`](https://github.com/jaska120/auto-literature-review/commit/ea528bf38525a8d47beec9312649d56f3b856742) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency openai to ^4.67.1
+
+- [#143](https://github.com/jaska120/auto-literature-review/pull/143) [`ee7302a`](https://github.com/jaska120/auto-literature-review/commit/ee7302a7d94f2cea1602278104f930633b83bc4e) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @changesets/cli to ^2.27.9
+
 ## 0.1.2
 
 ### Patch Changes
