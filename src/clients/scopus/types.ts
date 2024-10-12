@@ -7,6 +7,7 @@ import { z } from "zod";
 export const ZodScopusHeaders = z.object({
   Accept: z.literal("application/json").optional().default("application/json"),
   "X-ELS-APIKey": z.string(),
+  "X-ELS-Insttoken": z.string(),
 });
 
 export type ScopusHeaders = z.infer<typeof ZodScopusHeaders>;
@@ -24,7 +25,10 @@ export const ZodScopusSearchParams = z.object({
    * The search view to use.
    * See {@link https://dev.elsevier.com/sc_search_views.html} for more details.
    */
-  view: z.union([z.literal("STANDARD"), z.literal("COMPLETE")]).optional(),
+  view: z
+    .union([z.literal("STANDARD"), z.literal("COMPLETE")])
+    .optional()
+    .default("COMPLETE"),
   /**
    * Numeric value representing the maximum number of results to be returned for the search.
    * If not provided this will be set to a system default based on service level.
@@ -56,7 +60,8 @@ export const ZodScopusSearchParams = z.object({
       z.literal("relevancy"),
       z.literal("volume"),
     ])
-    .optional(),
+    .optional()
+    .default("citedby-count"),
 });
 
 export type ScopusSearchParams = z.infer<typeof ZodScopusSearchParams>;

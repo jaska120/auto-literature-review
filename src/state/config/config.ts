@@ -1,37 +1,39 @@
 import { StateCreator } from "zustand";
 import * as Op from "@/utils/operation";
-import { testAndSetScopusApiKey, removeScopusApiKey } from "../effects/scopus/scopus";
+import { testAndSetScopusApiKeys, removeScopusApiKeys } from "../effects/scopus/scopus";
 import { testAndSetOpenAIApiKey, removeOpenAIApiKey } from "../effects/openai/openai";
-import { ExternalService, ConfigSlice } from "./types";
+import { ExternalService, ConfigSlice, ConfigState } from "./types";
 
 const REMOVE_API_KEY_MAP: Record<ExternalService, () => void> = {
-  scopus: removeScopusApiKey,
+  scopus: removeScopusApiKeys,
   openAI: removeOpenAIApiKey,
 };
 
-const TEST_API_KEY_MAP: Record<ExternalService, (apiKey: string) => Promise<boolean>> = {
-  scopus: testAndSetScopusApiKey,
+const TEST_API_KEY_MAP: Record<ExternalService, (...apiKeys: string[]) => Promise<boolean>> = {
+  scopus: testAndSetScopusApiKeys,
   openAI: testAndSetOpenAIApiKey,
 };
 
-export const createConfigSlice: StateCreator<ConfigSlice> = (set) => ({
+const initialConnection: ConfigState["connections"]["scopus"] = {
+  apiKeys: [],
+  test: Op.idle,
+};
+const initialState: ConfigState = {
   connections: {
-    scopus: {
-      apiKey: undefined,
-      test: Op.idle,
-    },
-    openAI: {
-      apiKey: undefined,
-      test: Op.idle,
-    },
+    scopus: initialConnection,
+    openAI: initialConnection,
   },
-  saveApiKey: async (service, apiKey) => {
-    if (!apiKey) {
+};
+
+export const createConfigSlice: StateCreator<ConfigSlice> = (set) => ({
+  ...initialState,
+  saveApiKey: async (service, apiKeys) => {
+    if (!apiKeys) {
       REMOVE_API_KEY_MAP[service]();
       set((state) => ({
         connections: {
           ...state.connections,
-          [service]: { ...state.connections[service], apiKey, test: Op.idle },
+          [service]: { ...state.connections[service], apiKeys, test: Op.idle },
         },
       }));
       return;
@@ -44,13 +46,13 @@ export const createConfigSlice: StateCreator<ConfigSlice> = (set) => ({
       },
     }));
 
-    const valid = await TEST_API_KEY_MAP[service](apiKey);
+    const valid = await TEST_API_KEY_MAP[service](...apiKeys);
 
     set((state) => ({
       connections: {
         ...state.connections,
         [service]: {
-          apiKey: valid ? apiKey : undefined,
+          apiKeys: valid ? apiKeys : undefined,
           test: valid ? Op.success(undefined) : Op.error(new Error("Invalid API key")),
         },
       },

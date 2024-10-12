@@ -10,15 +10,28 @@ export default function ConfigurationPage() {
           <StoreLoading>
             <ApiKeyForm
               service="scopus"
-              label="Scopus"
-              placeholder="Enter Scopus API Key"
-              helperText="You can find your API key in the Scopus developer portal."
+              keys={[
+                {
+                  label: "Scopus API key",
+                  placeholder: "Enter Scopus API Key",
+                  helperText: "You can find your API key in the Elsevier developer portal.",
+                },
+                {
+                  label: "Scopus Institutional Token",
+                  placeholder: "Enter Scopus Institutional Token",
+                  helperText: "You must request this token from Elsevier support.",
+                },
+              ]}
             />
             <ApiKeyForm
               service="openAI"
-              label="Open AI"
-              placeholder="Enter Open AI API Key"
-              helperText="You can find your API key in the Open AI developer portal."
+              keys={[
+                {
+                  label: "Open AI API key",
+                  placeholder: "Enter Open AI API Key",
+                  helperText: "You can find your API key in the Open AI developer portal.",
+                },
+              ]}
             />
           </StoreLoading>
         </div>

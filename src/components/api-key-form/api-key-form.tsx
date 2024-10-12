@@ -12,19 +12,21 @@ import { Input } from "@/components/input/input";
 import { useEffect } from "react";
 
 const schema = z.object({
-  apiKey: z.string(),
+  apiKeys: z.union([z.array(z.string()), z.undefined()]),
 });
 
 type Schema = z.infer<typeof schema>;
 
 interface ApiKeyFormProps {
   service: ExternalService;
-  label: string;
-  placeholder: string;
-  helperText: string;
+  keys: {
+    label: string;
+    placeholder: string;
+    helperText: string;
+  }[];
 }
 
-export function ApiKeyForm({ service, label, placeholder, helperText }: ApiKeyFormProps) {
+export function ApiKeyForm({ service, keys }: ApiKeyFormProps) {
   const config = useBoundStore(
     useShallow((state) => ({
       connection: state.connections[service],
@@ -36,37 +38,51 @@ export function ApiKeyForm({ service, label, placeholder, helperText }: ApiKeyFo
   });
 
   useEffect(() => {
-    setValue("apiKey", config.connection.apiKey || "");
-  }, [setValue, config.connection.apiKey]);
+    setValue(
+      "apiKeys",
+      config.connection.apiKeys?.map((k) => k || "")
+    );
+  }, [setValue, config.connection.apiKeys]);
 
   const onSave = (s: Schema) => {
-    config.saveApiKey(service, s.apiKey);
+    config.saveApiKey(service, s.apiKeys);
   };
 
   const onRemove = () => {
     config.saveApiKey(service, undefined);
-    setValue("apiKey", "");
+    setValue("apiKeys", []);
   };
 
-  const error = !!(getValues("apiKey") && isError(config.connection.test));
+  const error = !!(
+    getValues("apiKeys")?.every((k) => typeof k === "string") && isError(config.connection.test)
+  );
+
+  const success = !!(
+    config.connection.apiKeys?.length &&
+    config.connection.apiKeys.every((k) => typeof k === "string")
+  );
 
   return (
     <form
       className="flex flex-col gap-4"
       name={`${service}-api-key-form`}
-      onSubmit={handleSubmit(config.connection.apiKey ? onRemove : onSave)}
+      onSubmit={handleSubmit(success ? onRemove : onSave)}
     >
-      <Input
-        {...register("apiKey")}
-        disabled={!!config.connection.apiKey}
-        id={`${service}-api-key-input`}
-        label={label}
-        placeholder={placeholder}
-        helperText={error ? "The API key is invalid" : helperText}
-        error={error}
-        icon={isSuccess(config.connection.test) ? "check" : undefined}
-      />
-      {config.connection.apiKey ? (
+      {keys.map(({ label, placeholder, helperText }, i) => (
+        <Input
+          {...register(`apiKeys.${i}`)}
+          key={`${service}-api-key-input-${label}`}
+          disabled={!!config.connection.apiKeys?.[i]}
+          id={`${service}-api-key-input`}
+          label={label}
+          placeholder={placeholder}
+          helperText={error ? "The API key is invalid" : helperText}
+          error={error}
+          icon={isSuccess(config.connection.test) ? "check" : undefined}
+        />
+      ))}
+
+      {success ? (
         <Button fullWidth variant="destructive" type="submit">
           Remove
         </Button>

@@ -7,16 +7,16 @@ export type ExternalService = "scopus" | "openAI";
 
 type ApiKey = {
   /**
-   * The API key to related service.
+   * API keys to related service.
    */
-  apiKey: string | undefined;
+  apiKeys: string[] | undefined;
   /**
-   * The result of testing the API key.
+   * The result of testing the API keys.
    */
   test: Operation;
 };
 
-interface ConfigState {
+export interface ConfigState {
   /**
    * The API keys for external services.
    */
@@ -25,14 +25,14 @@ interface ConfigState {
   };
 }
 
-interface ConfigActions {
+export interface ConfigActions {
   /**
-   * Save an API key for a service and test the connection.
+   * Save API keys for a service and test the connection.
    * You can observe the connection status by checking the `test` field of the related {@link ConfigState.connections} service.
-   * @param service The service to save the API key for.
-   * @param apiKey The API key to save.
+   * @param service The service to save the API keys for.
+   * @param apiKey The API keys to save.
    */
-  saveApiKey: (service: ExternalService, apiKey: string | undefined) => Promise<void>;
+  saveApiKey: (service: ExternalService, apiKeys: ApiKey["apiKeys"]) => Promise<void>;
 }
 
 export type ConfigSlice = ConfigState & ConfigActions;

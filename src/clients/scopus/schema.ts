@@ -25,6 +25,12 @@ export const api = apiBuilder({
       schema: ZodScopusHeaders.shape["X-ELS-APIKey"],
     },
     {
+      name: "X-ELS-Insttoken",
+      description: "The institution token for the request.",
+      type: "Header",
+      schema: ZodScopusHeaders.shape["X-ELS-Insttoken"],
+    },
+    {
       name: "query",
       description: "The search query.",
       type: "Query",
