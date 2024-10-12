@@ -38,10 +38,10 @@ export function Table({ columns, rows, pagination }: TableProps) {
               const row = r.slice(0, columns.length);
               return (
                 <tr key={row.join()}>
-                  {row.map((cell) => {
+                  {row.map((cell, i) => {
                     return (
                       <td
-                        key={cell}
+                        key={`${columns[i]}-${cell}`}
                         className="whitespace-nowrap px-4 py-2 text-gray-700 text-wrap"
                       >
                         {cell}
