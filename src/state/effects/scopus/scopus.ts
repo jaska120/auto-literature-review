@@ -52,7 +52,6 @@ export async function searchScopus(
     queries = Object.fromEntries(url.searchParams.entries()) as any;
   }
   const headers = generateHeaders(SCOPUS_API_KEY, SCOPUS_INSTITUTIONAL_TOKEN);
-  console.log("searchScopus", { headers, queries });
   const response = await scopus.search({ headers, queries });
   return mapLiteratureResult(response);
 }
