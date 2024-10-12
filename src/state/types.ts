@@ -22,5 +22,9 @@ export type PaginatedResult<T> = {
 export interface LiteratureMetadata {
   title: string;
   publication: string;
+  publishDate: Date | undefined;
   citedByCount: number | undefined;
+  authors: string[];
+  keywords: string[];
+  abstract: string;
 }

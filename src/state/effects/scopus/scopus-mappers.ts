@@ -29,7 +29,11 @@ export function mapLiteratureResult(
     result: result["search-results"].entry.map((e) => ({
       title: e["dc:title"] || "Missing title",
       publication: e["prism:publicationName"] || "Missing publication",
+      publishDate: e["prism:coverDate"],
       citedByCount: e["citedby-count"],
+      authors: e.author?.map((a) => a.authname) || [],
+      keywords: e.authkeywords || [],
+      abstract: e["dc:description"] || "Missing abstract",
     })),
   };
 }

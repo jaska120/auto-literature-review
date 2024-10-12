@@ -85,9 +85,14 @@ export function Search() {
             Total number of results: {totalResults}
           </p>
           <Table
-            columns={["Title", "Publication", "Citation count"]}
+            columns={["Title", "Publication", "Year", "Citation count"]}
             rows={
-              result?.map((r) => [r.title, r.publication, r.citedByCount?.toString() ?? ""]) || []
+              result?.map((r) => [
+                r.title,
+                r.publication,
+                r.publishDate?.getFullYear().toString() || "?",
+                r.citedByCount?.toString() ?? "?",
+              ]) || []
             }
             pagination={{
               currentPage: currentPage || -1,

@@ -116,12 +116,16 @@ export const ZodScopusSearchResponse = z.object({
         eid: z.string().optional(),
         "dc:title": z.string().optional(),
         "dc:creator": z.string().optional(),
+        "dc:description": z.string().optional(),
         "prism:publicationName": z.string().optional(),
         "prism:eIssn": z.string().optional(),
         "prism:volume": z.string().optional(),
         "prism:issueIdentifier": z.string().optional(),
         "prism:pageRange": z.unknown().optional(),
-        "prism:coverDate": z.string().optional(),
+        "prism:coverDate": z
+          .string()
+          .optional()
+          .transform((x) => (x ? new Date(x) : undefined)),
         "prism:coverDisplayDate": z.string().optional(),
         "prism:doi": z.string().optional(),
         "citedby-count": z
@@ -142,8 +146,13 @@ export const ZodScopusSearchResponse = z.object({
         "prism:aggregationType": z.string().optional(),
         subtype: z.string().optional(),
         subtypeDescription: z.string().optional(),
+        authkeywords: z
+          .string()
+          .optional()
+          .transform((x) => x?.split(" | ")),
         "article-number": z.string().optional(),
         "source-id": z.string().optional(),
+        author: z.array(z.object({ authname: z.string() })).optional(),
         openaccess: z
           .string()
           .optional()
