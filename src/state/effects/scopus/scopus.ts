@@ -16,13 +16,17 @@ export function removeScopusApiKeys(): void {
   storeScopusApiKeys(undefined, undefined);
 }
 
+function generateHeaders(apiKey: string, institutionalToken: string) {
+  return { "X-ELS-APIKey": apiKey, "X-ELS-Insttoken": institutionalToken };
+}
+
 export async function testAndSetScopusApiKeys(
   apiKey: string,
   institutionalToken: string
 ): Promise<boolean> {
   try {
     await scopus.search({
-      headers: { "X-ELS-APIKey": apiKey, "X-ELS-Insttoken": institutionalToken },
+      headers: generateHeaders(apiKey, institutionalToken),
       queries: { query: "test-api-key", count: 1, view: "STANDARD" },
     });
     storeScopusApiKeys(apiKey, institutionalToken);
@@ -42,14 +46,13 @@ export async function searchScopus(
   if (!SCOPUS_INSTITUTIONAL_TOKEN) {
     throw new Error("Scopus institutional token is not set");
   }
+  const headers = generateHeaders(SCOPUS_API_KEY, SCOPUS_INSTITUTIONAL_TOKEN);
   if (isPaginationLink) {
-    const response = await scopus.axios.get(queryOrLink, {
-      headers: { "X-ELS-APIKey": SCOPUS_API_KEY, "X-ELS-Insttoken": SCOPUS_INSTITUTIONAL_TOKEN },
-    });
+    const response = await scopus.axios.get(queryOrLink, { headers });
     return mapLiteratureResult(response.data);
   }
   const response = await scopus.search({
-    headers: { "X-ELS-APIKey": SCOPUS_API_KEY, "X-ELS-Insttoken": SCOPUS_INSTITUTIONAL_TOKEN },
+    headers,
     queries: { query: queryOrLink, sort: "citedby-count" },
   });
   return mapLiteratureResult(response);
