@@ -34,7 +34,7 @@ export const ZodScopusSearchParams = z.object({
    * If not provided this will be set to a system default based on service level.
    * In addition the number cannot exceed the maximum system default - if it does an error will be returned.
    */
-  count: z
+  count: z.coerce
     .number()
     .int()
     .min(1)
@@ -82,15 +82,14 @@ export const ZodScopusSearchResponse = z.object({
     }),
     link: z.array(
       z.object({
-        "@_fa": z.string().transform((x) => Boolean(x)),
         "@ref": z.union([
           z.literal("self"),
           z.literal("first"),
+          z.literal("prev"),
           z.literal("next"),
           z.literal("last"),
         ]),
         "@href": z.string(),
-        "@type": z.string(),
       })
     ),
     entry: z.array(
@@ -99,7 +98,6 @@ export const ZodScopusSearchResponse = z.object({
         link: z
           .array(
             z.object({
-              "@_fa": z.string().transform((x) => Boolean(x)),
               "@ref": z.union([
                 z.literal("self"),
                 z.literal("author-affiliation"),
@@ -125,13 +123,23 @@ export const ZodScopusSearchResponse = z.object({
         "prism:coverDate": z
           .string()
           .optional()
-          .transform((x) => (x ? new Date(x) : undefined)),
+          .transform((x) => {
+            const str = x || "";
+            if (/\d{4}-\d{2}-\d{2}/.test(str)) {
+              const date = new Date(str);
+              return Number.isNaN(date.getTime()) ? undefined : date;
+            }
+            return undefined;
+          }),
         "prism:coverDisplayDate": z.string().optional(),
         "prism:doi": z.string().optional(),
         "citedby-count": z
           .string()
           .optional()
-          .transform((x) => Number(x)),
+          .transform((x) => {
+            const n = Number(x);
+            return Number.isNaN(n) ? undefined : n;
+          }),
         affiliation: z
           .array(
             z.object({

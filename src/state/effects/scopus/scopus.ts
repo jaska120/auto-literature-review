@@ -46,14 +46,13 @@ export async function searchScopus(
   if (!SCOPUS_INSTITUTIONAL_TOKEN) {
     throw new Error("Scopus institutional token is not set");
   }
-  const headers = generateHeaders(SCOPUS_API_KEY, SCOPUS_INSTITUTIONAL_TOKEN);
+  let queries = { query: queryOrLink, sort: "citedby-count" as const };
   if (isPaginationLink) {
-    const response = await scopus.axios.get(queryOrLink, { headers });
-    return mapLiteratureResult(response.data);
+    const url = new URL(queryOrLink);
+    queries = Object.fromEntries(url.searchParams.entries()) as any;
   }
-  const response = await scopus.search({
-    headers,
-    queries: { query: queryOrLink, sort: "citedby-count" },
-  });
+  const headers = generateHeaders(SCOPUS_API_KEY, SCOPUS_INSTITUTIONAL_TOKEN);
+  console.log("searchScopus", { headers, queries });
+  const response = await scopus.search({ headers, queries });
   return mapLiteratureResult(response);
 }

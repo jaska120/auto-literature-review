@@ -87,24 +87,30 @@ export function Search() {
           <Table
             columns={["Title", "Publication", "Year", "Citation count"]}
             rows={
-              result?.map((r) => [
-                r.title,
-                r.publication,
-                r.publishDate?.getFullYear().toString() || "?",
-                r.citedByCount?.toString() ?? "?",
-              ]) || []
+              result?.map((r) => {
+                return [
+                  r.title,
+                  r.publication,
+                  r.publishDate?.getFullYear().toString() || "?",
+                  r.citedByCount?.toString() ?? "?",
+                ];
+              }) || []
             }
-            pagination={{
-              currentPage: currentPage || -1,
-              totalPages: totalPages || -1,
-              hasNextPage: !!links?.next,
-              onPaginate: (page) => {
-                if (page === currentPage || !currentPage) return;
-                const link = page > currentPage ? links?.next : links?.prev;
-                if (!link) return;
-                handleSubmit(async () => onPaginate(link))();
-              },
-            }}
+            pagination={
+              currentPage
+                ? {
+                    currentPage: currentPage || -1,
+                    totalPages: totalPages || -1,
+                    hasNextPage: !!links?.next,
+                    onPaginate: (page) => {
+                      if (page === currentPage || !currentPage) return;
+                      const link = page > currentPage ? links?.next : links?.prev;
+                      if (!link) return;
+                      handleSubmit(async () => onPaginate(link))();
+                    },
+                  }
+                : undefined
+            }
           />
         </div>
       )}
