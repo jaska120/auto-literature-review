@@ -19,6 +19,8 @@ interface TableProps {
   pagination?: Pagination;
 }
 
+const cellWidths = ["w-2/5", "w-2/5", "w-auto", "w-auto"];
+
 export function Table({ columns, rows, pagination, collapse }: TableProps) {
   const [collapsed, setCollapsed] = useState<boolean[]>(rows.map(() => true));
 
@@ -28,13 +30,13 @@ export function Table({ columns, rows, pagination, collapse }: TableProps) {
         <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
           <thead className="ltr:text-left rtl:text-right">
             <tr>
-              {collapse && <th align="left" aria-label="Expand or collapse" />}
-              {columns.map((column) => {
+              {collapse && <th align="left" className="px-4 py-2" aria-label="Expand or collapse" />}
+              {columns.map((column, columnIndex) => {
                 return (
                   <th
                     key={column}
-                    align="left"
-                    className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"
+                    align={columns.length === columnIndex + 1 ? "right" : "left"}
+                    className={`${cellWidths[columnIndex]} whitespace-nowrap px-4 py-2 font-medium text-gray-900`}
                   >
                     {column}
                   </th>
@@ -54,7 +56,7 @@ export function Table({ columns, rows, pagination, collapse }: TableProps) {
                     {collapse && (
                       <td
                         align="center"
-                        className="w-8"
+                        className="px-4 py-2"
                         onClick={() =>
                           setCollapsed((collapsedArray) => {
                             const arr = [...collapsedArray];
@@ -72,6 +74,7 @@ export function Table({ columns, rows, pagination, collapse }: TableProps) {
                     )}
                     {row.map((cell, j) => (
                       <td
+                        align={columns.length === j + 1 ? "right" : "left"}
                         key={`${columns[j]}-${cell}`}
                         className="whitespace-nowrap px-4 py-2 text-gray-700 text-wrap"
                       >
