@@ -9,6 +9,7 @@ import { useShallow } from "zustand/react/shallow";
 import { isSuccess, getValue, isError, getError } from "@/utils/operation";
 import { Table } from "@/components/table/table";
 import Link from "next/link";
+import { Card } from "../card/card";
 
 const schema = z.object({
   query: z.string().min(3),
@@ -51,6 +52,21 @@ export function Search() {
 
   return (
     <div className="flex flex-col gap-8">
+      <Card
+        body={
+          <>
+            The current search is limited to{" "}
+            <Link
+              href="https://www.elsevier.com/products/scopus/search"
+              target="_blank"
+              className="text-blue-600 hover:underline"
+            >
+              Scopus Search
+            </Link>{" "}
+            only.
+          </>
+        }
+      />
       <form className="flex flex-col gap-4" name="search-form" onSubmit={handleSubmit(onQuery)}>
         {!isSuccess(state.connection) && (
           <Link

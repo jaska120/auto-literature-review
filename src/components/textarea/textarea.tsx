@@ -25,7 +25,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
       <textarea
         ref={ref}
         id={id}
-        className={`mt-1 w-full rounded-md shadow-sm sm:text-sm ${
+        className={`mt-1 w-full rounded-md shadow-md sm:text-sm ${
           error ? "border-red-500" : "border-gray-200"
         }`}
         {...props}

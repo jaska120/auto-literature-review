@@ -37,7 +37,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       <input
         ref={ref}
         id={id}
-        className={`mt-1 w-full rounded-md shadow-sm sm:text-sm ${
+        className={`mt-1 w-full rounded-md shadow-md sm:text-sm ${
           error ? "border-red-500" : "border-gray-200"
         }`}
         {...props}

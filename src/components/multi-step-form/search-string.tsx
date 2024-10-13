@@ -8,6 +8,7 @@ import { useBoundStore } from "@/state/bound-store";
 import { useShallow } from "zustand/react/shallow";
 import Link from "next/link";
 import { getError, getValue, isError, isSuccess } from "@/utils/operation";
+import { Card } from "../card/card";
 
 const schema = z.object({
   prompt: z.string().min(3),
@@ -38,18 +39,22 @@ export function SearchString() {
 
   return (
     <div className="flex flex-col gap-8">
+      <Card
+        body={
+          <>
+            For more details, please refer to the{" "}
+            <Link href="/system-prompts#search-string" className="text-blue-600 hover:underline">
+              system prompt
+            </Link>{" "}
+            provided.
+          </>
+        }
+      />
       <form
         className="flex flex-col gap-4"
         name="search-string-form"
         onSubmit={handleSubmit(onQuery)}
       >
-        <p className="text-sm">
-          For more details, please refer to the{" "}
-          <Link href="/system-prompts#search-string" className="text-blue-600 hover:underline">
-            system prompt
-          </Link>{" "}
-          provided.
-        </p>
         {!isSuccess(state.connection) && (
           <Link
             href="/configuration"

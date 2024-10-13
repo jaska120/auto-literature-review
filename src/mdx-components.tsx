@@ -28,7 +28,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ul: ({ children }) => <ul className="list-disc list-inside mb-4">{children}</ul>,
     li: ({ children }) => <li className="mb-2">{children}</li>,
     div: ({ children }) => (
-      <div className="mb-6 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+      <div className="mb-6 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
         {children}
       </div>
     ),
