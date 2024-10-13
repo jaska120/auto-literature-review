@@ -5,7 +5,7 @@
   "prConcurrentLimit": 4,
   "labels": ["dependencies"],
   "timezone": "Europe/Helsinki",
-  "minimumReleaseAge": "7 days",
+  "minimumReleaseAge": "14 days",
   "gitIgnoredAuthors": ["auto-lr-bot+renovate@users.noreply.github.com"],
   "packageRules": [
     {
