@@ -17,7 +17,7 @@ const schema = z.object({
 type Schema = z.infer<typeof schema>;
 
 export function Search() {
-  const search = useBoundStore(
+  const state = useBoundStore(
     useShallow((s) => ({
       query: s.literatureQuery,
       result: s.literatureSearchResult.currentResult,
@@ -30,15 +30,15 @@ export function Search() {
   });
 
   useEffect(() => {
-    setValue("query", search.query || "");
-  }, [setValue, search.query]);
+    setValue("query", state.query || "");
+  }, [setValue, state.query]);
 
   const onQuery = async (s: Schema) => {
-    await search.run(s.query, false);
+    await state.run(s.query, false);
   };
 
   const onPaginate = async (link: string) => {
-    await search.run(link, true);
+    await state.run(link, true);
   };
 
   const {
@@ -47,12 +47,12 @@ export function Search() {
     links,
     totalPages,
     totalResults,
-  } = getValue(search.result) || {};
+  } = getValue(state.result) || {};
 
   return (
     <div className="flex flex-col gap-8">
       <form className="flex flex-col gap-4" name="search-form" onSubmit={handleSubmit(onQuery)}>
-        {!isSuccess(search.connection) && (
+        {!isSuccess(state.connection) && (
           <Link
             href="/configuration"
             className="text-sm hover:underline text-red-600 hover:text-red-700"
@@ -65,21 +65,21 @@ export function Search() {
           id="query"
           label="Search query"
           placeholder="TITLE-ABS-KEY ( literature )"
-          disabled={formState.isSubmitting || !isSuccess(search.connection)}
-          error={!!formState.errors.query || isError(search.result)}
-          helperText={formState.errors.query?.message || getError(search.result)?.message}
+          disabled={formState.isSubmitting || !isSuccess(state.connection)}
+          error={!!formState.errors.query || isError(state.result)}
+          helperText={formState.errors.query?.message || getError(state.result)?.message}
         />
         <Button
           fullWidth
           variant="primary"
           type="submit"
-          disabled={!isSuccess(search.connection)}
+          disabled={!isSuccess(state.connection)}
           loading={formState.isSubmitting}
         >
           Search
         </Button>
       </form>
-      {isSuccess(search.result) && (
+      {isSuccess(state.result) && (
         <div>
           <p className="block mb-1 text-xs font-medium text-gray-700">
             Total number of results: {totalResults}
