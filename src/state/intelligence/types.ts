@@ -1,6 +1,7 @@
 import { Result, IntelligentAnswer } from "../types";
 
 export interface IntelligenceState {
+  searchStringSystemPrompt: string; // TODO make editable
   searchStringPrompt: string | undefined;
   searchStringResult: Result<IntelligentAnswer[]>;
 }

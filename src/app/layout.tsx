@@ -28,6 +28,9 @@ export default function RootLayout({
               <Link href="/configuration" className="hover:text-gray-900">
                 Configuration
               </Link>
+              <Link href="/system-prompts" className="hover:text-gray-900">
+                System Prompts
+              </Link>
               <Link href="/changelog" className="hover:text-gray-900">
                 Changelog
               </Link>

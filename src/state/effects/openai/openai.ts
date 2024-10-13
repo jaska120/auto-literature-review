@@ -21,13 +21,16 @@ export async function testAndRegisterOpenAIApiKey(apiKey: string): Promise<boole
   }
 }
 
-export async function askAI(prompt: string): Promise<IntelligentAnswer[]> {
+export async function askAI(systemPrompt: string, prompt: string): Promise<IntelligentAnswer[]> {
   if (!openai.apiKey) {
     throw new Error("OpenAI API key is not set");
   }
   const response = await openai.chat.completions.create({
     model: "gpt-4o",
-    messages: [{ role: "user", content: prompt }],
+    messages: [
+      { role: "system", content: systemPrompt },
+      { role: "user", content: prompt },
+    ],
     max_tokens: 100, // TODO
   });
 

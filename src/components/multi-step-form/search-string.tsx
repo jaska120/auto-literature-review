@@ -43,6 +43,13 @@ export function SearchString() {
         name="search-string-form"
         onSubmit={handleSubmit(onQuery)}
       >
+        <p className="text-sm">
+          For more details, please refer to the{" "}
+          <Link href="/system-prompts#search-string" className="text-blue-600 hover:underline">
+            system prompt
+          </Link>{" "}
+          provided.
+        </p>
         {!isSuccess(state.connection) && (
           <Link
             href="/configuration"
