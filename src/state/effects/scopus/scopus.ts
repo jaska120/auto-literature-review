@@ -4,7 +4,7 @@ import { mapLiteratureResult } from "./scopus-mappers";
 let SCOPUS_API_KEY: string | undefined;
 let SCOPUS_INSTITUTIONAL_TOKEN: string | undefined;
 
-export function storeScopusApiKeys(
+export function registerScopusApiKeys(
   apiKey: string | undefined,
   institutionalToken: string | undefined
 ): void {
@@ -12,15 +12,15 @@ export function storeScopusApiKeys(
   SCOPUS_INSTITUTIONAL_TOKEN = institutionalToken;
 }
 
-export function removeScopusApiKeys(): void {
-  storeScopusApiKeys(undefined, undefined);
+export function deRegisterScopusApiKeys(): void {
+  registerScopusApiKeys(undefined, undefined);
 }
 
 function generateHeaders(apiKey: string, institutionalToken: string) {
   return { "X-ELS-APIKey": apiKey, "X-ELS-Insttoken": institutionalToken };
 }
 
-export async function testAndSetScopusApiKeys(
+export async function testAndRegisterScopusApiKeys(
   apiKey: string,
   institutionalToken: string
 ): Promise<boolean> {
@@ -29,7 +29,7 @@ export async function testAndSetScopusApiKeys(
       headers: generateHeaders(apiKey, institutionalToken),
       queries: { query: "test-api-key", count: 1, view: "STANDARD" },
     });
-    storeScopusApiKeys(apiKey, institutionalToken);
+    registerScopusApiKeys(apiKey, institutionalToken);
     return true;
   } catch {
     return false;

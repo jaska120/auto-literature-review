@@ -1,17 +1,17 @@
 import { StateCreator } from "zustand";
 import * as Op from "@/utils/operation";
-import { testAndSetScopusApiKeys, removeScopusApiKeys } from "../effects/scopus/scopus";
-import { testAndSetOpenAIApiKey, removeOpenAIApiKey } from "../effects/openai/openai";
+import { testAndRegisterScopusApiKeys, deRegisterScopusApiKeys } from "../effects/scopus/scopus";
+import { testAndRegisterOpenAIApiKey, deRegisterOpenAIApiKey } from "../effects/openai/openai";
 import { ExternalService, ConfigSlice, ConfigState } from "./types";
 
 const REMOVE_API_KEY_MAP: Record<ExternalService, () => void> = {
-  scopus: removeScopusApiKeys,
-  openAI: removeOpenAIApiKey,
+  scopus: deRegisterScopusApiKeys,
+  openAI: deRegisterOpenAIApiKey,
 };
 
 const TEST_API_KEY_MAP: Record<ExternalService, (...apiKeys: string[]) => Promise<boolean>> = {
-  scopus: testAndSetScopusApiKeys,
-  openAI: testAndSetOpenAIApiKey,
+  scopus: testAndRegisterScopusApiKeys,
+  openAI: testAndRegisterOpenAIApiKey,
 };
 
 const initialConnection: ConfigState["connections"]["scopus"] = {
