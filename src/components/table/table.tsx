@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { CaretRightIcon } from "./caret-right-icon";
+
 interface Pagination {
   totalPages: number;
   currentPage: number;
@@ -8,17 +11,24 @@ interface Pagination {
 interface TableProps {
   columns: string[];
   rows: string[][];
+  collapse?: {
+    columns: string[];
+    rows: string[][];
+  };
   /** If given, the pagination controls are rendered */
   pagination?: Pagination;
 }
 
-export function Table({ columns, rows, pagination }: TableProps) {
+export function Table({ columns, rows, pagination, collapse }: TableProps) {
+  const [collapsed, setCollapsed] = useState<boolean[]>(rows.map(() => true));
+
   return (
     <div className="rounded-lg border border-gray-200">
       <div className="overflow-x-auto rounded-t-lg">
         <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
           <thead className="ltr:text-left rtl:text-right">
             <tr>
+              {collapse && <th align="left" aria-label="Expand or collapse" />}
               {columns.map((column) => {
                 return (
                   <th
@@ -34,27 +44,67 @@ export function Table({ columns, rows, pagination }: TableProps) {
           </thead>
 
           <tbody className="divide-y divide-gray-200">
-            {rows.map((r) => {
+            {rows.map((r, i) => {
               const row = r.slice(0, columns.length);
+              const isCollapsed = collapsed[i];
+
               return (
-                <tr key={row.join()}>
-                  {row.map((cell, i) => {
-                    return (
+                <>
+                  <tr key={row.join()}>
+                    {collapse && (
                       <td
-                        key={`${columns[i]}-${cell}`}
+                        align="center"
+                        className="w-8"
+                        onClick={() =>
+                          setCollapsed((collapsedArray) => {
+                            const arr = [...collapsedArray];
+                            arr[i] = !arr[i]; // toggle the collapse state
+                            return arr;
+                          })
+                        }
+                      >
+                        {isCollapsed ? (
+                          <CaretRightIcon className="size-4 rotate-90" aria-label="Expand" />
+                        ) : (
+                          <CaretRightIcon className="size-4 -rotate-90" aria-label="Collapse" />
+                        )}
+                      </td>
+                    )}
+                    {row.map((cell, j) => (
+                      <td
+                        key={`${columns[j]}-${cell}`}
                         className="whitespace-nowrap px-4 py-2 text-gray-700 text-wrap"
                       >
                         {cell}
                       </td>
-                    );
-                  })}
-                </tr>
+                    ))}
+                  </tr>
+
+                  {/* Render additional details when expanded */}
+                  {!isCollapsed && collapse && collapse.rows[i] && (
+                    <tr key={`collapse-${row.join()}`} className="bg-gray-50">
+                      <td colSpan={columns.length + 1} className="p-4">
+                        {collapse.columns.map((column, k) => (
+                          <div key={`collapse-content-${collapse.rows[i].join()}`}>
+                            <p>
+                              <strong>{column}</strong>
+                            </p>
+                            <p className={collapse.columns.length === k + 1 ? "mb-0" : "mb-4"}>
+                              {collapse.rows[i][k]}
+                            </p>
+                          </div>
+                        ))}
+                      </td>
+                    </tr>
+                  )}
+                </>
               );
             })}
           </tbody>
         </table>
       </div>
 
+      {/* Pagination Controls */}
       <div className="rounded-b-lg border-t border-gray-200 px-4 py-2">
         {pagination && (
           <ol className="flex justify-end gap-1 text-xs font-medium">
@@ -68,18 +118,7 @@ export function Table({ columns, rows, pagination }: TableProps) {
                   }}
                 >
                   <span className="sr-only">Prev Page</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-3 w-3"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                  <CaretRightIcon className="rotate-180 h-3 w-3" />
                 </button>
               </li>
             )}
@@ -98,18 +137,7 @@ export function Table({ columns, rows, pagination }: TableProps) {
                   }}
                 >
                   <span className="sr-only">Next Page</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-3 w-3"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                  <CaretRightIcon className="h-3 w-3" />
                 </button>
               </li>
             )}

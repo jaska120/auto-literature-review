@@ -96,6 +96,11 @@ export function Search() {
                 ];
               }) || []
             }
+            collapse={{
+              columns: ["Authors", "Keywords", "Abstract"],
+              rows:
+                result?.map((r) => [r.authors.join(", "), r.keywords.join(", "), r.abstract]) || [],
+            }}
             pagination={
               currentPage
                 ? {
