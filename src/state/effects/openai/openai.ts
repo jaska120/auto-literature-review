@@ -31,7 +31,7 @@ export async function askAI(systemPrompt: string, prompt: string): Promise<Intel
       { role: "system", content: systemPrompt },
       { role: "user", content: prompt },
     ],
-    max_tokens: 100, // TODO
+    max_tokens: 1000,
   });
 
   // Filter out incomplete answers
