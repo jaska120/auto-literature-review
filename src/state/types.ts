@@ -1,5 +1,9 @@
 import { Operation } from "@/utils/operation";
 
+export type Result<T> = {
+  currentResult: Operation<T>;
+};
+
 export type Pagination<T = void> = {
   totalResults: number;
   totalPages: number;
@@ -16,8 +20,7 @@ export type Pagination<T = void> = {
 
 export type PaginatedResult<T> = {
   results: Pagination<T>[];
-  currentResult: Operation<Pagination<T>>;
-};
+} & Result<Pagination<T>>;
 
 export interface LiteratureMetadata {
   title: string;
@@ -27,4 +30,8 @@ export interface LiteratureMetadata {
   authors: string[];
   keywords: string[];
   abstract: string;
+}
+
+export interface IntelligentAnswer {
+  answer: string;
 }

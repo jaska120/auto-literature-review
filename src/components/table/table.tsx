@@ -30,7 +30,9 @@ export function Table({ columns, rows, pagination, collapse }: TableProps) {
         <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
           <thead className="ltr:text-left rtl:text-right">
             <tr>
-              {collapse && <th align="left" className="px-4 py-2" aria-label="Expand or collapse" />}
+              {collapse && (
+                <th align="left" className="px-4 py-2" aria-label="Expand or collapse" />
+              )}
               {columns.map((column, columnIndex) => {
                 return (
                   <th

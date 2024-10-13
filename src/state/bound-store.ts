@@ -3,9 +3,12 @@ import { persist, createJSONStorage } from "zustand/middleware";
 
 import { createConfigSlice } from "./config/config";
 import { createSearchSlice } from "./search/search";
+import { createIntelligenceSlice } from "./intelligence/intelligence";
 import { ConfigSlice } from "./config/types";
 import { SearchSlice } from "./search/types";
 import { storeScopusApiKeys } from "./effects/scopus/scopus";
+import { IntelligenceSlice } from "./intelligence/types";
+import { storeOpenAIApiKey } from "./effects/openai/openai";
 
 function isIsoDateString(v: unknown): v is string {
   if (typeof v !== "string") {
@@ -32,11 +35,12 @@ const storage = createJSONStorage(() => localStorage, {
   },
 });
 
-export const useBoundStore = create<ConfigSlice & SearchSlice>()(
+export const useBoundStore = create<ConfigSlice & SearchSlice & IntelligenceSlice>()(
   persist(
     (...args) => ({
       ...createConfigSlice(...args),
       ...createSearchSlice(...args),
+      ...createIntelligenceSlice(...args),
     }),
     {
       name: "bound-store",
@@ -48,6 +52,7 @@ export const useBoundStore = create<ConfigSlice & SearchSlice>()(
               state.connections.scopus.apiKeys?.[0],
               state.connections.scopus.apiKeys?.[1]
             );
+            storeOpenAIApiKey(state.connections.openAI.apiKeys?.[0]);
           }
         };
       },

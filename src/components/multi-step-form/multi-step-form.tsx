@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Search } from "./search";
+import { SearchString } from "./search-string";
 import { Step2 } from "./step2";
 import { Step3 } from "./step3";
 import { StoreLoading } from "../loading/store-loading";
@@ -10,6 +11,7 @@ export function MultiStepForm() {
   const [step, setStep] = useState(0);
 
   const Steps: { component: () => JSX.Element; title: string }[] = [
+    { component: SearchString, title: "Search String" },
     { component: Search, title: "Search" },
     { component: Step2, title: "Step 2" },
     { component: Step3, title: "Step 3" },
