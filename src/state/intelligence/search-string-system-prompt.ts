@@ -11,12 +11,10 @@ export const searchStringSystemPrompt = `
       - Use ? to replace a single character in a word.
       - Use * to replace zero or more characters in a word.
       - Only one wildcard can be used per term.
-
   Phrase Matching:
     - For exact phrases (including stop words or punctuation), enclose the phrase in {braces}. Example: {heart attack}.
     - For loose phrases (terms adjacent to each other but without considering punctuation), enclose the terms in "double quotation marks". Example: "heart attack".
     - Ensure the difference between phrase searches and individual word searches is maintained.
-
   Field-specific Restrictions:
     - Specify fields for search using the following field names (case-insensitive):
       - ALL for all fields (e.g., ALL(heart attack)).
@@ -30,4 +28,8 @@ export const searchStringSystemPrompt = `
   Additional Considerations:
     - Proximity operators (PRE/n and W/n) can be used for specifying the distance between terms but cannot combine with AND or AND NOT.
     - Handle terms containing Boolean operators (and, or, not) by enclosing them in double quotes when they should be taken literally. Example: "and", "or", "not".
+
+  Response formatting:
+    - The response will be put inside <div> element with React's dangerouslySetInnerHTML, and therefore the response must be valid HTML.
+    - All search strings must be wrapped in <code> elements.
 `;

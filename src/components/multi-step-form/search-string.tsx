@@ -83,9 +83,12 @@ export function SearchString() {
           Generate
         </Button>
       </form>
-      {isSuccess(state.result) && (
-        <div>{getValue(state.result)?.map((r) => <p key={r.answer}>{r.answer}</p>)}</div>
-      )}
+      {isSuccess(state.result) &&
+        getValue(state.result)?.map((r, i) => (
+          // TODO it is unsafe to use dangerouslySetInnerHTML, but it is used here for demonstration purposes
+          // eslint-disable-next-line react/no-array-index-key, react/no-danger
+          <div key={i} dangerouslySetInnerHTML={{ __html: r.answer }} />
+        ))}
     </div>
   );
 }
