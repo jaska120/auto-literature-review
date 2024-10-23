@@ -1,5 +1,19 @@
 # auto-literature-review
 
+## 0.2.1
+
+### Patch Changes
+
+- [#145](https://github.com/jaska120/auto-literature-review/pull/145) [`56d9d71`](https://github.com/jaska120/auto-literature-review/commit/56d9d71b29d8614f56e382d2f23b7ee688cdcf86) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency openai to ^4.67.2
+
+- [#147](https://github.com/jaska120/auto-literature-review/pull/147) [`efc6e62`](https://github.com/jaska120/auto-literature-review/commit/efc6e625a5c98abbbcbb749de4bc2fbfa17629e3) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.16.11
+
+- [#148](https://github.com/jaska120/auto-literature-review/pull/148) [`96caef5`](https://github.com/jaska120/auto-literature-review/commit/96caef564ff21c6a51743582647f2fa330729fec) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency openai to ^4.67.3
+
+- [#149](https://github.com/jaska120/auto-literature-review/pull/149) [`d7bf797`](https://github.com/jaska120/auto-literature-review/commit/d7bf797fb6ee5996c421073d096f8023ba8e3f8e) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update nextjs monorepo to ^14.2.15
+
+- [#150](https://github.com/jaska120/auto-literature-review/pull/150) [`c500502`](https://github.com/jaska120/auto-literature-review/commit/c50050251e940b76205382ae5ac6640113969320) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typescript to ^5.6.3
+
 ## 0.2.0
 
 ### Minor Changes
