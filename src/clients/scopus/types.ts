@@ -72,11 +72,12 @@ export const ZodScopusSearchParams = z.object({
       [
         "dc:identifier",
         "dc:title",
-        "citedby-count",
+        "dc:description",
+        "prism:publicationName",
         "prism:coverDate",
         "author",
-        "dc:description",
         "authkeywords",
+        "citedby-count",
       ].join(",")
     ),
 });
