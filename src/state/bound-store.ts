@@ -3,12 +3,14 @@ import { persist, createJSONStorage } from "zustand/middleware";
 
 import { createConfigSlice } from "./config/config";
 import { createSearchSlice } from "./search/search";
+import { createFlowSlice } from "./flow/flow";
 import { createIntelligenceSlice } from "./intelligence/intelligence";
 import { ConfigSlice } from "./config/types";
 import { SearchSlice } from "./search/types";
 import { registerScopusApiKeys } from "./effects/scopus/scopus";
 import { IntelligenceSlice } from "./intelligence/types";
 import { registerOpenAIApiKey } from "./effects/openai/openai";
+import { FlowSlice } from "./flow/types";
 
 function isIsoDateString(v: unknown): v is string {
   if (typeof v !== "string") {
@@ -35,9 +37,10 @@ const storage = createJSONStorage(() => localStorage, {
   },
 });
 
-export const useBoundStore = create<ConfigSlice & SearchSlice & IntelligenceSlice>()(
+export const useBoundStore = create<FlowSlice & ConfigSlice & SearchSlice & IntelligenceSlice>()(
   persist(
     (...args) => ({
+      ...createFlowSlice(...args),
       ...createConfigSlice(...args),
       ...createSearchSlice(...args),
       ...createIntelligenceSlice(...args),

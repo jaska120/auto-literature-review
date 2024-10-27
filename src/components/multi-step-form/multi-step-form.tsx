@@ -1,27 +1,33 @@
 "use client";
 
-import { useState, Fragment } from "react";
+import { Fragment } from "react";
 import { CaretRightIcon } from "@/components/icon/caret-right-icon";
+import { useBoundStore } from "@/state/bound-store";
+import { useShallow } from "zustand/react/shallow";
 import { Search } from "./search";
 import { SearchString } from "./search-string";
 import { Evaluate } from "./evaluate";
 import { Write } from "./write";
-import { StoreLoading } from "../loading/store-loading";
+
+const Steps: { component: () => JSX.Element; title: string }[] = [
+  { component: SearchString, title: "Search String" },
+  { component: Search, title: "Literature Search" },
+  { component: Evaluate, title: "Evaluate Literature" },
+  { component: Write, title: "Write Literature Review" },
+];
 
 export function MultiStepForm() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useBoundStore(useShallow((s) => [s.flowStep, s.setFlowStep]));
+  const applyFn = useBoundStore(useShallow((s) => [s.applySearchString]));
 
-  const handleSearchString = () => {
-    // TODO
-    setStep((prev) => prev + 1);
+  const handleToNextStep = (nextStep: number) => {
+    setStep(nextStep);
   };
 
-  const Steps: { component: () => JSX.Element; onApply: () => void; title: string }[] = [
-    { component: SearchString, onApply: handleSearchString, title: "Search String" },
-    { component: Search, onApply: handleSearchString, title: "Literature Search" },
-    { component: Evaluate, onApply: handleSearchString, title: "Evaluate Literature" },
-    { component: Write, onApply: handleSearchString, title: "Write Literature Review" },
-  ];
+  const handleApplyToNextStep = (currentStep: number) => {
+    applyFn[currentStep]();
+    handleToNextStep(currentStep + 1);
+  };
 
   return (
     <div>
@@ -41,7 +47,7 @@ export function MultiStepForm() {
                           ? "bg-blue-600 text-white"
                           : "bg-gray-100 text-gray-500 hover:bg-blue-100"
                       }`}
-                      onClick={() => setStep(index)}
+                      onClick={() => handleToNextStep(index)}
                       type="button"
                     >
                       {index + 1}
@@ -55,7 +61,7 @@ export function MultiStepForm() {
                     <div className="flex items-center w-full">
                       <div className="h-0.5 w-full bg-gray-300" />
                       <button
-                        onClick={() => setStep(index + 1)}
+                        onClick={() => handleApplyToNextStep(index)}
                         type="button"
                         className={`flex items-center gap-2 border p-2 rounded-lg shadow-sm transition-all duration-200 mx-2 ${
                           active
@@ -81,9 +87,7 @@ export function MultiStepForm() {
         {Steps.map(({ component: Component, title }, index) => (
           <div key={`${Component.name}-step`} className={step === index ? "block" : "hidden"}>
             <h2 className="text-lg font-semibold mb-4">{title}</h2>
-            <StoreLoading>
-              <Component />
-            </StoreLoading>
+            <Component />
           </div>
         ))}
       </div>

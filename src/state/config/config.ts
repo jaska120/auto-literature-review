@@ -18,7 +18,8 @@ const initialConnection: ConfigState["connections"]["scopus"] = {
   apiKeys: [],
   test: Op.idle,
 };
-const initialState: ConfigState = {
+
+export const configInitialState: ConfigState = {
   connections: {
     scopus: initialConnection,
     openAI: initialConnection,
@@ -26,7 +27,7 @@ const initialState: ConfigState = {
 };
 
 export const createConfigSlice: StateCreator<ConfigSlice> = (set) => ({
-  ...initialState,
+  ...configInitialState,
   saveApiKey: async (service, apiKeys) => {
     if (!apiKeys) {
       REMOVE_API_KEY_MAP[service]();

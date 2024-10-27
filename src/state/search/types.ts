@@ -6,6 +6,9 @@ export interface SearchState {
 }
 
 export interface SearchActions {
+  setLiteratureQuery: (
+    updater: string | undefined | ((prevQuery: string | undefined) => string | undefined)
+  ) => void;
   searchLiterature: (queryOrLink: string, isPaginationLink: boolean) => Promise<void>;
 }
 

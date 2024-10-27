@@ -4,13 +4,13 @@ import { IntelligenceSlice, IntelligenceState } from "./types";
 import { askAI } from "../effects/openai/openai";
 import { searchStringSystemPrompt } from "./search-string-system-prompt";
 
-const initialState: IntelligenceState = {
+export const intelligenceInitialState: IntelligenceState = {
   searchStringPrompt: undefined,
   searchStringResult: { currentResult: Op.idle },
 };
 
 export const createIntelligenceSlice: StateCreator<IntelligenceSlice> = (set) => ({
-  ...initialState,
+  ...intelligenceInitialState,
   askAIForSearchString: async (prompt) => {
     set({ searchStringPrompt: prompt, searchStringResult: { currentResult: Op.running } });
     try {
