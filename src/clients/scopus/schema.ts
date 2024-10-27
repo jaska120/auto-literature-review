@@ -54,6 +54,12 @@ export const api = apiBuilder({
       type: "Query",
       schema: ZodScopusSearchParams.shape.sort,
     },
+    {
+      name: "field",
+      description: "Fields to include in the response. Multiple fields can be separated by commas.",
+      type: "Query",
+      schema: ZodScopusSearchParams.shape.field,
+    },
   ],
   response: ZodScopusSearchResponse,
   errors: [{ status: "default", schema: ZodScopusErrorResponse }],

@@ -62,6 +62,23 @@ export const ZodScopusSearchParams = z.object({
     ])
     .optional()
     .default("citedby-count"),
+  /**
+   * Fields to include in the response. Multiple fields can be separated by commas.
+   */
+  field: z
+    .string()
+    .optional()
+    .default(
+      [
+        "dc:identifier",
+        "dc:title",
+        "citedby-count",
+        "prism:coverDate",
+        "author",
+        "dc:description",
+        "authkeywords",
+      ].join(",")
+    ),
 });
 
 export type ScopusSearchParams = z.infer<typeof ZodScopusSearchParams>;
