@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CaretRightIcon } from "./caret-right-icon";
+import { CaretRightIcon } from "@/components/icon/caret-right-icon";
 
 interface Pagination {
   totalPages: number;

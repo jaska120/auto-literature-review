@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { SetRequired } from "type-fest";
-import { CircleCheckIcon } from "./circle-check-icon";
-import { CircleXIcon } from "./circle-x-icon";
+import { CircleCheckIcon } from "@/components/icon/circle-check-icon";
+import { CircleXIcon } from "@/components/icon/circle-x-icon";
 
 type InputIcon = "check" | "x";
 

@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from "react";
-import { CircleInfoIcon } from "./circle-info-icon";
+import { CircleInfoIcon } from "@/components/icon/circle-info-icon";
 
 interface CardProps extends Pick<HTMLAttributes<HTMLDivElement>, "className"> {
   body: string | React.ReactNode;
