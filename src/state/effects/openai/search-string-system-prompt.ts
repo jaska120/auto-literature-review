@@ -30,6 +30,5 @@ export const searchStringSystemPrompt = `
     - Handle terms containing Boolean operators (and, or, not) by enclosing them in double quotes when they should be taken literally. Example: "and", "or", "not".
 
   Response formatting:
-    - The response will be put inside <div> element with React's dangerouslySetInnerHTML, and therefore the response must be valid HTML.
-    - All search strings must be wrapped in <code> elements.
+    - You must annotate the generated search string with <S></S> tags to indicate the start and end of the search string.
 `;

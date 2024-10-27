@@ -88,10 +88,10 @@ export function SearchString() {
           <p className="block mb-1 text-xs font-medium text-gray-700">
             Number of results: {(getValue(state.result) || []).length}
           </p>
-          {getValue(state.result)?.map((r, i) => (
-            // TODO it is unsafe to use dangerouslySetInnerHTML, but it is used here for demonstration purposes
-            // eslint-disable-next-line react/no-array-index-key, react/no-danger
-            <div key={i} dangerouslySetInnerHTML={{ __html: r.answer }} />
+          {getValue(state.result)?.map((r) => (
+            <div key={r.answer}>
+              <p>{r.answer}</p>
+            </div>
           ))}
         </div>
       )}

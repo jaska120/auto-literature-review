@@ -1,6 +1,7 @@
 import { openai } from "@/clients/openai/openai-client";
-import { IntelligentAnswer } from "@/state/types";
-import { mapIntelligentAnswer } from "./openai-mappers";
+import { IntelligentAnswer, SearchStringIntelligentAnswer } from "@/state/types";
+import { mapIntelligentAnswer, mapSearchStringIntelligentAnswer } from "./openai-mappers";
+import { searchStringSystemPrompt } from "./search-string-system-prompt";
 
 export function registerOpenAIApiKey(apiKey: string | undefined): void {
   openai.apiKey = apiKey || "";
@@ -21,7 +22,7 @@ export async function testAndRegisterOpenAIApiKey(apiKey: string): Promise<boole
   }
 }
 
-export async function askAI(systemPrompt: string, prompt: string): Promise<IntelligentAnswer[]> {
+async function askAI(systemPrompt: string, prompt: string): Promise<IntelligentAnswer[]> {
   if (!openai.apiKey) {
     throw new Error("OpenAI API key is not set");
   }
@@ -36,4 +37,11 @@ export async function askAI(systemPrompt: string, prompt: string): Promise<Intel
 
   // Filter out incomplete answers
   return mapIntelligentAnswer(response.choices.filter((c) => c.finish_reason === "stop"));
+}
+
+export async function askAIForSearchString(
+  prompt: string
+): Promise<SearchStringIntelligentAnswer[]> {
+  const results = await askAI(searchStringSystemPrompt, prompt);
+  return mapSearchStringIntelligentAnswer(results);
 }

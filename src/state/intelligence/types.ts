@@ -1,8 +1,8 @@
-import { Result, IntelligentAnswer } from "../types";
+import { Result, SearchStringIntelligentAnswer } from "../types";
 
 export interface IntelligenceState {
   searchStringPrompt: string | undefined;
-  searchStringResult: Result<IntelligentAnswer[]>;
+  searchStringResult: Result<SearchStringIntelligentAnswer[]>;
 }
 
 export interface IntelligenceActions {

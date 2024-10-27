@@ -35,3 +35,7 @@ export interface LiteratureMetadata {
 export interface IntelligentAnswer {
   answer: string;
 }
+
+export interface SearchStringIntelligentAnswer extends IntelligentAnswer {
+  searchString: string;
+}

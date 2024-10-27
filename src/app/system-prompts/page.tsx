@@ -1,4 +1,4 @@
-import { searchStringSystemPrompt } from "@/state/intelligence/search-string-system-prompt";
+import { searchStringSystemPrompt } from "@/state/effects/openai/search-string-system-prompt";
 
 export default function SystemPromptsPage() {
   return (

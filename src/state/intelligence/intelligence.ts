@@ -1,8 +1,7 @@
 import { StateCreator } from "zustand";
 import * as Op from "@/utils/operation";
 import { IntelligenceSlice, IntelligenceState } from "./types";
-import { askAI } from "../effects/openai/openai";
-import { searchStringSystemPrompt } from "./search-string-system-prompt";
+import { askAIForSearchString } from "../effects/openai/openai";
 
 export const intelligenceInitialState: IntelligenceState = {
   searchStringPrompt: undefined,
@@ -14,7 +13,7 @@ export const createIntelligenceSlice: StateCreator<IntelligenceSlice> = (set) =>
   askAIForSearchString: async (prompt) => {
     set({ searchStringPrompt: prompt, searchStringResult: { currentResult: Op.running } });
     try {
-      const results = await askAI(searchStringSystemPrompt, prompt);
+      const results = await askAIForSearchString(prompt);
       if (results.length === 0) {
         throw new Error("Failed to get complete answer from AI. Please adjust your prompt.");
       }
