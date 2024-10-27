@@ -25,7 +25,7 @@ export function MultiStepForm() {
   };
 
   const handleApplyToNextStep = (currentStep: number) => {
-    applyFn[currentStep]();
+    applyFn[currentStep]?.();
     handleToNextStep(currentStep + 1);
   };
 
