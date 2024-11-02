@@ -1,4 +1,5 @@
 import { scopus } from "@/clients/scopus/scopus-client";
+import { LiteratureMetadata, Pagination } from "@/state/types";
 import { mapLiteratureResult } from "./scopus-mappers";
 
 let SCOPUS_API_KEY: string | undefined;
@@ -54,4 +55,14 @@ export async function searchScopus(
   const headers = generateHeaders(SCOPUS_API_KEY, SCOPUS_INSTITUTIONAL_TOKEN);
   const response = await scopus.search({ headers, queries });
   return mapLiteratureResult(response);
+}
+
+export function getMaxTotalResults(results: Pagination<LiteratureMetadata[]>[]): number {
+  return Math.max(...results.map((r) => r.totalResults));
+}
+
+export function hasAllResults(results: Pagination<LiteratureMetadata[]>[]): boolean {
+  const maxResults = Math.max(...results.map((r) => r.totalResults));
+  const totalResults = results.reduce((acc, r) => acc + r.result.length, 0);
+  return maxResults === totalResults;
 }

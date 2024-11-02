@@ -25,7 +25,7 @@ export const createFlowSlice: StateCreator<
     });
   },
   applySearchString: () => {
-    const value = getValue(get().searchStringResult.currentResult)?.[0]?.answer;
+    const value = getValue(get().searchStringResult.currentResult)?.searchString;
     if (value) {
       set({
         literatureQuery: value,
@@ -34,5 +34,8 @@ export const createFlowSlice: StateCreator<
       return true;
     }
     return false;
+  },
+  applySearch: async () => {
+    get().fetchFullLiteratureSearch();
   },
 });

@@ -85,14 +85,7 @@ export function SearchString() {
       </form>
       {isSuccess(state.result) && (
         <div>
-          <p className="block mb-1 text-xs font-medium text-gray-700">
-            Number of results: {(getValue(state.result) || []).length}
-          </p>
-          {getValue(state.result)?.map((r) => (
-            <div key={r.answer}>
-              <p>{r.answer}</p>
-            </div>
-          ))}
+          <p>{getValue(state.result)?.answer}</p>
         </div>
       )}
     </div>

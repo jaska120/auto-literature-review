@@ -19,6 +19,7 @@ export type Pagination<T = void> = {
 };
 
 export type PaginatedResult<T> = {
+  isComplete: boolean;
   results: Pagination<T>[];
 } & Result<Pagination<T>>;
 
@@ -38,4 +39,9 @@ export interface IntelligentAnswer {
 
 export interface SearchStringIntelligentAnswer extends IntelligentAnswer {
   searchString: string;
+}
+
+export interface EvaluateLiteratureIntelligentAnswer extends IntelligentAnswer {
+  inclusion: boolean;
+  justification: string;
 }
