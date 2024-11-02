@@ -60,7 +60,7 @@ export function SearchString() {
             href="/configuration"
             className="text-sm hover:underline text-red-600 hover:text-red-700"
           >
-            Check your Scopus API key in configuration.
+            Check your OpenAI API key in configuration.
           </Link>
         )}
         <Textarea
