@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { CaretRightIcon } from "@/components/icon/caret-right-icon";
 
 interface Pagination {
@@ -53,8 +53,8 @@ export function Table({ columns, rows, pagination, collapse }: TableProps) {
               const isCollapsed = collapsed[i];
 
               return (
-                <>
-                  <tr key={row.join()}>
+                <Fragment key={row.join()}>
+                  <tr>
                     {collapse && (
                       <td
                         align="center"
@@ -102,7 +102,7 @@ export function Table({ columns, rows, pagination, collapse }: TableProps) {
                       </td>
                     </tr>
                   )}
-                </>
+                </Fragment>
               );
             })}
           </tbody>
