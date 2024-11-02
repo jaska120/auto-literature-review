@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Input } from "@/components/input/input";
+import { Textarea } from "@/components/textarea/textarea";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -76,11 +76,12 @@ export function Search() {
             Check your Scopus API key in configuration.
           </Link>
         )}
-        <Input
+        <Textarea
           {...register("query")}
           id="query"
           label="Search query"
           placeholder="TITLE-ABS-KEY ( literature )"
+          rows={1}
           disabled={formState.isSubmitting || !isSuccess(state.connection)}
           error={!!formState.errors.query || isError(state.result)}
           helperText={formState.errors.query?.message || getError(state.result)?.message}
