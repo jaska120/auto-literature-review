@@ -4,16 +4,17 @@ import { Fragment } from "react";
 import { CaretRightIcon } from "@/components/icon/caret-right-icon";
 import { useBoundStore } from "@/state/bound-store";
 import { useShallow } from "zustand/react/shallow";
-import { Search } from "./search";
-import { SearchString } from "./search-string";
+import { Search, SearchTooltip } from "./search";
+import { SearchString, SearchStringTooltip } from "./search-string";
 import { Evaluate } from "./evaluate";
-import { Write } from "./write";
+import { Results } from "./results";
+import { Tooltip } from "../tooltip/tooltip";
 
-const Steps: { component: () => JSX.Element; title: string }[] = [
-  { component: SearchString, title: "Search String" },
-  { component: Search, title: "Literature Search" },
+const Steps: { component: () => JSX.Element; tooltip?: () => JSX.Element; title: string }[] = [
+  { component: SearchString, tooltip: SearchStringTooltip, title: "Search String" },
+  { component: Search, tooltip: SearchTooltip, title: "Literature Search" },
   { component: Evaluate, title: "Evaluate Literature" },
-  { component: Write, title: "Write Literature Review" },
+  { component: Results, title: "Results" },
 ];
 
 export function MultiStepForm() {
@@ -33,7 +34,7 @@ export function MultiStepForm() {
   };
 
   return (
-    <div>
+    <>
       <h2 className="sr-only">Steps</h2>
       <div className="relative flex items-center justify-between w-full text-sm font-medium text-gray-500">
         <ol className="relative flex items-center w-full">
@@ -86,14 +87,24 @@ export function MultiStepForm() {
         </ol>
       </div>
 
-      <div className="py-8">
-        {Steps.map(({ component: Component, title }, index) => (
-          <div key={`${Component.name}-step`} className={step === index ? "block" : "hidden"}>
-            <h2 className="text-lg font-semibold mb-4">{title}</h2>
+      <div className="flex flex-col flex-1 py-8">
+        {Steps.map(({ component: Component, tooltip: Tip, title }, index) => (
+          <div
+            key={`${Component.name}-step`}
+            className={step === index ? "flex flex-col flex-1" : "hidden"}
+          >
+            <div className="flex items-center mb-4">
+              <h2 className="text-lg font-semibold mr-1">{title}</h2>
+              {Tip && (
+                <Tooltip>
+                  <Tip />
+                </Tooltip>
+              )}
+            </div>
             <Component />
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }

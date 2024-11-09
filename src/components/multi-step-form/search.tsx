@@ -6,17 +6,33 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/button/button";
 import { useBoundStore } from "@/state/bound-store";
 import { useShallow } from "zustand/react/shallow";
-import { isSuccess, getValue, isError, getError } from "@/utils/operation";
+import { isSuccess, getValue, isError, getError, isRunning } from "@/utils/operation";
 import { Table } from "@/components/table/table";
 import Link from "next/link";
-import { Card } from "../card/card";
 import { ApiKeyWarning } from "./api-key-warning";
+import { Form, FormContainer, FormResult } from "./form";
 
 const schema = z.object({
   query: z.string().min(3),
 });
 
 type Schema = z.infer<typeof schema>;
+
+export function SearchTooltip() {
+  return (
+    <p>
+      The current search is limited to{" "}
+      <Link
+        href="https://www.elsevier.com/products/scopus/search"
+        target="_blank"
+        className="text-blue-600 hover:underline"
+      >
+        Scopus Search
+      </Link>{" "}
+      only.
+    </p>
+  );
+}
 
 export function Search() {
   const state = useBoundStore(
@@ -52,24 +68,53 @@ export function Search() {
   } = getValue(state.result) || {};
 
   return (
-    <div className="flex flex-col gap-8">
-      <Card
-        body={
-          <>
-            The current search is limited to{" "}
-            <Link
-              href="https://www.elsevier.com/products/scopus/search"
-              target="_blank"
-              className="text-blue-600 hover:underline"
-            >
-              Scopus Search
-            </Link>{" "}
-            only.
-          </>
-        }
-      />
-      <form className="flex flex-col gap-4" name="search-form" onSubmit={handleSubmit(onQuery)}>
+    <FormContainer>
+      <FormResult loading={isRunning(state.result)}>
         <ApiKeyWarning service="Scopus" connection={state.connection} />
+        {isSuccess(state.result) && (
+          <div>
+            <p className="block mb-1 text-xs font-medium text-gray-700">
+              Total number of results: {totalResults}
+            </p>
+            <Table
+              columns={["Title", "Publication", "Year", "Citation count"]}
+              rows={
+                result?.map((r) => {
+                  return [
+                    r.title,
+                    r.publication,
+                    r.publishDate?.getFullYear().toString() || "?",
+                    r.citedByCount?.toString() ?? "?",
+                  ];
+                }) || []
+              }
+              collapse={{
+                columns: ["Authors", "Keywords", "Abstract"],
+                rows:
+                  result?.map((r) => [r.authors.join(", "), r.keywords.join(", "), r.abstract]) ||
+                  [],
+              }}
+              pagination={
+                currentPage
+                  ? {
+                      currentPage: currentPage || -1,
+                      totalPages: totalPages || -1,
+                      hasNextPage: !!links?.next,
+                      onPaginate: (page) => {
+                        if (page === currentPage || !currentPage) return;
+                        const link = page > currentPage ? links?.next : links?.prev;
+                        if (!link) return;
+                        handleSubmit(async () => onPaginate(link))();
+                      },
+                    }
+                  : undefined
+              }
+            />
+          </div>
+        )}
+        {isError(state.result) && <p className="text-red-500">{getError(state.result)?.message}</p>}
+      </FormResult>
+      <Form name="search-form" onSubmit={handleSubmit(onQuery)}>
         <Textarea
           {...register("query")}
           id="query"
@@ -77,8 +122,8 @@ export function Search() {
           placeholder="TITLE-ABS-KEY ( literature )"
           rows={3}
           disabled={formState.isSubmitting || !isSuccess(state.connection)}
-          error={!!formState.errors.query || isError(state.result)}
-          helperText={formState.errors.query?.message || getError(state.result)?.message}
+          error={!!formState.errors.query}
+          helperText={formState.errors.query?.message}
         />
         <Button
           fullWidth
@@ -89,47 +134,7 @@ export function Search() {
         >
           Search
         </Button>
-      </form>
-      {isSuccess(state.result) && (
-        <div>
-          <p className="block mb-1 text-xs font-medium text-gray-700">
-            Total number of results: {totalResults}
-          </p>
-          <Table
-            columns={["Title", "Publication", "Year", "Citation count"]}
-            rows={
-              result?.map((r) => {
-                return [
-                  r.title,
-                  r.publication,
-                  r.publishDate?.getFullYear().toString() || "?",
-                  r.citedByCount?.toString() ?? "?",
-                ];
-              }) || []
-            }
-            collapse={{
-              columns: ["Authors", "Keywords", "Abstract"],
-              rows:
-                result?.map((r) => [r.authors.join(", "), r.keywords.join(", "), r.abstract]) || [],
-            }}
-            pagination={
-              currentPage
-                ? {
-                    currentPage: currentPage || -1,
-                    totalPages: totalPages || -1,
-                    hasNextPage: !!links?.next,
-                    onPaginate: (page) => {
-                      if (page === currentPage || !currentPage) return;
-                      const link = page > currentPage ? links?.next : links?.prev;
-                      if (!link) return;
-                      handleSubmit(async () => onPaginate(link))();
-                    },
-                  }
-                : undefined
-            }
-          />
-        </div>
-      )}
-    </div>
+      </Form>
+    </FormContainer>
   );
 }

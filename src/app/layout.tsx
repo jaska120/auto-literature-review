@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} flex flex-col min-h-screen`}>
         <header className="bg-white shadow-sm flex flex-row justify-center px-6 py-4">
           <div className="container w-full max-w-7xl flex justify-between items-center">
             <Link href="/" className="text-xl font-bold text-gray-800">

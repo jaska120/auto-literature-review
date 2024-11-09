@@ -7,15 +7,27 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useBoundStore } from "@/state/bound-store";
 import { useShallow } from "zustand/react/shallow";
 import Link from "next/link";
-import { getError, getValue, isError, isSuccess } from "@/utils/operation";
-import { Card } from "../card/card";
+import { getError, getValue, isError, isRunning, isSuccess } from "@/utils/operation";
 import { ApiKeyWarning } from "./api-key-warning";
+import { Form, FormContainer, FormResult } from "./form";
 
 const schema = z.object({
   prompt: z.string().min(3),
 });
 
 type Schema = z.infer<typeof schema>;
+
+export function SearchStringTooltip() {
+  return (
+    <p>
+      For more details, please refer to the{" "}
+      <Link href="/system-prompts#search-string" className="text-blue-600 hover:underline">
+        system prompt
+      </Link>{" "}
+      provided.
+    </p>
+  );
+}
 
 export function SearchString() {
   const state = useBoundStore(
@@ -39,24 +51,13 @@ export function SearchString() {
   };
 
   return (
-    <div className="flex flex-col gap-8">
-      <Card
-        body={
-          <>
-            For more details, please refer to the{" "}
-            <Link href="/system-prompts#search-string" className="text-blue-600 hover:underline">
-              system prompt
-            </Link>{" "}
-            provided.
-          </>
-        }
-      />
-      <form
-        className="flex flex-col gap-4"
-        name="search-string-form"
-        onSubmit={handleSubmit(onQuery)}
-      >
+    <FormContainer>
+      <FormResult loading={isRunning(state.result)}>
         <ApiKeyWarning service="Open AI" connection={state.connection} />
+        {isSuccess(state.result) && <p>{getValue(state.result)?.answer}</p>}
+        {isError(state.result) && <p className="text-red-500">{getError(state.result)?.message}</p>}
+      </FormResult>
+      <Form name="search-string-form" onSubmit={handleSubmit(onQuery)}>
         <Textarea
           {...register("prompt")}
           id="prompt"
@@ -64,8 +65,8 @@ export function SearchString() {
           placeholder="Lorem ipsum dolor sit amet"
           rows={8}
           disabled={formState.isSubmitting || !isSuccess(state.connection)}
-          error={!!formState.errors.prompt || isError(state.result)}
-          helperText={formState.errors.prompt?.message || getError(state.result)?.message}
+          error={!!formState.errors.prompt}
+          helperText={formState.errors.prompt?.message}
         />
         <Button
           fullWidth
@@ -76,12 +77,7 @@ export function SearchString() {
         >
           Generate
         </Button>
-      </form>
-      {isSuccess(state.result) && (
-        <div>
-          <p>{getValue(state.result)?.answer}</p>
-        </div>
-      )}
-    </div>
+      </Form>
+    </FormContainer>
   );
 }
