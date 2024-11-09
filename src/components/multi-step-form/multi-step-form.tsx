@@ -18,15 +18,18 @@ const Steps: { component: () => JSX.Element; title: string }[] = [
 
 export function MultiStepForm() {
   const [step, setStep] = useBoundStore(useShallow((s) => [s.flowStep, s.setFlowStep]));
-  const applyFn = useBoundStore(useShallow((s) => [s.applySearchString]));
+  const applyFn = useBoundStore(useShallow((s) => [s.applySearchString, s.applySearch]));
 
   const handleToNextStep = (nextStep: number) => {
     setStep(nextStep);
   };
 
   const handleApplyToNextStep = (currentStep: number) => {
-    applyFn[currentStep]?.();
-    handleToNextStep(currentStep + 1);
+    const apply = applyFn[currentStep];
+    if (apply) {
+      apply();
+      handleToNextStep(currentStep + 1);
+    }
   };
 
   return (

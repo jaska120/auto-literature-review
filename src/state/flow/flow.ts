@@ -25,7 +25,7 @@ export const createFlowSlice: StateCreator<
     });
   },
   applySearchString: () => {
-    const value = getValue(get().searchStringResult.currentResult)?.[0]?.answer;
+    const value = getValue(get().searchStringResult.currentResult)?.searchString;
     if (value) {
       set({
         literatureQuery: value,
@@ -34,5 +34,15 @@ export const createFlowSlice: StateCreator<
       return true;
     }
     return false;
+  },
+  applySearch: async () => {
+    get().fetchFullLiteratureSearch();
+  },
+  evaluateLiteratureTest: async (prompt) => {
+    const { fullLiteratureSearchResult, askAIForLiteratureEvaluation } = get();
+    const allMetadata = getValue(fullLiteratureSearchResult);
+    if (allMetadata && allMetadata.length > 0) {
+      await askAIForLiteratureEvaluation(allMetadata[0], prompt);
+    }
   },
 });

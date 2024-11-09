@@ -1,4 +1,5 @@
 import { searchStringSystemPrompt } from "@/state/effects/openai/search-string-system-prompt";
+import { evaluateLiteratureSystemPrompt } from "@/state/effects/openai/evaluate-literature-system-prompt";
 
 export default function SystemPromptsPage() {
   return (
@@ -12,6 +13,10 @@ export default function SystemPromptsPage() {
           Search String
         </h2>
         <p className="whitespace-pre-wrap">{searchStringSystemPrompt.trim()}</p>
+        <h2 id="evaluate-literature" className="text-2xl font-bold mb-6 mt-8">
+          Evaluate Literature
+        </h2>
+        <p className="whitespace-pre-wrap">{evaluateLiteratureSystemPrompt.trim()}</p>
       </div>
     </main>
   );
