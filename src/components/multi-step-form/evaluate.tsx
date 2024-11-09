@@ -22,7 +22,7 @@ export function Evaluate() {
     useShallow((s) => ({
       prompt: s.evaluateLiteraturePrompt,
       literatuResults: s.fullLiteratureSearchResult,
-      result: s.evaluateLiteratureResult.currentResult,
+      result: s.evaluateLiteratureTestResult.currentResult,
       run: s.evaluateLiteratureTest,
       scopusConnection: s.connections.scopus.test,
       openAIConnection: s.connections.openAI.test,
@@ -84,7 +84,20 @@ export function Evaluate() {
       </form>
       {isSuccess(state.result) && (
         <div>
-          <p>{getValue(state.result)?.answer}</p>
+          {getValue(state.result)?.map((r) => (
+            <div key={r.prompt} className="mb-4">
+              <p className="whitespace-pre-wrap mb-2">
+                <strong>Prompt</strong>
+                <br />
+                {r.prompt}
+              </p>
+              <p className="whitespace-pre-wrap">
+                <strong>Evaluation: {r.result.inclusion ? "include" : "exclude"}</strong>
+                <br />
+                {r.result.justification}
+              </p>
+            </div>
+          ))}
         </div>
       )}
     </div>

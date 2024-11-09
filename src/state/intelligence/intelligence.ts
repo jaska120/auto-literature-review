@@ -11,8 +11,7 @@ export const intelligenceInitialState: IntelligenceState = {
   searchStringPrompt: undefined,
   searchStringResult: { currentResult: Op.idle },
   evaluateLiteraturePrompt: undefined,
-  evaluateLireatureMetadata: [],
-  evaluateLiteratureResult: { currentResult: Op.idle },
+  evaluateLiteratureTestResult: { currentResult: Op.idle },
 };
 
 export const createIntelligenceSlice: StateCreator<IntelligenceSlice> = (set) => ({
@@ -26,18 +25,23 @@ export const createIntelligenceSlice: StateCreator<IntelligenceSlice> = (set) =>
       set({ searchStringResult: { currentResult: Op.error(e) } });
     }
   },
-  askAIForLiteratureEvaluation: async (metadata, prompt) => {
+  askAIForLiteratureEvaluation: async (metadatas, prompt) => {
     set({
       evaluateLiteraturePrompt: prompt,
-      evaluateLiteratureResult: { currentResult: Op.running },
+      evaluateLiteratureTestResult: { currentResult: Op.running },
     });
+
+    const prompts = metadatas.map((m) => generateLiteratureEvaluationPrompt(m, prompt));
+
     try {
-      const result = await askAIForLiteratureEvaluation(
-        generateLiteratureEvaluationPrompt(metadata, prompt)
-      );
-      set({ evaluateLiteratureResult: { currentResult: Op.success(result) } });
+      const results = await Promise.all(prompts.map((p) => askAIForLiteratureEvaluation(p)));
+      const testResults = prompts.map((p, i) => ({
+        prompt: p,
+        result: results[i],
+      }));
+      set({ evaluateLiteratureTestResult: { currentResult: Op.success(testResults) } });
     } catch (e) {
-      set({ evaluateLiteratureResult: { currentResult: Op.error(e) } });
+      set({ evaluateLiteratureTestResult: { currentResult: Op.error(e) } });
     }
   },
 });

@@ -9,13 +9,17 @@ export interface IntelligenceState {
   searchStringPrompt: string | undefined;
   searchStringResult: Result<SearchStringIntelligentAnswer>;
   evaluateLiteraturePrompt: string | undefined;
-  evaluateLireatureMetadata: LiteratureMetadata[];
-  evaluateLiteratureResult: Result<EvaluateLiteratureIntelligentAnswer>;
+  evaluateLiteratureTestResult: Result<
+    {
+      prompt: string;
+      result: EvaluateLiteratureIntelligentAnswer;
+    }[]
+  >;
 }
 
 export interface IntelligenceActions {
   askAIForSearchString: (prompt: string) => Promise<void>;
-  askAIForLiteratureEvaluation: (metadata: LiteratureMetadata, prompt: string) => Promise<void>;
+  askAIForLiteratureEvaluation: (metadatas: LiteratureMetadata[], prompt: string) => Promise<void>;
 }
 
 export type IntelligenceSlice = IntelligenceState & IntelligenceActions;

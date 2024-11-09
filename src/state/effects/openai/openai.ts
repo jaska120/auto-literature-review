@@ -77,5 +77,5 @@ export function generateLiteratureEvaluationPrompt(
     ---
 
     ${prompt}
-  `;
+  `.trim();
 }

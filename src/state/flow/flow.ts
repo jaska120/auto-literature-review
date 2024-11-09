@@ -42,7 +42,7 @@ export const createFlowSlice: StateCreator<
     const { fullLiteratureSearchResult, askAIForLiteratureEvaluation } = get();
     const allMetadata = getValue(fullLiteratureSearchResult);
     if (allMetadata && allMetadata.length > 0) {
-      await askAIForLiteratureEvaluation(allMetadata[0], prompt);
+      await askAIForLiteratureEvaluation(allMetadata.slice(0, 3), prompt);
     }
   },
 });
