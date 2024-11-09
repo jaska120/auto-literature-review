@@ -15,7 +15,7 @@ export interface IntelligenceState {
 
 export interface IntelligenceActions {
   askAIForSearchString: (prompt: string) => Promise<void>;
-  askAIForLiteratureEvaluation: (prompt: string) => Promise<void>;
+  askAIForLiteratureEvaluation: (metadata: LiteratureMetadata, prompt: string) => Promise<void>;
 }
 
 export type IntelligenceSlice = IntelligenceState & IntelligenceActions;

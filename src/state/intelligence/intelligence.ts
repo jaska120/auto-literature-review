@@ -1,7 +1,11 @@
 import { StateCreator } from "zustand";
 import * as Op from "@/utils/operation";
 import { IntelligenceSlice, IntelligenceState } from "./types";
-import { askAIForLiteratureEvaluation, askAIForSearchString } from "../effects/openai/openai";
+import {
+  askAIForLiteratureEvaluation,
+  askAIForSearchString,
+  generateLiteratureEvaluationPrompt,
+} from "../effects/openai/openai";
 
 export const intelligenceInitialState: IntelligenceState = {
   searchStringPrompt: undefined,
@@ -22,13 +26,15 @@ export const createIntelligenceSlice: StateCreator<IntelligenceSlice> = (set) =>
       set({ searchStringResult: { currentResult: Op.error(e) } });
     }
   },
-  askAIForLiteratureEvaluation: async (prompt) => {
+  askAIForLiteratureEvaluation: async (metadata, prompt) => {
     set({
       evaluateLiteraturePrompt: prompt,
       evaluateLiteratureResult: { currentResult: Op.running },
     });
     try {
-      const result = await askAIForLiteratureEvaluation(prompt);
+      const result = await askAIForLiteratureEvaluation(
+        generateLiteratureEvaluationPrompt(metadata, prompt)
+      );
       set({ evaluateLiteratureResult: { currentResult: Op.success(result) } });
     } catch (e) {
       set({ evaluateLiteratureResult: { currentResult: Op.error(e) } });
