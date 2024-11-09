@@ -4,6 +4,7 @@ import { FlowState, FlowSlice } from "./types";
 import { SearchSlice } from "../search/types";
 import { IntelligenceSlice } from "../intelligence/types";
 import { searchInitialState } from "../search/search";
+import { intelligenceInitialState } from "../intelligence/intelligence";
 
 export const flowInitialState: FlowState = {
   flowStep: 0,
@@ -30,6 +31,7 @@ export const createFlowSlice: StateCreator<
       set({
         literatureQuery: value,
         literatureSearchResult: searchInitialState.literatureSearchResult,
+        fullLiteratureSearchResult: searchInitialState.fullLiteratureSearchResult,
       });
       return true;
     }
@@ -37,6 +39,7 @@ export const createFlowSlice: StateCreator<
   },
   applySearch: async () => {
     get().fetchFullLiteratureSearch();
+    set({ evaluateLiteratureTestResult: intelligenceInitialState.evaluateLiteratureTestResult });
   },
   evaluateLiteratureTest: async (prompt) => {
     const { fullLiteratureSearchResult, askAIForLiteratureEvaluation } = get();
