@@ -1,5 +1,43 @@
 # auto-literature-review
 
+## 0.3.0
+
+### Minor Changes
+
+- [`b4eca56`](https://github.com/jaska120/auto-literature-review/commit/b4eca566a46136fb1909d8345ac25ba85f4a41b9) Thanks [@jaska120](https://github.com/jaska120)! - Apply result of step quickly to next step with a click of button
+
+- [#156](https://github.com/jaska120/auto-literature-review/pull/156) [`8ff9651`](https://github.com/jaska120/auto-literature-review/commit/8ff96519db551824c79c18228da5e7ecaa335258) Thanks [@jaska120](https://github.com/jaska120)! - Fetch all literature for evaluation in background, and allow testing evaluation, before applying to all.
+
+### Patch Changes
+
+- [#145](https://github.com/jaska120/auto-literature-review/pull/145) [`56d9d71`](https://github.com/jaska120/auto-literature-review/commit/56d9d71b29d8614f56e382d2f23b7ee688cdcf86) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency openai to ^4.67.2
+
+- [#147](https://github.com/jaska120/auto-literature-review/pull/147) [`efc6e62`](https://github.com/jaska120/auto-literature-review/commit/efc6e625a5c98abbbcbb749de4bc2fbfa17629e3) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.16.11
+
+- [#148](https://github.com/jaska120/auto-literature-review/pull/148) [`96caef5`](https://github.com/jaska120/auto-literature-review/commit/96caef564ff21c6a51743582647f2fa330729fec) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency openai to ^4.67.3
+
+- [#149](https://github.com/jaska120/auto-literature-review/pull/149) [`d7bf797`](https://github.com/jaska120/auto-literature-review/commit/d7bf797fb6ee5996c421073d096f8023ba8e3f8e) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update nextjs monorepo to ^14.2.15
+
+- [#150](https://github.com/jaska120/auto-literature-review/pull/150) [`c500502`](https://github.com/jaska120/auto-literature-review/commit/c50050251e940b76205382ae5ac6640113969320) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typescript to ^5.6.3
+
+- [#152](https://github.com/jaska120/auto-literature-review/pull/152) [`1140368`](https://github.com/jaska120/auto-literature-review/commit/1140368feb9c24b1448a1475e0c65d926533d0c4) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/react-dom to ^18.3.1
+
+- [#153](https://github.com/jaska120/auto-literature-review/pull/153) [`1203adb`](https://github.com/jaska120/auto-literature-review/commit/1203adb23128c6afbbc041c24c2dc24b48870438) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency zustand to v5
+
+- [#155](https://github.com/jaska120/auto-literature-review/pull/155) [`4d9a939`](https://github.com/jaska120/auto-literature-review/commit/4d9a9390d4f54729161dfe591c8181339c9f1509) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^20.16.13
+
+- [#157](https://github.com/jaska120/auto-literature-review/pull/157) [`6d40add`](https://github.com/jaska120/auto-literature-review/commit/6d40add95218b63d19a1357a6424a6846f11b096) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency tailwindcss to ^3.4.14
+
+- [#158](https://github.com/jaska120/auto-literature-review/pull/158) [`c7c513e`](https://github.com/jaska120/auto-literature-review/commit/c7c513e742f60b987028ad694f09f9232478a798) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency openai to ^4.68.1
+
+- [#159](https://github.com/jaska120/auto-literature-review/pull/159) [`01e2d7a`](https://github.com/jaska120/auto-literature-review/commit/01e2d7a3e9917d25f02563f5c7a15baff124046d) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency react-hook-form to ^7.53.1
+
+- [`417a1bf`](https://github.com/jaska120/auto-literature-review/commit/417a1bfe8d4a27e279700925bcc5b1e1134cf241) Thanks [@jaska120](https://github.com/jaska120)! - Ensure only the exact search string is applied to next step
+
+- [`dd0bfa8`](https://github.com/jaska120/auto-literature-review/commit/dd0bfa808dee3571a98e81301631bd882254f57f) Thanks [@jaska120](https://github.com/jaska120)! - Include three test results in evaluation section
+
+- [`545422e`](https://github.com/jaska120/auto-literature-review/commit/545422ea4779fe06829e01d551e190aa4e42e7f0) Thanks [@jaska120](https://github.com/jaska120)! - Update layout for better UX
+
 ## 0.2.0
 
 ### Minor Changes
