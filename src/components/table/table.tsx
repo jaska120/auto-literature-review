@@ -30,7 +30,9 @@ export function Table({ columns, rows, pagination, collapse }: TableProps) {
       {/* Pagination Controls */}
       {pagination && (
         <div className="flex justify-between align-middle p-2">
-          <p className="text-xs font-medium text-gray-700">Total: {pagination.totalResults}</p>
+          <p className="text-xs font-medium text-gray-700">
+            Total results: {pagination.totalResults}
+          </p>
           <ol className="flex justify-end gap-1 text-xs font-medium">
             {pagination.currentPage > 1 && (
               <li>

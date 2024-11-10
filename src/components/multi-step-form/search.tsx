@@ -60,7 +60,13 @@ export function Search() {
     await state.run(link, true);
   };
 
-  const { result, page: currentPage, links, totalPages } = getValue(state.result) || {};
+  const {
+    result,
+    page: currentPage,
+    links,
+    totalPages,
+    totalResults,
+  } = getValue(state.result) || {};
 
   return (
     <FormContainer>
@@ -88,7 +94,7 @@ export function Search() {
             pagination={
               currentPage
                 ? {
-                    totalResults: totalPages || -1,
+                    totalResults: totalResults || -1,
                     currentPage: currentPage || -1,
                     totalPages: totalPages || -1,
                     hasNextPage: !!links?.next,
