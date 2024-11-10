@@ -10,6 +10,7 @@ import Link from "next/link";
 import { getError, getValue, isError, isRunning, isSuccess } from "@/utils/operation";
 import { ApiKeyWarning } from "./api-key-warning";
 import { Form, FormContainer, FormResult } from "./form";
+import { Card } from "../card/card";
 
 const schema = z.object({
   prompt: z.string().min(3),
@@ -52,6 +53,7 @@ export function SearchString() {
 
   return (
     <FormContainer>
+      <Card body="Generate Scopus compatible with the help of artificial intelligence." />
       <FormResult loading={isRunning(state.result)}>
         <ApiKeyWarning service="Open AI" connection={state.connection} />
         {isSuccess(state.result) && <p>{getValue(state.result)?.answer}</p>}

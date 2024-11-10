@@ -39,10 +39,10 @@ export const createFlowSlice: StateCreator<
     set({ evaluateLiteratureTestResult: intelligenceInitialState.evaluateLiteratureTestResult });
   },
   evaluateLiteratureTest: async (prompt) => {
-    const { fullLiteratureSearchResult, askAIForLiteratureEvaluation } = get();
-    const allMetadata = getValue(fullLiteratureSearchResult);
-    if (allMetadata && allMetadata.length > 0) {
-      await askAIForLiteratureEvaluation(allMetadata.slice(0, 3), prompt);
+    const { literatureSearchResult, askAIForLiteratureEvaluation } = get();
+    const threePapers = literatureSearchResult.results[0]?.result.slice(0, 3) || [];
+    if (threePapers.length) {
+      await askAIForLiteratureEvaluation(threePapers, prompt);
     }
   },
 });

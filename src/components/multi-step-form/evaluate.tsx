@@ -9,6 +9,7 @@ import { isSuccess, getValue, isError, getError, isRunning } from "@/utils/opera
 import { Textarea } from "../textarea/textarea";
 import { ApiKeyWarning } from "./api-key-warning";
 import { Form, FormContainer, FormResult } from "./form";
+import { Card } from "../card/card";
 
 const schema = z.object({
   prompt: z.string().min(3),
@@ -22,6 +23,7 @@ export function Evaluate() {
       prompt: s.evaluateLiteraturePrompt,
       result: s.evaluateLiteratureTestResult.currentResult,
       run: s.evaluateLiteratureTest,
+      test: s.literatureSearchResult.results,
       openAIConnection: s.connections.openAI.test,
     }))
   );
@@ -37,8 +39,17 @@ export function Evaluate() {
     await state.run(s.prompt);
   };
 
+  const testPapers = state.test[0]?.result.slice(0, 3) || [];
+
   return (
     <FormContainer>
+      <Card
+        body={
+          testPapers.length
+            ? `Test evaluate inclusion of the first three papers: ${testPapers.map((p, i) => `${i + 1}) ${p.title}`).join(", ")}.`
+            : "You need to search for papers first."
+        }
+      />
       <FormResult loading={isRunning(state.result)}>
         <ApiKeyWarning service="Open AI" connection={state.openAIConnection} />
         {isSuccess(state.result) && (

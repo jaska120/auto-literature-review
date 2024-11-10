@@ -11,6 +11,7 @@ import { Table } from "@/components/table/table";
 import Link from "next/link";
 import { ApiKeyWarning } from "./api-key-warning";
 import { Form, FormContainer, FormResult } from "./form";
+import { Card } from "../card/card";
 
 const schema = z.object({
   query: z.string().min(3),
@@ -69,6 +70,7 @@ export function Search() {
 
   return (
     <FormContainer>
+      <Card body="Search from Scopus and skim the results for correctness." />
       <FormResult loading={isRunning(state.result)}>
         <ApiKeyWarning service="Scopus" connection={state.connection} />
         {isSuccess(state.result) && (
