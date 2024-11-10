@@ -33,12 +33,9 @@ export const createFlowSlice: StateCreator<
         literatureSearchResult: searchInitialState.literatureSearchResult,
         fullLiteratureSearchResult: searchInitialState.fullLiteratureSearchResult,
       });
-      return true;
     }
-    return false;
   },
   applySearch: async () => {
-    get().fetchFullLiteratureSearch();
     set({ evaluateLiteratureTestResult: intelligenceInitialState.evaluateLiteratureTestResult });
   },
   evaluateLiteratureTest: async (prompt) => {

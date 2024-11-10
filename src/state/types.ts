@@ -19,7 +19,6 @@ export type Pagination<T = void> = {
 };
 
 export type PaginatedResult<T> = {
-  isComplete: boolean;
   results: Pagination<T>[];
 } & Result<Pagination<T>>;
 

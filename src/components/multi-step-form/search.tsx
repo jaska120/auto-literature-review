@@ -72,7 +72,7 @@ export function Search() {
       <FormResult loading={isRunning(state.result)}>
         <ApiKeyWarning service="Scopus" connection={state.connection} />
         {isSuccess(state.result) && (
-          <div>
+          <>
             <p className="block mb-1 text-xs font-medium text-gray-700">
               Total number of results: {totalResults}
             </p>
@@ -110,7 +110,7 @@ export function Search() {
                   : undefined
               }
             />
-          </div>
+          </>
         )}
         {isError(state.result) && <p className="text-red-500">{getError(state.result)?.message}</p>}
       </FormResult>

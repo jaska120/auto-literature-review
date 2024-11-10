@@ -2,13 +2,14 @@ import { StateCreator } from "zustand";
 import * as Op from "@/utils/operation";
 import { SearchSlice, SearchState } from "./types";
 import { hasAllResults, searchScopus } from "../effects/scopus/scopus";
+import { LiteratureMetadata, Pagination } from "../types";
 
 /** The max number of results that can be processed. */
 const SEARCH_LIMIT = 500;
 
 export const searchInitialState: SearchState = {
   literatureQuery: undefined,
-  literatureSearchResult: { results: [], currentResult: Op.idle, isComplete: false },
+  literatureSearchResult: { results: [], currentResult: Op.idle },
   fullLiteratureSearchResult: Op.idle,
 };
 
@@ -50,7 +51,6 @@ export const createSearchSlice: StateCreator<SearchSlice> = (set, get) => ({
 
         return {
           literatureSearchResult: {
-            isComplete: hasAllResults(results),
             results,
             currentResult: Op.success(response),
           },
@@ -68,7 +68,7 @@ export const createSearchSlice: StateCreator<SearchSlice> = (set, get) => ({
     return undefined;
   },
   fetchFullLiteratureSearch: async () => {
-    const { literatureSearchResult, searchLiterature } = get();
+    const { literatureSearchResult } = get();
     const firstPage = literatureSearchResult.results.find((r) => r.page === 1);
 
     if (!firstPage || !firstPage.links.next) {
@@ -88,18 +88,25 @@ export const createSearchSlice: StateCreator<SearchSlice> = (set, get) => ({
     let nextLink: string | undefined = firstPage.links.next;
     set({ fullLiteratureSearchResult: Op.running });
 
+    const results = [firstPage];
+
     try {
       do {
-        // eslint-disable-next-line no-await-in-loop
-        const result = await searchLiterature(nextLink, true);
-        nextLink = result?.links.next || undefined;
+        const cachedResponse = literatureSearchResult.results.find(
+          // eslint-disable-next-line @typescript-eslint/no-loop-func
+          (r) => r.links.self === nextLink
+        );
+
+        const response: Pagination<LiteratureMetadata[]> =
+          // eslint-disable-next-line no-await-in-loop
+          cachedResponse || (await searchScopus(nextLink, true));
+
+        results.push(response);
+        nextLink = response?.links.next || undefined;
       } while (nextLink);
 
-      const { isComplete, results } = get().literatureSearchResult;
-
-      if (isComplete) {
-        const literature = results.map((r) => r.result).flat();
-        set({ fullLiteratureSearchResult: Op.success(literature) });
+      if (hasAllResults(results)) {
+        set({ fullLiteratureSearchResult: Op.success(results.map((r) => r.result).flat()) });
       } else {
         set({ fullLiteratureSearchResult: Op.error(new Error("Failed to fetch all pages")) });
       }

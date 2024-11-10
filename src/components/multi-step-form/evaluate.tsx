@@ -20,10 +20,8 @@ export function Evaluate() {
   const state = useBoundStore(
     useShallow((s) => ({
       prompt: s.evaluateLiteraturePrompt,
-      literatuResults: s.fullLiteratureSearchResult,
       result: s.evaluateLiteratureTestResult.currentResult,
       run: s.evaluateLiteratureTest,
-      scopusConnection: s.connections.scopus.test,
       openAIConnection: s.connections.openAI.test,
     }))
   );
@@ -42,11 +40,7 @@ export function Evaluate() {
   return (
     <FormContainer>
       <FormResult loading={isRunning(state.result)}>
-        <ApiKeyWarning service="Scopus" connection={state.scopusConnection} />
         <ApiKeyWarning service="Open AI" connection={state.openAIConnection} />
-        {isError(state.literatuResults) && (
-          <p className="text-red-500">{getError(state.literatuResults)?.message}</p>
-        )}
         {isSuccess(state.result) && (
           <div>
             {getValue(state.result)?.map((r) => (
@@ -82,11 +76,7 @@ export function Evaluate() {
           fullWidth
           variant="primary"
           type="submit"
-          disabled={
-            !isSuccess(state.scopusConnection) ||
-            !isSuccess(state.openAIConnection) ||
-            !isSuccess(state.literatuResults)
-          }
+          disabled={!isSuccess(state.openAIConnection)}
           loading={formState.isSubmitting}
         >
           Evaluate
