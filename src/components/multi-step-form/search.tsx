@@ -70,7 +70,7 @@ export function Search() {
 
   return (
     <FormContainer>
-      <Card body="Search from Scopus and skim the results for correctness." />
+      <Card body="Search from Scopus and skim the results for correctness. Tip: you can expand individual results for metadata." />
       <FormResult loading={isRunning(state.result)}>
         <ApiKeyWarning service="Scopus" connection={state.connection} />
         {isSuccess(state.result) && (

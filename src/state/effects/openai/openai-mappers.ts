@@ -62,9 +62,10 @@ export function mapSearchStringIntelligentAnswer(
   }
 
   const searchString = extractAnnotation(results[0].answer, "S");
+  const justification = extractAnnotation(results[0].answer, "J");
   const answer = removeAnnotations(results[0].answer);
 
-  return { searchString, answer };
+  return { searchString, justification, answer };
 }
 
 export function mapEvaluateLiteratureIntelligentAnswer(

@@ -38,6 +38,7 @@ export interface IntelligentAnswer {
 
 export interface SearchStringIntelligentAnswer extends IntelligentAnswer {
   searchString: string;
+  justification: string;
 }
 
 export interface EvaluateLiteratureIntelligentAnswer extends IntelligentAnswer {

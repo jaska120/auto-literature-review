@@ -56,6 +56,25 @@ export function SearchString() {
       <Card body="Generate Scopus compatible with the help of artificial intelligence." />
       <FormResult loading={isRunning(state.result)}>
         <ApiKeyWarning service="Open AI" connection={state.connection} />
+        {isSuccess(state.result) && (
+          <div className="flex flex-col gap-4">
+            <p className="whitespace-pre-wrap">
+              <strong>Prompt</strong>
+              <br />
+              {state.prompt}
+            </p>
+            <p className="whitespace-pre-wrap">
+              <strong>String:</strong>
+              <br />
+              {getValue(state.result)?.searchString}
+            </p>
+            <p className="whitespace-pre-wrap">
+              <strong>Justification:</strong>
+              <br />
+              {getValue(state.result)?.justification}
+            </p>
+          </div>
+        )}
         {isSuccess(state.result) && <p>{getValue(state.result)?.answer}</p>}
         {isError(state.result) && <p className="text-red-500">{getError(state.result)?.message}</p>}
       </FormResult>
