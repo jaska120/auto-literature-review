@@ -60,13 +60,7 @@ export function Search() {
     await state.run(link, true);
   };
 
-  const {
-    result,
-    page: currentPage,
-    links,
-    totalPages,
-    totalResults,
-  } = getValue(state.result) || {};
+  const { result, page: currentPage, links, totalPages } = getValue(state.result) || {};
 
   return (
     <FormContainer>
@@ -74,45 +68,40 @@ export function Search() {
       <FormResult loading={isRunning(state.result)}>
         <ApiKeyWarning service="Scopus" connection={state.connection} />
         {isSuccess(state.result) && (
-          <>
-            <p className="block mb-1 text-xs font-medium text-gray-700">
-              Total number of results: {totalResults}
-            </p>
-            <Table
-              columns={["Title", "Publication", "Year", "Citation count"]}
-              rows={
-                result?.map((r) => {
-                  return [
-                    r.title,
-                    r.publication,
-                    r.publishDate?.getFullYear().toString() || "?",
-                    r.citedByCount?.toString() ?? "?",
-                  ];
-                }) || []
-              }
-              collapse={{
-                columns: ["Authors", "Keywords", "Abstract"],
-                rows:
-                  result?.map((r) => [r.authors.join(", "), r.keywords.join(", "), r.abstract]) ||
-                  [],
-              }}
-              pagination={
-                currentPage
-                  ? {
-                      currentPage: currentPage || -1,
-                      totalPages: totalPages || -1,
-                      hasNextPage: !!links?.next,
-                      onPaginate: (page) => {
-                        if (page === currentPage || !currentPage) return;
-                        const link = page > currentPage ? links?.next : links?.prev;
-                        if (!link) return;
-                        handleSubmit(async () => onPaginate(link))();
-                      },
-                    }
-                  : undefined
-              }
-            />
-          </>
+          <Table
+            columns={["Title", "Publication", "Year", "Citation count"]}
+            rows={
+              result?.map((r) => {
+                return [
+                  r.title,
+                  r.publication,
+                  r.publishDate?.getFullYear().toString() || "?",
+                  r.citedByCount?.toString() ?? "?",
+                ];
+              }) || []
+            }
+            collapse={{
+              columns: ["Authors", "Keywords", "Abstract"],
+              rows:
+                result?.map((r) => [r.authors.join(", "), r.keywords.join(", "), r.abstract]) || [],
+            }}
+            pagination={
+              currentPage
+                ? {
+                    totalResults: totalPages || -1,
+                    currentPage: currentPage || -1,
+                    totalPages: totalPages || -1,
+                    hasNextPage: !!links?.next,
+                    onPaginate: (page) => {
+                      if (page === currentPage || !currentPage) return;
+                      const link = page > currentPage ? links?.next : links?.prev;
+                      if (!link) return;
+                      handleSubmit(async () => onPaginate(link))();
+                    },
+                  }
+                : undefined
+            }
+          />
         )}
         {isError(state.result) && <p className="text-red-500">{getError(state.result)?.message}</p>}
       </FormResult>

@@ -11,7 +11,7 @@ interface FormProps {
 }
 
 export function FormContainer({ children }: PropsWithChildren) {
-  return <div className="flex flex-col flex-1 gap-8">{children}</div>;
+  return <div className="flex flex-col flex-1 basis-0 gap-8">{children}</div>;
 }
 
 export function FormResult({ children, loading }: PropsWithChildren<FormResultProps>) {

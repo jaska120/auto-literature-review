@@ -87,11 +87,11 @@ export function MultiStepForm() {
         </ol>
       </div>
 
-      <div className="flex flex-col flex-1 py-8">
+      <div className="flex flex-col flex-1 basis-0 py-8">
         {Steps.map(({ component: Component, tooltip: Tip, title }, index) => (
           <div
             key={`${Component.name}-step`}
-            className={step === index ? "flex flex-col flex-1" : "hidden"}
+            className={step === index ? "flex flex-col flex-1 basis-0" : "hidden"}
           >
             <div className="flex items-center mb-4">
               <h2 className="text-lg font-semibold mr-1">{title}</h2>
