@@ -1,5 +1,17 @@
 # auto-literature-review
 
+## 0.4.0
+
+### Minor Changes
+
+- [`79abb30`](https://github.com/jaska120/auto-literature-review/commit/79abb30c4e887f0919f5a134b0f4f7a4ba62957e) Thanks [@jaska120](https://github.com/jaska120)! - Download full Auto Literature Review reports
+
+  This is the first somewhat working version, that allows users to complete the full flow, and get CSV reports downloaded with intelligent evaluations.
+
+### Patch Changes
+
+- [`9c55363`](https://github.com/jaska120/auto-literature-review/commit/9c55363dcd8dcde80a9bea00280beb7904dfa0d6) Thanks [@jaska120](https://github.com/jaska120)! - Limit OpenAI API concurrency to 3
+
 ## 0.3.0
 
 ### Minor Changes
