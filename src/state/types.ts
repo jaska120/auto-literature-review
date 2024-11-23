@@ -45,3 +45,9 @@ export interface EvaluateLiteratureIntelligentAnswer extends IntelligentAnswer {
   inclusion: boolean;
   justification: string;
 }
+
+export interface LiteratureEvaluation {
+  literature: LiteratureMetadata;
+  prompt: string;
+  result: EvaluateLiteratureIntelligentAnswer;
+}

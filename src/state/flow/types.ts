@@ -7,6 +7,7 @@ export interface FlowActions {
   applySearchString: () => void;
   applySearch: () => void;
   evaluateLiteratureTest: (prompt: string) => Promise<void>;
+  generateReport: () => Promise<void>;
 }
 
 export type FlowSlice = FlowState & FlowActions;

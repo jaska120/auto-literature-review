@@ -10,7 +10,6 @@ const SEARCH_LIMIT = 2000;
 export const searchInitialState: SearchState = {
   literatureQuery: undefined,
   literatureSearchResult: { results: [], currentResult: Op.idle },
-  fullLiteratureSearchResult: Op.idle,
 };
 
 export const createSearchSlice: StateCreator<SearchSlice> = (set, get) => ({
@@ -72,46 +71,38 @@ export const createSearchSlice: StateCreator<SearchSlice> = (set, get) => ({
     const firstPage = literatureSearchResult.results.find((r) => r.page === 1);
 
     if (!firstPage || !firstPage.links.next) {
-      set({ fullLiteratureSearchResult: Op.error(new Error("Make a search first")) });
-      return;
+      throw new Error("Make a search first");
     }
 
     if (firstPage.totalResults > SEARCH_LIMIT) {
-      set({
-        fullLiteratureSearchResult: Op.error(
-          new Error(`Narrow down search to less than ${SEARCH_LIMIT} results`)
-        ),
-      });
-      return;
+      throw new Error(`Narrow down search to less than ${SEARCH_LIMIT} results`);
     }
 
+    const { currentResult } = literatureSearchResult;
     let nextLink: string | undefined = firstPage.links.next;
-    set({ fullLiteratureSearchResult: Op.running });
 
     const results = [firstPage];
 
-    try {
-      do {
-        const cachedResponse = literatureSearchResult.results.find(
-          // eslint-disable-next-line @typescript-eslint/no-loop-func
-          (r) => r.links.self === nextLink
-        );
+    do {
+      const cachedResponse = literatureSearchResult.results.find(
+        // eslint-disable-next-line @typescript-eslint/no-loop-func
+        (r) => r.links.self === nextLink
+      );
 
-        const response: Pagination<LiteratureMetadata[]> =
-          // eslint-disable-next-line no-await-in-loop
-          cachedResponse || (await searchScopus(nextLink, true));
+      const response: Pagination<LiteratureMetadata[]> =
+        // eslint-disable-next-line no-await-in-loop
+        cachedResponse || (await searchScopus(nextLink, true));
 
-        results.push(response);
-        nextLink = response?.links.next || undefined;
-      } while (nextLink);
+      results.push(response);
+      nextLink = response?.links.next || undefined;
+    } while (nextLink);
 
-      if (hasAllResults(results)) {
-        set({ fullLiteratureSearchResult: Op.success(results.map((r) => r.result).flat()) });
-      } else {
-        set({ fullLiteratureSearchResult: Op.error(new Error("Failed to fetch all pages")) });
-      }
-    } catch (e) {
-      set({ fullLiteratureSearchResult: Op.error(e) });
+    if (hasAllResults(results)) {
+      set(() => ({
+        literatureSearchResult: { results, currentResult },
+      }));
+      return results.map((r) => r.result).flat();
     }
+    throw new Error("Failed to fetch all pages");
   },
 });

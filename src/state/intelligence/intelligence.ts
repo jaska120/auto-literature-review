@@ -11,10 +11,10 @@ export const intelligenceInitialState: IntelligenceState = {
   searchStringPrompt: undefined,
   searchStringResult: { currentResult: Op.idle },
   evaluateLiteraturePrompt: undefined,
-  evaluateLiteratureTestResult: { currentResult: Op.idle },
+  evaluateLiteratureResults: { currentResult: Op.idle },
 };
 
-export const createIntelligenceSlice: StateCreator<IntelligenceSlice> = (set) => ({
+export const createIntelligenceSlice: StateCreator<IntelligenceSlice> = (set, get) => ({
   ...intelligenceInitialState,
   askAIForSearchString: async (prompt) => {
     set({ searchStringPrompt: prompt, searchStringResult: { currentResult: Op.running } });
@@ -28,7 +28,7 @@ export const createIntelligenceSlice: StateCreator<IntelligenceSlice> = (set) =>
   askAIForLiteratureEvaluation: async (metadatas, prompt) => {
     set({
       evaluateLiteraturePrompt: prompt,
-      evaluateLiteratureTestResult: { currentResult: Op.running },
+      evaluateLiteratureResults: { currentResult: Op.running },
     });
 
     const prompts = metadatas.map((m) => generateLiteratureEvaluationPrompt(m, prompt));
@@ -36,12 +36,44 @@ export const createIntelligenceSlice: StateCreator<IntelligenceSlice> = (set) =>
     try {
       const results = await Promise.all(prompts.map((p) => askAIForLiteratureEvaluation(p)));
       const testResults = prompts.map((p, i) => ({
+        literature: metadatas[i],
         prompt: p,
         result: results[i],
       }));
-      set({ evaluateLiteratureTestResult: { currentResult: Op.success(testResults) } });
+      set({ evaluateLiteratureResults: { currentResult: Op.success(testResults) } });
     } catch (e) {
-      set({ evaluateLiteratureTestResult: { currentResult: Op.error(e) } });
+      set({ evaluateLiteratureResults: { currentResult: Op.error(e) } });
     }
+  },
+  fetchFullLiteratureEvaluation: async (metadatas) => {
+    const { evaluateLiteraturePrompt, evaluateLiteratureResults } = get();
+
+    if (!evaluateLiteraturePrompt) {
+      throw new Error("Make test evaluation first.");
+    }
+
+    const prompts = metadatas.map((m) =>
+      generateLiteratureEvaluationPrompt(m, evaluateLiteraturePrompt)
+    );
+
+    const results = await Promise.all(
+      prompts.map(async (p, i) => {
+        const cachedResponse = Op.getValue(evaluateLiteratureResults.currentResult)?.find(
+          (r) => r.prompt === p
+        );
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+        return {
+          literature: metadatas[i],
+          prompt: p,
+          result: await askAIForLiteratureEvaluation(p),
+        };
+      })
+    );
+
+    set({ evaluateLiteratureResults: { currentResult: Op.success(results) } });
+
+    return results;
   },
 });

@@ -1,25 +1,23 @@
 import {
   Result,
   SearchStringIntelligentAnswer,
-  EvaluateLiteratureIntelligentAnswer,
   LiteratureMetadata,
+  LiteratureEvaluation,
 } from "../types";
 
 export interface IntelligenceState {
   searchStringPrompt: string | undefined;
   searchStringResult: Result<SearchStringIntelligentAnswer>;
   evaluateLiteraturePrompt: string | undefined;
-  evaluateLiteratureTestResult: Result<
-    {
-      prompt: string;
-      result: EvaluateLiteratureIntelligentAnswer;
-    }[]
-  >;
+  evaluateLiteratureResults: Result<LiteratureEvaluation[]>;
 }
 
 export interface IntelligenceActions {
   askAIForSearchString: (prompt: string) => Promise<void>;
   askAIForLiteratureEvaluation: (metadatas: LiteratureMetadata[], prompt: string) => Promise<void>;
+  fetchFullLiteratureEvaluation: (
+    metadatas: LiteratureMetadata[]
+  ) => Promise<LiteratureEvaluation[]>;
 }
 
 export type IntelligenceSlice = IntelligenceState & IntelligenceActions;

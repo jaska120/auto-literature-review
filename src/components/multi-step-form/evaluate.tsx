@@ -21,7 +21,7 @@ export function Evaluate() {
   const state = useBoundStore(
     useShallow((s) => ({
       prompt: s.evaluateLiteraturePrompt,
-      result: s.evaluateLiteratureTestResult.currentResult,
+      result: s.evaluateLiteratureResults.currentResult,
       run: s.evaluateLiteratureTest,
       test: s.literatureSearchResult.results,
       openAIConnection: s.connections.openAI.test,

@@ -27,10 +27,8 @@ export function MultiStepForm() {
 
   const handleApplyToNextStep = (currentStep: number) => {
     const apply = applyFn[currentStep];
-    if (apply) {
-      apply();
-      handleToNextStep(currentStep + 1);
-    }
+    apply?.();
+    handleToNextStep(currentStep + 1);
   };
 
   return (

@@ -18,7 +18,8 @@ export function Results() {
     useShallow((s) => ({
       literatureQuery: s.literatureQuery,
       literatureResult: s.literatureSearchResult.currentResult,
-      evaluateTestResult: s.evaluateLiteratureTestResult.currentResult,
+      evaluateTestResult: s.evaluateLiteratureResults.currentResult,
+      run: s.generateReport,
       scopusConnection: s.connections.scopus.test,
       openAIConnection: s.connections.openAI.test,
     }))
@@ -28,7 +29,7 @@ export function Results() {
   });
 
   const onSubmit = async () => {
-    // TODO
+    await state.run();
   };
 
   return (
