@@ -5,7 +5,7 @@ import { hasAllResults, searchScopus } from "../effects/scopus/scopus";
 import { LiteratureMetadata, Pagination } from "../types";
 
 /** The max number of results that can be processed. */
-const SEARCH_LIMIT = 500;
+const SEARCH_LIMIT = 2000;
 
 export const searchInitialState: SearchState = {
   literatureQuery: undefined,

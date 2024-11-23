@@ -5,6 +5,7 @@ import {
   LiteratureMetadata,
   SearchStringIntelligentAnswer,
 } from "@/state/types";
+import PQueue from "p-queue";
 import {
   mapEvaluateLiteratureIntelligentAnswer,
   mapIntelligentAnswer,
@@ -12,6 +13,16 @@ import {
 } from "./openai-mappers";
 import { searchStringSystemPrompt } from "./search-string-system-prompt";
 import { evaluateLiteratureSystemPrompt } from "./evaluate-literature-system-prompt";
+
+const queue = new PQueue({ concurrency: 3, throwOnTimeout: true });
+
+async function processQueue<T extends object>(fn: () => Promise<T>): Promise<T> {
+  const result = await queue.add(fn);
+  if (result === undefined) {
+    throw new Error("OpenAI request timed out");
+  }
+  return result;
+}
 
 export function registerOpenAIApiKey(apiKey: string | undefined): void {
   openai.apiKey = apiKey || "";
@@ -36,14 +47,16 @@ async function askAI(systemPrompt: string, prompt: string): Promise<IntelligentA
   if (!openai.apiKey) {
     throw new Error("OpenAI API key is not set");
   }
-  const response = await openai.chat.completions.create({
-    model: "gpt-4o",
-    messages: [
-      { role: "system", content: systemPrompt },
-      { role: "user", content: prompt },
-    ],
-    max_tokens: 1000,
-  });
+  const response = await processQueue(() =>
+    openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: prompt },
+      ],
+      max_tokens: 1000,
+    })
+  );
 
   // Filter out incomplete answers
   return mapIntelligentAnswer(response.choices.filter((c) => c.finish_reason === "stop"));
