@@ -1,5 +1,25 @@
 # auto-literature-review
 
+## 0.4.1
+
+### Patch Changes
+
+- [#154](https://github.com/jaska120/auto-literature-review/pull/154) [`8683409`](https://github.com/jaska120/auto-literature-review/commit/8683409488aa58a5292eedecb89b8413ea738f9b) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update node.js to v22
+
+- [#162](https://github.com/jaska120/auto-literature-review/pull/162) [`099da55`](https://github.com/jaska120/auto-literature-review/commit/099da55beb6a7f690ccaa711a80ef684f145d686) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/jest to ^29.5.14
+
+- [#164](https://github.com/jaska120/auto-literature-review/pull/164) [`39b55c3`](https://github.com/jaska120/auto-literature-review/commit/39b55c3a1099079066f03d68dbcc73bb6949fe85) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @changesets/cli to ^2.27.10
+
+- [#165](https://github.com/jaska120/auto-literature-review/pull/165) [`da7727f`](https://github.com/jaska120/auto-literature-review/commit/da7727fd49a87b558939607edd52b6e63ae52c0a) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/react to ^18.3.12
+
+- [#166](https://github.com/jaska120/auto-literature-review/pull/166) [`cb5867f`](https://github.com/jaska120/auto-literature-review/commit/cb5867f0ec7a71b24feb210833cb8d06c546714b) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency postcss to ^8.4.49
+
+- [#167](https://github.com/jaska120/auto-literature-review/pull/167) [`09a483b`](https://github.com/jaska120/auto-literature-review/commit/09a483b78dcf647b21f9b98154167d9a6894b14a) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency tailwindcss to ^3.4.15
+
+- [#168](https://github.com/jaska120/auto-literature-review/pull/168) [`58d86d7`](https://github.com/jaska120/auto-literature-review/commit/58d86d77204b5631b628ccf2c409e57369fcefdd) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency @hookform/resolvers to ^3.9.1
+
+- [`1bc8422`](https://github.com/jaska120/auto-literature-review/commit/1bc84224cbdbbc46b7dfd9eaf8ab49937a53a1ea) Thanks [@jaska120](https://github.com/jaska120)! - More consistent terminology for steps
+
 ## 0.4.0
 
 ### Minor Changes
