@@ -14,7 +14,7 @@ export default function SystemPromptsPage() {
         </h2>
         <p className="whitespace-pre-wrap">{searchStringSystemPrompt.trim()}</p>
         <h2 id="evaluate-literature" className="text-2xl font-bold mb-6 mt-8">
-          Evaluate Literature
+          Literature Evaluation
         </h2>
         <p className="whitespace-pre-wrap">{evaluateLiteratureSystemPrompt.trim()}</p>
       </div>

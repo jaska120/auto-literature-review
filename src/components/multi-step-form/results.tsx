@@ -48,7 +48,7 @@ export function Results() {
           </p>
           <p>{getValue(state.literatureResult)?.totalResults} results</p>
           <p>
-            <strong>Evaluate Literature</strong>
+            <strong>Literature Evaluation</strong>
           </p>
           {getValue(state.evaluateTestResult)?.map((r) => (
             <div key={r.prompt} className="mb-4">

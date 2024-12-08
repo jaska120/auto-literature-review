@@ -13,7 +13,7 @@ import { Tooltip } from "../tooltip/tooltip";
 const Steps: { component: () => JSX.Element; tooltip?: () => JSX.Element; title: string }[] = [
   { component: SearchString, tooltip: SearchStringTooltip, title: "Search String" },
   { component: Search, tooltip: SearchTooltip, title: "Literature Search" },
-  { component: Evaluate, title: "Evaluate Literature" },
+  { component: Evaluate, title: "Literature Evaluation" },
   { component: Results, title: "Results" },
 ];
 
