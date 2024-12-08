@@ -1,5 +1,15 @@
 # auto-literature-review
 
+## 0.4.2
+
+### Patch Changes
+
+- [#169](https://github.com/jaska120/auto-literature-review/pull/169) [`bf62d96`](https://github.com/jaska120/auto-literature-review/commit/bf62d96fbe4f253b390694371060467209f289a1) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency react-hook-form to ^7.53.2
+
+- [#171](https://github.com/jaska120/auto-literature-review/pull/171) [`708c96c`](https://github.com/jaska120/auto-literature-review/commit/708c96c290a207075e9b865c3a60b989a697302b) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency zustand to ^5.0.1
+
+- [#172](https://github.com/jaska120/auto-literature-review/pull/172) [`1540933`](https://github.com/jaska120/auto-literature-review/commit/15409333a36789ca655b966652ff2fed6e80da07) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update nextjs monorepo to ^14.2.18
+
 ## 0.4.1
 
 ### Patch Changes
