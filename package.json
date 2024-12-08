@@ -28,7 +28,7 @@
     "changeset": "npx changeset"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.9.0",
+    "@hookform/resolvers": "^3.9.1",
     "@next/mdx": "^14.2.15",
     "@zodios/core": "^10.9.6",
     "csv-stringify": "^6.5.2",
