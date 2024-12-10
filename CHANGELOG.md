@@ -1,5 +1,25 @@
 # auto-literature-review
 
+## 0.4.2
+
+### Patch Changes
+
+- [#169](https://github.com/jaska120/auto-literature-review/pull/169) [`bf62d96`](https://github.com/jaska120/auto-literature-review/commit/bf62d96fbe4f253b390694371060467209f289a1) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency react-hook-form to ^7.53.2
+
+- [#171](https://github.com/jaska120/auto-literature-review/pull/171) [`708c96c`](https://github.com/jaska120/auto-literature-review/commit/708c96c290a207075e9b865c3a60b989a697302b) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency zustand to ^5.0.1
+
+- [#172](https://github.com/jaska120/auto-literature-review/pull/172) [`1540933`](https://github.com/jaska120/auto-literature-review/commit/15409333a36789ca655b966652ff2fed6e80da07) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update nextjs monorepo to ^14.2.18
+
+- [#173](https://github.com/jaska120/auto-literature-review/pull/173) [`914e9d0`](https://github.com/jaska120/auto-literature-review/commit/914e9d0337ad16d12c670b9c0d3432c500a580d0) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency type-fest to ^4.28.0
+
+- [#174](https://github.com/jaska120/auto-literature-review/pull/174) [`9bfba58`](https://github.com/jaska120/auto-literature-review/commit/9bfba58cb66d93a4467e7403fb77a9a8cb588a60) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typescript to ^5.7.2
+
+- [#175](https://github.com/jaska120/auto-literature-review/pull/175) [`0cc4fe1`](https://github.com/jaska120/auto-literature-review/commit/0cc4fe16de683ee592eeab4014a476a5f787e2f2) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency openai to ^4.73.0
+
+- [#176](https://github.com/jaska120/auto-literature-review/pull/176) [`7352315`](https://github.com/jaska120/auto-literature-review/commit/7352315e2054e5953646756a5c8007e90e79cee8) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/node to ^22.9.4
+
+- [#177](https://github.com/jaska120/auto-literature-review/pull/177) [`9bd08ea`](https://github.com/jaska120/auto-literature-review/commit/9bd08ea0735ed1d98ad9affe9fec658d967ec75c) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency openai to ^4.73.1
+
 ## 0.4.1
 
 ### Patch Changes
