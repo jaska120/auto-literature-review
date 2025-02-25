@@ -14,7 +14,7 @@ import {
 import { searchStringSystemPrompt } from "./search-string-system-prompt";
 import { evaluateLiteratureSystemPrompt } from "./evaluate-literature-system-prompt";
 
-const queue = new PQueue({ concurrency: 3, throwOnTimeout: true });
+const queue = new PQueue({ concurrency: 1, throwOnTimeout: true });
 
 async function processQueue<T extends object>(fn: () => Promise<T>): Promise<T> {
   const result = await queue.add(fn);
