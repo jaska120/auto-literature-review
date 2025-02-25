@@ -1,5 +1,11 @@
 # auto-literature-review
 
+## 0.4.3
+
+### Patch Changes
+
+- [`05c27b1`](https://github.com/jaska120/auto-literature-review/commit/05c27b115c5ebb7c756d37d27fa12673b2cc6051) Thanks [@jaska120](https://github.com/jaska120)! - Lower OpenAI API request concurrency to 1 as it is not configurable from the UI, and users might hit the rate limit.
+
 ## 0.4.2
 
 ### Patch Changes
