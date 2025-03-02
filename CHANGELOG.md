@@ -1,5 +1,13 @@
 # auto-literature-review
 
+## 0.4.4
+
+### Patch Changes
+
+- [`7b8133b`](https://github.com/jaska120/auto-literature-review/commit/7b8133bd035bfba99f12e44cbd235cf091e7a61f) Thanks [@jaska120](https://github.com/jaska120)! - Update SEO metadata tags
+
+  This change is to allow people to discover the tool.
+
 ## 0.4.3
 
 ### Patch Changes
