@@ -7,8 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Auto Literature Review",
-  description:
-    "A novel, academically researched approach to automatically generate literature reviews. For any field of study.",
+  description: "Fast and automated study selection for literature review with Scopus and OpenAI.",
+  keywords:
+    "artificial intelligence, large language model, automation, systematic literature review, design science research, openai, scopus",
 };
 
 export default function RootLayout({
